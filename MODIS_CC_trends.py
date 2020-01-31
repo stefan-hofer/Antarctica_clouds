@@ -167,7 +167,7 @@ if __name__ == '__main__':
         '2002-07:2015-11 DJF Cloud cover trends * 13 yrs.', fontsize=15)
     fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Trend_CC_DJF_2002-2015.pdf',
                 format='PDF')
-    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Trend_CC_DJF_2002-2015.pdf',
+    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Trend_CC_DJF_2002-2015.png',
                 format='PNG', dpi=500)
 
 
