@@ -111,7 +111,7 @@ if __name__ == '__main__':
     trend_AVHRR = xarray_trend(AVHRR_JJA, dim='year')
 #    trend_A = regridder_AVHRR(trend_AVHRR.slope)
 
-    MODIS_CC = cloud_data_M.loc['2002-07-01':'2015-11-01']
+    MODIS_CC = (cloud_data_M.loc['2002-07-01':'2015-11-01'])*100
     MODIS_JJA = MODIS_CC.where(MODIS_CC['time.season'] == 'DJF').groupby(
         'time.year').mean(dim='time')
     trend_MODIS = xarray_trend(MODIS_JJA, dim='year')
@@ -155,13 +155,20 @@ if __name__ == '__main__':
                      trend_AVHRR.slope*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
     ax[2].pcolormesh(trend_MODIS['lon'], trend_MODIS['lat'],
                      trend_MODIS.slope*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
-    cbar = fig.colorbar(cont, ax=ax, ticks=[-15, -10, -5, 0, 5, 10, 20],
-                        orientation='vertical', fraction=0.13, pad=0.01, shrink=0.8)
+
     for i in range(3):
         ax[i].add_feature(cartopy.feature.COASTLINE.with_scale(
             '50m'), zorder=1, edgecolor='black')
     fig.canvas.draw()
     fig.tight_layout()
+    cbar = fig.colorbar(cont, ax=ax, ticks=[-15, -10, -5, 0, 5, 10, 15],
+                        orientation='horizontal', fraction=0.13, pad=0.01, shrink=0.8)
+    cbar.set_label(
+        '2002-07:2015-11 DJF Cloud cover trends * 13 yrs.', fontsize=15)
+    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Trend_CC_DJF_2002-2015.pdf',
+                format='PDF')
+    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Trend_CC_DJF_2002-2015.pdf',
+                format='PNG', dpi=500)
 
 
 # =========================================================================
