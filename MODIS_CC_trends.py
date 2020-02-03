@@ -41,6 +41,12 @@ data_M = data_M.rename({'Begin_Date': 'time'})
 cloud_data_M = xr.DataArray(
     data_M['Aqua_Cloud_Fraction_Mean_Mean'].sel(lat=slice(-40, -90)))
 
+
+data_ERA = xr.open_mfdataset(
+    '/uio/kant/geo-metos-u1/shofer/data/MAR_ANT_35/data/ERA5/SINGLELEVS/ERA5_*.nc', combine='by_coords')
+cloud_data_ERA = data_ERA.tcc
+
+
 # ==============================================================================
 # Define functions
 # ==============================================================================
@@ -122,15 +128,20 @@ if __name__ == '__main__':
     trend_MAR = xarray_trend(MAR_JJA, dim='year')
     trend_MAR.coords['LON'] = MAR.LON
     trend_MAR.coords['LAT'] = MAR.LAT
-# ===============================================
+
+    ERA_CC = (cloud_data_ERA.loc['2002-07-01':'2015-11-01'])*100
+    ERA_JJA = ERA_CC.where(ERA_CC['time.season'] == 'DJF').groupby(
+        'time.year').mean(dim='time')
+    trend_ERA = xarray_trend(ERA_JJA, dim='year')
+    # ===============================================
     # NICE PLOT OF RACMO DATA
     proj = ccrs.SouthPolarStereo()
 
-    fig, axs = plt.subplots(nrows=1, ncols=3, figsize=(
+    fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(
         16, 24), subplot_kw={'projection': proj})
     ax = axs.ravel().tolist()
 
-    for i in range(3):
+    for i in range(4):
         # Limit the map to -60 degrees latitude and below.
         ax[i].set_extent([-180, 180, -90, -60], ccrs.PlateCarree())
 
@@ -155,8 +166,9 @@ if __name__ == '__main__':
                      trend_AVHRR.slope*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
     ax[2].pcolormesh(trend_MODIS['lon'], trend_MODIS['lat'],
                      trend_MODIS.slope*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
-
-    for i in range(3):
+    ax[3].pcolormesh(trend_ERA['longitude'], trend_ERA['latitude'],
+                     trend_ERA.slope*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
+    for i in range(4):
         ax[i].add_feature(cartopy.feature.COASTLINE.with_scale(
             '50m'), zorder=1, edgecolor='black')
     fig.canvas.draw()
@@ -165,9 +177,9 @@ if __name__ == '__main__':
                         orientation='horizontal', fraction=0.13, pad=0.01, shrink=0.8)
     cbar.set_label(
         '2002-07:2015-11 DJF Cloud cover trends * 13 yrs.', fontsize=15)
-    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Trend_CC_DJF_2002-2015.pdf',
+    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Trend_CC_DJF_2002-2015_2x2.pdf',
                 format='PDF')
-    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Trend_CC_DJF_2002-2015.png',
+    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Trend_CC_DJF_2002-2015_2x2.png',
                 format='PNG', dpi=500)
 
 
