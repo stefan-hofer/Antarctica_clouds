@@ -30,7 +30,6 @@ MAR_grid.drop(['X', 'Y'])
 MAR['lat'] = MAR_grid.LAT
 MAR['lon'] = MAR_grid.LON
 MAR = MAR.drop_vars(['TIME_bnds'])
-MAR = MAR.drop_sel(['TIME_bnds'])
 
 
 # Load all the CLARA-A2 data
@@ -57,8 +56,17 @@ cloud_data_ERA = data_ERA.tcc
 # as long as lat lon grid is present
 ds_out = cloud_data_ERA
 # Can be any MAR input grid as long as lat lon is present (rename!)
+# REGRID MAR
 ds_in = MAR
-regridder = xe.Regridder(ds_in, ds_out, 'bilinear')
+regridder_MAR = xe.Regridder(ds_in, ds_out, 'bilinear')
+
+# REGRID AVHRR
+ds_in_AVHRR = cloud_data
+regridder_AVHRR = xe.Regridder(ds_in_AVHRR, ds_out, 'bilinear')
+
+# REGRID MODIS
+ds_in_MODIS = cloud_data_M
+regridder_MODIS = xe.Regridder(ds_in_MODIS, ds_out, 'bilinear')
 
 # Can try if it also works for the whole dataset by:
 # ==============================================================================
@@ -129,19 +137,21 @@ if __name__ == '__main__':
     AVHRR_JJA = AVHRR_CC.where(AVHRR_CC['time.season'] == 'DJF').groupby(
         'time.year').mean(dim='time')
     trend_AVHRR = xarray_trend(AVHRR_JJA, dim='year')
-#    trend_A = regridder_AVHRR(trend_AVHRR.slope)
+    trend_AVHRR_regrid = regridder_AVHRR(trend_AVHRR.slope)
 
     MODIS_CC = (cloud_data_M.loc['2002-07-01':'2015-11-01'])*100
     MODIS_JJA = MODIS_CC.where(MODIS_CC['time.season'] == 'DJF').groupby(
         'time.year').mean(dim='time')
     trend_MODIS = xarray_trend(MODIS_JJA, dim='year')
+    trend_MODIS_regrid = regridder_MODIS(trend_MODIS.slope)
 
     MAR_CC = (MAR.CC.loc['2002-07-01':'2015-11-1'])*100
     MAR_JJA = MAR_CC.where(MAR_CC['TIME.season'] == 'DJF').groupby(
         'TIME.year').mean(dim='TIME')
     trend_MAR = xarray_trend(MAR_JJA, dim='year')
-    trend_MAR.coords['LON'] = MAR.LON
-    trend_MAR.coords['LAT'] = MAR.LAT
+    trend_MAR.coords['lon'] = MAR.lon
+    trend_MAR.coords['lat'] = MAR.lat
+    trend_MAR_regrid = regridder_MAR(trend_MAR.slope)
 
     ERA_CC = (cloud_data_ERA.loc['2002-07-01':'2015-11-01'])*100
     ERA_JJA = ERA_CC.where(ERA_CC['time.season'] == 'DJF').groupby(
@@ -199,7 +209,6 @@ if __name__ == '__main__':
 
 # =========================================================================
 
-
-fig, axs = plt.subplots(nrows=1, ncols=2)
-trend_AVHRR.slope.plot(ax=axs[0])
-(trend_MODIS.slope * 100).plot(ax=axs[1])
+# POTENTIAL OTHER PLOTTING IDEAS
+trend_AVHRR_regrid.groupby('lon').mean(dim='lat').plot()
+trend_AVHRR_regrid.groupby('lon').mean(dim='lat').plot()
