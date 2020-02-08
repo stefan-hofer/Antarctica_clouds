@@ -6,6 +6,7 @@ from scipy import stats
 import matplotlib.path as mpath
 import cartopy.crs as ccrs
 import cartopy.feature
+import xesmf as xe
 # ===========================
 # Load the Data
 # ==========================
@@ -24,9 +25,12 @@ MAR = xr.open_dataset(
     '/uio/kant/geo-metos-u1/shofer/data/MAR_ANT_35/mon-CC-MAR_ERA5-1981-2018.nc')
 MAR_grid = xr.open_dataset(
     '/uio/kant/geo-metos-u1/shofer/data/MAR_ANT_35/MARcst-AN35km-176x148.cdf')
+MAR_grid.drop(['X', 'Y'])
 # Add LAT LON to MAR data
-MAR['LAT'] = MAR_grid.LAT
-MAR['LON'] = MAR_grid.LON
+MAR['lat'] = MAR_grid.LAT
+MAR['lon'] = MAR_grid.LON
+MAR = MAR.drop_vars(['TIME_bnds'])
+MAR = MAR.drop_sel(['TIME_bnds'])
 
 
 # Load all the CLARA-A2 data
@@ -41,12 +45,22 @@ data_M = data_M.rename({'Begin_Date': 'time'})
 cloud_data_M = xr.DataArray(
     data_M['Aqua_Cloud_Fraction_Mean_Mean'].sel(lat=slice(-40, -90)))
 
-
 data_ERA = xr.open_mfdataset(
     '/uio/kant/geo-metos-u1/shofer/data/MAR_ANT_35/data/ERA5/SINGLELEVS/ERA5_*.nc', combine='by_coords')
+data_ERA = data_ERA.rename({'latitude': 'lat', 'longitude': 'lon'})
 cloud_data_ERA = data_ERA.tcc
 
+# ==============================================================================
+# Regridding operations
+# ==============================================================================
+# This creates the output grid, atm I think can be done with any variable
+# as long as lat lon grid is present
+ds_out = cloud_data_ERA
+# Can be any MAR input grid as long as lat lon is present (rename!)
+ds_in = MAR
+regridder = xe.Regridder(ds_in, ds_out, 'bilinear')
 
+# Can try if it also works for the whole dataset by:
 # ==============================================================================
 # Define functions
 # ==============================================================================
@@ -138,7 +152,7 @@ if __name__ == '__main__':
     proj = ccrs.SouthPolarStereo()
 
     fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(
-        16, 24), subplot_kw={'projection': proj})
+        12, 12), subplot_kw={'projection': proj})
     ax = axs.ravel().tolist()
 
     for i in range(4):
@@ -171,7 +185,7 @@ if __name__ == '__main__':
     for i in range(4):
         ax[i].add_feature(cartopy.feature.COASTLINE.with_scale(
             '50m'), zorder=1, edgecolor='black')
-    fig.canvas.draw()
+    # fig.canvas.draw()
     fig.tight_layout()
     cbar = fig.colorbar(cont, ax=ax, ticks=[-15, -10, -5, 0, 5, 10, 15],
                         orientation='horizontal', fraction=0.13, pad=0.01, shrink=0.8)

@@ -13,6 +13,7 @@ import cartopy.feature
 ds = xr.open_mfdataset(
     '/uio/kant/geo-metos-u1/shofer/data/MAR_ANT_35/data/ERA5/SINGLELEVS/ERA5_*.nc', combine='by_coords')
 
+
 if __name__ == '__main__':
     # NICE PLOT OF RACMO DATA
     proj = ccrs.SouthPolarStereo()
