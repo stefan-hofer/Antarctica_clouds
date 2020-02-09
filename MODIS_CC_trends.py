@@ -7,6 +7,14 @@ import matplotlib.path as mpath
 import cartopy.crs as ccrs
 import cartopy.feature
 import xesmf as xe
+
+# !ice shelves 19) 20) 21) 22) 23) 24) 25) 26)
+# !Peninsula 15)  16)  17)  25) 26)
+# !East AIS 1)  2)  9) 14) 18) 24)
+# !West Ais A 3) 4)  5) 10) 12) 23)
+# !West Ais B 6) 7) 8) 11) 13) 21) 22)
+# !Ross 19)
+# !Ronne-Filchnner  20)
 # ===========================
 # Load the Data
 # ==========================
@@ -25,10 +33,19 @@ MAR = xr.open_dataset(
     '/uio/kant/geo-metos-u1/shofer/data/MAR_ANT_35/mon-CC-MAR_ERA5-1981-2018.nc')
 MAR_grid = xr.open_dataset(
     '/uio/kant/geo-metos-u1/shofer/data/MAR_ANT_35/MARcst-AN35km-176x148.cdf')
-MAR_grid.drop(['X', 'Y'])
+ds_grid = xr.Dataset({'RIGNOT': (['y', 'x'], MAR_grid.RIGNOT.values),
+                      'SH': (['y', 'x'], MAR_grid.SH.values),
+                      'LAT': (['y', 'x'], MAR_grid.LAT.values),
+                      'LON': (['y', 'x'], MAR_grid.LON.values)},
+                     coords={'x': (['x'], MAR_grid.x),
+                             'y': (['y'], MAR_grid.y)})
+
+# MAR_grid.drop(['X', 'Y'])
+
 # Add LAT LON to MAR data
-MAR['lat'] = MAR_grid.LAT
-MAR['lon'] = MAR_grid.LON
+MAR['lat'] = ds_grid.LAT
+MAR['lon'] = ds_grid.LON
+MAR['RIGNOT'] = ds_grid.RIGNOT.where(ds_grid.RIGNOT > 0)
 MAR = MAR.drop_vars(['TIME_bnds'])
 
 
@@ -59,6 +76,7 @@ ds_out = cloud_data_ERA
 # REGRID MAR
 ds_in = MAR
 regridder_MAR = xe.Regridder(ds_in, ds_out, 'bilinear')
+regridder_MAR_lin = xe.Regridder(ds_in, ds_out, 'nearest_s2d')
 
 # REGRID AVHRR
 ds_in_AVHRR = cloud_data
@@ -152,6 +170,8 @@ if __name__ == '__main__':
     trend_MAR.coords['lon'] = MAR.lon
     trend_MAR.coords['lat'] = MAR.lat
     trend_MAR_regrid = regridder_MAR(trend_MAR.slope)
+    # Plot e.g. (mask_MAR_regrid == 20).plot()
+    mask_MAR_regrid = xr.ufuncs.rint(regridder_MAR_lin(MAR.RIGNOT))
 
     ERA_CC = (cloud_data_ERA.loc['2002-07-01':'2015-11-01'])*100
     ERA_JJA = ERA_CC.where(ERA_CC['time.season'] == 'DJF').groupby(
