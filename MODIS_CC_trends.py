@@ -47,6 +47,9 @@ MAR['lat'] = ds_grid.LAT
 MAR['lon'] = ds_grid.LON
 MAR['RIGNOT'] = ds_grid.RIGNOT.where(ds_grid.RIGNOT > 0)
 MAR = MAR.drop_vars(['TIME_bnds'])
+MAR = MAR.rename({'TIME': 'time'})
+
+MAR_cloud = MAR.CC
 
 
 # Load all the CLARA-A2 data
@@ -149,7 +152,7 @@ def xarray_trend(xarr, dim='time'):
 
 
 if __name__ == '__main__':
-    # JJA trends between 1995-2016
+    # JJA trends between 2002 and 2015 (MODIS period)
     # CLARA
     AVHRR_CC = cloud_data.loc['2002-07-01':'2015-11-01']
     AVHRR_JJA = AVHRR_CC.where(AVHRR_CC['time.season'] == 'DJF').groupby(
@@ -157,28 +160,59 @@ if __name__ == '__main__':
     trend_AVHRR = xarray_trend(AVHRR_JJA, dim='year')
     trend_AVHRR_regrid = regridder_AVHRR(trend_AVHRR.slope)
 
+    # MODIS
     MODIS_CC = (cloud_data_M.loc['2002-07-01':'2015-11-01'])*100
     MODIS_JJA = MODIS_CC.where(MODIS_CC['time.season'] == 'DJF').groupby(
         'time.year').mean(dim='time')
     trend_MODIS = xarray_trend(MODIS_JJA, dim='year')
     trend_MODIS_regrid = regridder_MODIS(trend_MODIS.slope)
 
+    # MAR
     MAR_CC = (MAR.CC.loc['2002-07-01':'2015-11-1'])*100
-    MAR_JJA = MAR_CC.where(MAR_CC['TIME.season'] == 'DJF').groupby(
-        'TIME.year').mean(dim='TIME')
+    MAR_JJA = MAR_CC.where(MAR_CC['time.season'] == 'DJF').groupby(
+        'time.year').mean(dim='time')
     trend_MAR = xarray_trend(MAR_JJA, dim='year')
     trend_MAR.coords['lon'] = MAR.lon
     trend_MAR.coords['lat'] = MAR.lat
     trend_MAR_regrid = regridder_MAR(trend_MAR.slope)
     # Plot e.g. (mask_MAR_regrid == 20).plot()
+    # This is the RIGNOT mask on the ERA5 grid
     mask_MAR_regrid = xr.ufuncs.rint(regridder_MAR_lin(MAR.RIGNOT))
 
+    # ERA5
     ERA_CC = (cloud_data_ERA.loc['2002-07-01':'2015-11-01'])*100
     ERA_JJA = ERA_CC.where(ERA_CC['time.season'] == 'DJF').groupby(
         'time.year').mean(dim='time')
     trend_ERA = xarray_trend(ERA_JJA, dim='year')
+    # ==============================================
+    # Compare trends over specific sub-areas of Antarctica
+    # !ice shelves 19) 20) 21) 22) 23) 24) 25) 26)
+    # !Peninsula 15)  16)  17)  25) 26)
+    # !East AIS 1)  2)  9) 14) 18) 24)
+    # !West Ais A 3) 4)  5) 10) 12) 23)
+    # !West Ais B 6) 7) 8) 11) 13) 21) 22)
+    # !Ross 19)
+    # !Ronne-Filchnner  20)
+    mask_ice_shelves = mask_MAR_regrid.isin(
+        [19, 20, 21, 22, 23, 24, 25, 26])
+
+    def cc_seasonal_mask(ds, season='DJF', mask=[19, 26], regriddes_mask=mask_MAR_regrid):
+        ds_seasonal = ds.where(
+            ds['time.season'] == season).groupby('time.year').mean(dim='time')
+
+        ds_masked = ds_seasonal.where(
+            mask_MAR_regrid.isin(mask))
+
+        return ds_masked
+
+    ERA_shelves_CC = cc_seasonal_mask(
+        cloud_data_ERA, 'DJF', [19, 20, 21, 22, 23, 24, 25, 26])
+    ERA_shelves_msl = cc_seasonal_mask(
+        data_ERA.msl, 'DJF', [19, 20, 21, 22, 23, 24, 25, 26])
+    ERA_ROSS_CC = cc_seasonal_mask(cloud_data_ERA, 'DJF', [19])
+    ERA_ROSS_msl = cc_seasonal_mask(data_ERA.msl/100, 'DJF', [19])
     # ===============================================
-    # NICE PLOT OF RACMO DATA
+    # Compare trends between 2002 and 2015
     proj = ccrs.SouthPolarStereo()
 
     fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(
