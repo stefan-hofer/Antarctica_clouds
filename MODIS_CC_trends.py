@@ -213,6 +213,7 @@ if __name__ == '__main__':
     ERA_ROSS_msl = cc_seasonal_mask(data_ERA.msl/100, 'DJF', [19])
     # ===============================================
     # Compare trends between 2002 and 2015
+    names = ['MAR', 'AVHRR', 'ERA5', 'MODIS']
     proj = ccrs.SouthPolarStereo()
 
     fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(
@@ -238,17 +239,18 @@ if __name__ == '__main__':
 
         ax[i].set_boundary(circle, transform=ax[i].transAxes)
 
-    cont = ax[0].pcolormesh(MAR['LON'], MAR['LAT'],
-                            trend_MAR.slope*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
-    ax[1].pcolormesh(trend_AVHRR['lon'], trend_AVHRR['lat'],
-                     trend_AVHRR.slope*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
-    ax[2].pcolormesh(trend_MODIS['lon'], trend_MODIS['lat'],
-                     trend_MODIS.slope*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
-    ax[3].pcolormesh(trend_ERA['longitude'], trend_ERA['latitude'],
+    cont = ax[0].pcolormesh(trend_MAR_regrid['lon'], trend_MAR_regrid['lat'],
+                            trend_MAR_regrid*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
+    ax[1].pcolormesh(trend_AVHRR_regrid['lon'], trend_AVHRR_regrid['lat'],
+                     trend_AVHRR_regrid*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
+    ax[3].pcolormesh(trend_MODIS_regrid['lon'], trend_MODIS_regrid['lat'],
+                     trend_MODIS_regrid*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
+    ax[2].pcolormesh(trend_ERA['lon'], trend_ERA['lat'],
                      trend_ERA.slope*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
     for i in range(4):
         ax[i].add_feature(cartopy.feature.COASTLINE.with_scale(
             '50m'), zorder=1, edgecolor='black')
+        ax[i].set_title(names[i], fontsize=16)
     # fig.canvas.draw()
     fig.tight_layout()
     cbar = fig.colorbar(cont, ax=ax, ticks=[-15, -10, -5, 0, 5, 10, 15],
