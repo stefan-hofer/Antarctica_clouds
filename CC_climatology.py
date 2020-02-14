@@ -96,7 +96,7 @@ def summer_mean(ds, start='2002-07-01', end='2015-11-01', season='DJF'):
     if start:
         ds = ds.loc[start:end]
 
-    ds_JJA = ds.where(ds['time.season' == 'DJF']).groupby(
+    ds_JJA = ds.where(ds['time.season'] == 'DJF').groupby(
         'time.year').mean(dim='time')
     ds_JJA_climatology = ds_JJA.mean(dim='year')
 
