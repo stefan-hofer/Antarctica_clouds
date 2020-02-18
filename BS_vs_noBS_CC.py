@@ -30,11 +30,11 @@ def preprocess(ds):
 
 # Load all the MAR data
 MAR = xr.open_dataset(
-    '/uio/kant/geo-metos-u1/shofer/data/MAR_ANT_35/mon-CC-MAR_ERA5-1981-2018.nc')
+    '/uio/lagringshotell/geofag/projects/miphclac/shofer/MAR/wBS/mon-CC-MAR_ERA5-1981-2018.nc')
 MAR_noBS = xr.open_dataset(
-    '/uio/kant/geo-metos-u1/shofer/data/MAR_ANT_35/data/MAR_noBS/mon-CC-MAR_ERA5-1980-2018.nc')
+    '/uio/lagringshotell/geofag/projects/miphclac/shofer/MAR/noBS/mon-CC-MAR_ERA5-1980-2018.nc')
 MAR_grid = xr.open_dataset(
-    '/uio/kant/geo-metos-u1/shofer/data/MAR_ANT_35/MARcst-AN35km-176x148.cdf')
+    '/uio/lagringshotell/geofag/projects/miphclac/shofer/MAR/wBS/MARcst-AN35km-176x148.cdf')
 ds_grid = xr.Dataset({'RIGNOT': (['y', 'x'], MAR_grid.RIGNOT.values),
                       'SH': (['y', 'x'], MAR_grid.SH.values),
                       'LAT': (['y', 'x'], MAR_grid.LAT.values),
@@ -103,7 +103,7 @@ def summer_mean(ds, start='2002-07-01', end='2015-11-01', season='DJF'):
     if start:
         ds = ds.loc[start:end]
 
-    ds_JJA = ds.where(ds['time.season' == 'DJF']).groupby(
+    ds_JJA = ds.where(ds['time.season'] == 'DJF').groupby(
         'time.year').mean(dim='time')
     ds_JJA_climatology = ds_JJA.mean(dim='year')
 
@@ -189,7 +189,7 @@ if __name__ == '__main__':
                         orientation='horizontal', fraction=0.13, pad=0.01, shrink=0.8)
     cbar.set_label(
         'Average DJF cloud cover 2002-2015 (%)', fontsize=18)
-    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Diff_Climatology_CC_DJF_2002-2015_2x2.pdf',
+    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Diff_Climatology_CC_DJF_2002-2015_2x2_new.pdf',
                 format='PDF')
-    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Diff_Climatology_CC_DJF_2002-2015_2x2.png',
+    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Diff_Climatology_CC_DJF_2002-2015_2x2_new.png',
                 format='PNG', dpi=500)

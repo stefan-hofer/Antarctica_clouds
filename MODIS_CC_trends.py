@@ -30,15 +30,18 @@ def preprocess(ds):
 
 # Load all the MAR data
 MAR = xr.open_dataset(
-    '/uio/kant/geo-metos-u1/shofer/data/MAR_ANT_35/mon-CC-MAR_ERA5-1981-2018.nc')
+    '/uio/lagringshotell/geofag/projects/miphclac/shofer/MAR/wBS/mon-CC-MAR_ERA5-1981-2018.nc')
+MAR_noBS = xr.open_dataset(
+    '/uio/lagringshotell/geofag/projects/miphclac/shofer/MAR/noBS/mon-CC-MAR_ERA5-1980-2018.nc')
 MAR_grid = xr.open_dataset(
-    '/uio/kant/geo-metos-u1/shofer/data/MAR_ANT_35/MARcst-AN35km-176x148.cdf')
+    '/uio/lagringshotell/geofag/projects/miphclac/shofer/MAR/wBS/MARcst-AN35km-176x148.cdf')
 ds_grid = xr.Dataset({'RIGNOT': (['y', 'x'], MAR_grid.RIGNOT.values),
                       'SH': (['y', 'x'], MAR_grid.SH.values),
                       'LAT': (['y', 'x'], MAR_grid.LAT.values),
                       'LON': (['y', 'x'], MAR_grid.LON.values)},
                      coords={'x': (['x'], MAR_grid.x),
                              'y': (['y'], MAR_grid.y)})
+
 
 # MAR_grid.drop(['X', 'Y'])
 
@@ -49,7 +52,10 @@ MAR['RIGNOT'] = ds_grid.RIGNOT.where(ds_grid.RIGNOT > 0)
 MAR = MAR.drop_vars(['TIME_bnds'])
 MAR = MAR.rename({'TIME': 'time'})
 
-MAR_cloud = MAR.CC
+MAR_noBS = MAR_noBS.rename({'TIME': 'time'})
+MAR_noBS = MAR_noBS.drop_vars(['TIME_bnds'])
+MAR_noBS['lat'] = ds_grid.LAT
+MAR_noBS['lon'] = ds_grid.LON
 
 
 # Load all the CLARA-A2 data
@@ -167,7 +173,7 @@ if __name__ == '__main__':
     trend_MODIS = xarray_trend(MODIS_JJA, dim='year')
     trend_MODIS_regrid = regridder_MODIS(trend_MODIS.slope)
 
-    # MAR
+    # MAR with blowing snow
     MAR_CC = (MAR.CC.loc['2002-07-01':'2015-11-1'])*100
     MAR_JJA = MAR_CC.where(MAR_CC['time.season'] == 'DJF').groupby(
         'time.year').mean(dim='time')
@@ -175,9 +181,17 @@ if __name__ == '__main__':
     trend_MAR.coords['lon'] = MAR.lon
     trend_MAR.coords['lat'] = MAR.lat
     trend_MAR_regrid = regridder_MAR(trend_MAR.slope)
-    # Plot e.g. (mask_MAR_regrid == 20).plot()
-    # This is the RIGNOT mask on the ERA5 grid
-    mask_MAR_regrid = xr.ufuncs.rint(regridder_MAR_lin(MAR.RIGNOT))
+
+    # MAR without Blowing snow
+    MAR_CC_noBS = (MAR_noBS.CC.loc['2002-07-01':'2015-11-1'])*100
+    MAR_JJA_noBS = MAR_CC_noBS.where(MAR_CC_noBS['time.season'] == 'DJF').groupby(
+        'time.year').mean(dim='time')
+    trend_MAR_noBS = xarray_trend(MAR_JJA_noBS, dim='year')
+    trend_MAR_noBS.coords['lon'] = MAR_noBS.lon
+    trend_MAR_noBS.coords['lat'] = MAR_noBS.lat
+    trend_MAR_regrid_noBS = regridder_MAR(trend_MAR_noBS.slope)
+
+    diff = (trend_MAR_regrid - trend_MAR_regrid_noBS)
 
     # ERA5
     ERA_CC = (cloud_data_ERA.loc['2002-07-01':'2015-11-01'])*100
@@ -213,14 +227,15 @@ if __name__ == '__main__':
     ERA_ROSS_msl = cc_seasonal_mask(data_ERA.msl/100, 'DJF', [19])
     # ===============================================
     # Compare trends between 2002 and 2015
-    names = ['MAR', 'AVHRR', 'ERA5', 'MODIS']
+    names = ['MAR', 'MAR_noBS',
+             'MAR - MAR_noBS', 'AVHRR', 'ERA5', 'MODIS']
     proj = ccrs.SouthPolarStereo()
 
-    fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(
+    fig, axs = plt.subplots(nrows=2, ncols=3, figsize=(
         12, 12), subplot_kw={'projection': proj})
     ax = axs.ravel().tolist()
 
-    for i in range(4):
+    for i in range(6):
         # Limit the map to -60 degrees latitude and below.
         ax[i].set_extent([-180, 180, -90, -60], ccrs.PlateCarree())
 
@@ -241,13 +256,17 @@ if __name__ == '__main__':
 
     cont = ax[0].pcolormesh(trend_MAR_regrid['lon'], trend_MAR_regrid['lat'],
                             trend_MAR_regrid*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
-    ax[1].pcolormesh(trend_AVHRR_regrid['lon'], trend_AVHRR_regrid['lat'],
+    ax[1].pcolormesh(trend_MAR_regrid_noBS['lon'], trend_MAR_regrid_noBS['lat'],
+                     trend_MAR_regrid_noBS*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
+    ax[2].pcolormesh(trend_MAR_regrid['lon'], trend_MAR_regrid['lat'],
+                     diff*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
+    ax[3].pcolormesh(trend_AVHRR_regrid['lon'], trend_AVHRR_regrid['lat'],
                      trend_AVHRR_regrid*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
-    ax[3].pcolormesh(trend_MODIS_regrid['lon'], trend_MODIS_regrid['lat'],
+    ax[5].pcolormesh(trend_MODIS_regrid['lon'], trend_MODIS_regrid['lat'],
                      trend_MODIS_regrid*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
-    ax[2].pcolormesh(trend_ERA['lon'], trend_ERA['lat'],
+    ax[4].pcolormesh(trend_ERA['lon'], trend_ERA['lat'],
                      trend_ERA.slope*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
-    for i in range(4):
+    for i in range(6):
         ax[i].add_feature(cartopy.feature.COASTLINE.with_scale(
             '50m'), zorder=1, edgecolor='black')
         ax[i].set_title(names[i], fontsize=16)
@@ -257,9 +276,9 @@ if __name__ == '__main__':
                         orientation='horizontal', fraction=0.13, pad=0.01, shrink=0.8)
     cbar.set_label(
         '2002-07:2015-11 DJF Cloud cover trends * 13 yrs.', fontsize=15)
-    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Trend_CC_DJF_2002-2015_2x2.pdf',
+    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Trend_CC_DJF_2002-2015_2x2_new.pdf',
                 format='PDF')
-    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Trend_CC_DJF_2002-2015_2x2.png',
+    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Trend_CC_DJF_2002-2015_2x2_new.png',
                 format='PNG', dpi=500)
 
 
