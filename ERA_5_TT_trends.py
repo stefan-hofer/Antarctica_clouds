@@ -38,9 +38,12 @@ data_ERA = data_ERA.rename({'latitude': 'lat', 'longitude': 'lon'})
 
 def summer_mean(ds, start='2002-07-01', end='2015-11-01', season='DJF'):
     ds_new = ds.loc[start:end]
-
-    ds_JJA = ds_new.where(ds_new['time.season'] == 'DJF').groupby(
-        'time.year').mean(dim='time')
+    if season == 'annual':
+        ds_JJA = ds_new.groupby(
+            'time.year').mean(dim='time')
+    else:
+        ds_JJA = ds_new.where(ds_new['time.season'] == season).groupby(
+            'time.year').mean(dim='time')
     ds_JJA_climatology = ds_JJA.mean(dim='year')
 
     return ds_JJA_climatology, ds_JJA
@@ -103,19 +106,26 @@ def xarray_trend(xarr, dim='time'):
 
 
 if __name__ == '__main__':
-    climatology_TT, JJA_TT = summer_mean(ds_new.TT)
+    # DJF
+    climatology_TT, JJA_TT = summer_mean(
+        ds_new.TT, start='1990-06-01', end='2019-11-01')
+    climatology_TT_ann, ann_TT = summer_mean(
+        ds_new.TT, start='1990-06-01', end='2019-11-01', season='annual')
     trend_TT = xarray_trend(JJA_TT, dim='year')
+    trend_TT_ann = xarray_trend(ann_TT, dim='year')
 
-    climatology_CC, JJA_CC = summer_mean(data_ERA.tcc*100)
+    climatology_CC, JJA_CC = summer_mean(
+        data_ERA.tcc*100, start='1990-06-01', end='2019-11-01')
     trend_CC = xarray_trend(JJA_CC, dim='year')
 
     # Plotting
-    names = ['ERA5_TT Trend (2002-2015)', 'ERA5_CC Trend (2002-2015)']
+    names = [
+        'ERA5 DJF Temp. Trend (1990-2019)', 'ERA5 annual Temp. Trend (1990-2019)']
     # Compare trends between 2002 and 2015
     proj = ccrs.SouthPolarStereo()
 
     fig, axs = plt.subplots(nrows=1, ncols=2, figsize=(
-        10, 6), subplot_kw={'projection': proj})
+        12, 6), subplot_kw={'projection': proj})
     ax = axs.ravel().tolist()
 
     for i in range(2):
@@ -139,9 +149,11 @@ if __name__ == '__main__':
 
     cmap = 'YlGnBu_r'
     cont = ax[0].pcolormesh(trend_TT['lon'], trend_TT['lat'],
-                            trend_TT.slope*13, transform=ccrs.PlateCarree(), vmin=-3, vmax=3, cmap='RdBu_r')
-    cont2 = ax[1].pcolormesh(trend_CC['lon'], trend_CC['lat'],
-                             trend_CC.slope*13, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
+                            trend_TT.slope*30, transform=ccrs.PlateCarree(), vmin=-3, vmax=3, cmap='RdBu_r')
+    cont2 = ax[1].pcolormesh(trend_TT_ann['lon'], trend_TT_ann['lat'],
+                             trend_TT_ann.slope*30, transform=ccrs.PlateCarree(), vmin=-3, vmax=3, cmap='RdBu_r')
+    # cont2 = ax[1].pcolormesh(trend_CC['lon'], trend_CC['lat'],
+    #                          trend_CC.slope*30, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
 
     for i in range(2):
         ax[i].add_feature(cartopy.feature.COASTLINE.with_scale(
@@ -149,13 +161,17 @@ if __name__ == '__main__':
         ax[i].set_title(names[i], fontsize=16)
     # fig.canvas.draw()
     fig.tight_layout()
-    fig.colorbar(cont, ax=ax[0])
-    fig.colorbar(cont2, ax=ax[1])
-    cbar = fig.colorbar(cont, ax=ax, ticks=[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-                        orientation='horizontal', fraction=0.13, pad=0.01, shrink=0.8)
-    cbar.set_label(
-        'Average DJF cloud cover 2002-2015 (%)', fontsize=18)
-    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Climatology_CC_DJF_2002-2015_2x2.pdf',
+    fig.colorbar(cont, ax=ax[0], ticks=list(
+        np.arange(-3, 3.5, 1)), shrink=0.8)
+    fig.colorbar(cont2, ax=ax[1], ticks=list(
+        np.arange(-3, 3.5, 1)), shrink=0.8)
+    # fig.colorbar(cont2, ax=ax[1], ticks=list(
+    #     np.arange(-15, 15.5, 3)), shrink=0.8)
+    # cbar = fig.colorbar(cont, ax=ax, ticks=[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+    #                    orientation = 'horizontal', fraction = 0.13, pad = 0.01, shrink = 0.8)
+    # cbar.set_label(
+    #    'Average DJF cloud cover 2002-2015 (%)', fontsize=18)
+    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Trend_TT_DJF_1990-2019_1x2.pdf',
                 format='PDF')
-    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Climatology_CC_DJF_2002-2015_2x2.png',
+    fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Trend_TT_DJF_1990-2019_1x2.png',
                 format='PNG', dpi=500)
