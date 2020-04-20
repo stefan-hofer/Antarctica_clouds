@@ -2,9 +2,11 @@ import seaborn as sns
 import xarray as xr
 import cartopy.crs as ccrs
 import cartopy.feature
+import matplotlib.path as mpath
 
 # file_str = '/uio/lagringshotell/geofag/projects/miphclac/shofer/MAR/case_study_BS_2009/'
-file_str = '/home/shofer/Dropbox/Academic/Data/Blowing_snow/'
+# file_str = '/home/shofer/Dropbox/Academic/Data/Blowing_snow/'
+file_str = '/home/sh16450/Dropbox/Academic/Data/Blowing_snow/'
 
 # Open all the files for Oct 2009
 ds_nobs = xr.open_dataset(
@@ -21,60 +23,56 @@ ds_grid = xr.Dataset({'RIGNOT': (['y', 'x'], MAR_grid.RIGNOT.values),
                      coords={'x': (['x'], MAR_grid.x),
                              'y': (['y'], MAR_grid.y)})
 # Difference for 14th of October
-diff = ds_bs.sel(TIME='2009-10-14').where((ds_bs.LAT > -90) & (ds_bs.LAT < -65) & (ds_bs.LON < 180) & (ds_bs.LON > 120)) - \
-    ds_nobs.sel(TIME='2009-10-14').where((ds_bs.LAT > -90) &
-                                         (ds_bs.LAT < -65) & (ds_bs.LON < 180) & (ds_bs.LON > 120))
+lat_min = -90
+lat_max = -60
+lon_min = -180 # 70
+lon_max = 180
+# diff = ds_bs.sel(TIME='2009-10-14').where((ds_bs.LAT > lat_min) & (ds_bs.LAT < lat_max) & (ds_bs.LON < lon_max) & (ds_bs.LON > lon_min)) - \
+#     ds_nobs.sel(TIME='2009-10-14').where((ds_bs.LAT > lat_min) &
+#                                          (ds_bs.LAT < -lat_max) & (ds_bs.LON < lon_max) & (ds_bs.LON > lon_min))
+diff = ds_bs.sel(TIME='2009-10-14') - ds_nobs.sel(TIME='2009-10-14')
+
+ds = xr.Dataset(diff[['CC', 'IWP', 'CWP', 'QQ', 'LQI']].isel(TIME=0),
+                  coords = {'lat': (('Y', 'X'), ds_grid.LAT), 'lon': (('Y', 'X'), ds_grid.LON)})
+da.plot.pcolormesh('lon', 'lat',ax=ax[0], transform=ccrs.PlateCarree(), robust=True)
+
 
 # Plotting
-names = ['MAR_BS', 'MAR_No_Blowing_Snow', 'Difference BS - noBS']
+names = ['Cloud Cover', 'Ice water path', 'Spec.Humidity']
 # Compare trends between 2002 and 2015
 proj = ccrs.SouthPolarStereo()
 
 fig, axs = plt.subplots(nrows=1, ncols=3, figsize=(
-    12, 12), subplot_kw={'projection': proj})
+    12, 4), subplot_kw={'projection': proj})
 ax = axs.ravel().tolist()
 
 for i in range(3):
     # Limit the map to -60 degrees latitude and below.
-    ax[i].set_extent([120, 180, -90, -65], ccrs.PlateCarree())
+    ax[i].set_extent([lon_min, lon_max, lat_min, lat_max], ccrs.PlateCarree())
 
     ax[i].add_feature(cartopy.feature.LAND)
     ax[i].add_feature(cartopy.feature.OCEAN)
 
     ax[i].gridlines()
 
-    # # Compute a circle in axes coordinates, which we can use as a boundary
-    # # for the map. We can pan/zoom as much as we like - the boundary will be
-    # # permanently circular.
-    # theta = np.linspace(0, 2*np.pi, 100)
-    # center, radius = [0.5, 0.5], 0.5
-    # verts = np.vstack([np.sin(theta), np.cos(theta)]).T
-    # circle = mpath.Path(verts * radius + center)
-    #
-    # ax[i].set_boundary(circle, transform=ax[i].transAxes)
+    # Compute a circle in axes coordinates, which we can use as a boundary
+    # for the map. We can pan/zoom as much as we like - the boundary will be
+    # permanently circular.
+    theta = np.linspace(0, 2*np.pi, 100)
+    center, radius = [0.5, 0.5], 0.5
+    verts = np.vstack([np.sin(theta), np.cos(theta)]).T
+    circle = mpath.Path(verts * radius + center)
+
+    ax[i].set_boundary(circle, transform=ax[i].transAxes)
 
 # cmap = 'YlGnBu_r'
-cont_1 = ax[0].pcolormesh(ds_bs['LON'].values, ds_bs['LAT'].values,
-                          diff.CC.isel(TIME=0), transform=ccrs.PlateCarree())
+cont_1 = ds.CC.plot.pcolormesh('lon', 'lat', ax=ax[0], transform=ccrs.PlateCarree(), robust=True, cbar_kwargs={'shrink': 0.4})
+cont_2 = ds.IWP.plot.pcolormesh('lon', 'lat', ax=ax[1], transform=ccrs.PlateCarree(), robust=True, cbar_kwargs={'shrink': 0.4})
+cont_3 = ds.QQ.sel(ATMLAY=1, method='nearest').plot.pcolormesh('lon', 'lat', ax=ax[2], transform=ccrs.PlateCarree(), robust=True,
+                   cbar_kwargs={'shrink': 0.4})
 
-cont_2 = ax[1].pcolormesh(ds_bs['LON'], ds_bs['LAT'],
-                          diff.IWP.isel(TIME=0), transform=ccrs.PlateCarree())
-cont_3 = ax[2].pcolormesh(ds_bs['LON'], ds_bs['LAT'],
-                          diff.CWP.isel(TIME=0), transform=ccrs.PlateCarree())
 
-cont = ax[0].pcolormesh(clim_MAR_regrid['lon'], clim_MAR_regrid['lat'],
-                        clim_MAR_regrid, transform=ccrs.PlateCarree(), vmin=0, vmax=100, cmap=cmap)
-cont = ax[1].pcolormesh(clim_MAR_noBS_regrid['lon'], clim_MAR_noBS_regrid['lat'],
-                        clim_MAR_noBS_regrid, transform=ccrs.PlateCarree(), vmin=0, vmax=100, cmap=cmap)
-cont = ax[2].pcolormesh(clim_MAR_noBS_regrid['lon'], clim_MAR_noBS_regrid['lat'],
-                        diff, transform=ccrs.PlateCarree(), vmin=0, vmax=100, cmap=cmap)
-ax[3].pcolormesh(clim_AVHRR_regrid['lon'], clim_AVHRR_regrid['lat'],
-                 clim_AVHRR_regrid, transform=ccrs.PlateCarree(), vmin=0, vmax=100, cmap=cmap)
-ax[5].pcolormesh(clim_MODIS_regrid['lon'], clim_MODIS_regrid['lat'],
-                 clim_MODIS_regrid, transform=ccrs.PlateCarree(), vmin=0, vmax=100, cmap=cmap)
-ax[4].pcolormesh(ERA_summer_mean['lon'], ERA_summer_mean['lat'],
-                 ERA_summer_mean, transform=ccrs.PlateCarree(), vmin=0, vmax=100, cmap=cmap)
-for i in range(6):
+for i in range(3):
     ax[i].add_feature(cartopy.feature.COASTLINE.with_scale(
         '50m'), zorder=1, edgecolor='black')
     ax[i].set_title(names[i], fontsize=16)
