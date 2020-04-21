@@ -13,6 +13,7 @@ ds_nobs = xr.open_dataset(
     file_str + 'MAR35_nDS_Oct2009.nc')
 ds_bs = xr.open_dataset(
     file_str + 'MAR35_DS_Oct2009.nc')
+ds_atm = xr.open_dataset(file_str + 'MAR35_DS_Oct2009_UVSMT.nc')
 MAR_grid = xr.open_dataset(
     file_str + 'MARcst-AN35km-176x148.cdf')
 
@@ -22,31 +23,33 @@ ds_grid = xr.Dataset({'RIGNOT': (['y', 'x'], MAR_grid.RIGNOT.values),
                       'LON': (['y', 'x'], MAR_grid.LON.values)},
                      coords={'x': (['x'], MAR_grid.x),
                              'y': (['y'], MAR_grid.y)})
+
+
 # Difference for 14th of October
 lat_min = -90
 lat_max = -60
-lon_min = -180 # 70
+lon_min = -180  # 70
 lon_max = 180
 # diff = ds_bs.sel(TIME='2009-10-14').where((ds_bs.LAT > lat_min) & (ds_bs.LAT < lat_max) & (ds_bs.LON < lon_max) & (ds_bs.LON > lon_min)) - \
 #     ds_nobs.sel(TIME='2009-10-14').where((ds_bs.LAT > lat_min) &
 #                                          (ds_bs.LAT < -lat_max) & (ds_bs.LON < lon_max) & (ds_bs.LON > lon_min))
 diff = ds_bs.sel(TIME='2009-10-14') - ds_nobs.sel(TIME='2009-10-14')
 
-ds = xr.Dataset(diff[['CC', 'IWP', 'CWP', 'QQ', 'LQI']].isel(TIME=0),
-                  coords = {'lat': (('Y', 'X'), ds_grid.LAT), 'lon': (('Y', 'X'), ds_grid.LON)})
-da.plot.pcolormesh('lon', 'lat',ax=ax[0], transform=ccrs.PlateCarree(), robust=True)
-
+ds = xr.Dataset(diff[['CC', 'IWP', 'CWP', 'QQ', 'LQI', 'LQS']].isel(TIME=0),
+                coords={'lat': (('Y', 'X'), ds_grid.LAT), 'lon': (('Y', 'X'), ds_grid.LON)})
+ds_wind = xr.Dataset(ds_atm[['UU', 'VV', 'UV']].sel(TIME='2009-10-14').isel(TIME=0),
+                coords={'lat': (('Y', 'X'), ds_grid.LAT), 'lon': (('Y', 'X'), ds_grid.LON)})
 
 # Plotting
-names = ['Cloud Cover', 'Ice water path', 'Spec.Humidity']
+names = ['Cloud Cover', 'Ice water path', 'Spec.Humidity', 'Low level Qs', 'Wind']
 # Compare trends between 2002 and 2015
 proj = ccrs.SouthPolarStereo()
 
-fig, axs = plt.subplots(nrows=1, ncols=3, figsize=(
-    12, 4), subplot_kw={'projection': proj})
+fig, axs = plt.subplots(nrows=3, ncols=2, figsize=(
+    16, 16), subplot_kw={'projection': proj})
 ax = axs.ravel().tolist()
 
-for i in range(3):
+for i in range(6):
     # Limit the map to -60 degrees latitude and below.
     ax[i].set_extent([lon_min, lon_max, lat_min, lat_max], ccrs.PlateCarree())
 
@@ -58,26 +61,40 @@ for i in range(3):
     # Compute a circle in axes coordinates, which we can use as a boundary
     # for the map. We can pan/zoom as much as we like - the boundary will be
     # permanently circular.
-    theta = np.linspace(0, 2*np.pi, 100)
+    theta = np.linspace(0, 2 * np.pi, 100)
     center, radius = [0.5, 0.5], 0.5
     verts = np.vstack([np.sin(theta), np.cos(theta)]).T
     circle = mpath.Path(verts * radius + center)
 
     ax[i].set_boundary(circle, transform=ax[i].transAxes)
 
+
 # cmap = 'YlGnBu_r'
-cont_1 = ds.CC.plot.pcolormesh('lon', 'lat', ax=ax[0], transform=ccrs.PlateCarree(), robust=True, cbar_kwargs={'shrink': 0.4})
-cont_2 = ds.IWP.plot.pcolormesh('lon', 'lat', ax=ax[1], transform=ccrs.PlateCarree(), robust=True, cbar_kwargs={'shrink': 0.4})
+cont_1 = ds.CC.plot.pcolormesh('lon', 'lat', ax=ax[0], transform=ccrs.PlateCarree(
+), robust=True, cbar_kwargs={'shrink': 0.7})
+cont_2 = ds.IWP.plot.pcolormesh('lon', 'lat', ax=ax[1], transform=ccrs.PlateCarree(
+), robust=True, cbar_kwargs={'shrink': 0.7})
 cont_3 = ds.QQ.sel(ATMLAY=1, method='nearest').plot.pcolormesh('lon', 'lat', ax=ax[2], transform=ccrs.PlateCarree(), robust=True,
-                   cbar_kwargs={'shrink': 0.4})
+                                                               cbar_kwargs={'shrink': 0.7})
+cont_4 = ds.LQS.isel(ATMLAY=slice(13, 19)).sum(dim='ATMLAY').plot.pcolormesh('lon', 'lat', ax=ax[3], transform=ccrs.PlateCarree(), robust=True,
+                                                                             cbar_kwargs={'shrink': 0.7})
+cont_5 = ds_wind.UV.isel(ATMLAY=19).plot.pcolormesh('lon', 'lat', ax=ax[4], transform=ccrs.PlateCarree(),
+                                               robust=True, cbar_kwargs={'shrink': 0.7})
 
+ax[4].quiver(ds.lon.values, ds.lat.values,
+            ds_wind.UU.isel(ATMLAY=19).values,
+            ds_wind.VV.isel(ATMLAY=19).values,
+            transform=ccrs.PlateCarree(), regrid_shape=30, pivot='middle')
 
-for i in range(3):
+ax.quiver(ds_wind.UU.isel(ATMLAY=19).values, ds_wind.VV.isel(ATMLAY=19).values)
+
+for i in range(5):
     ax[i].add_feature(cartopy.feature.COASTLINE.with_scale(
         '50m'), zorder=1, edgecolor='black')
     ax[i].set_title(names[i], fontsize=16)
 # fig.canvas.draw()
 fig.tight_layout()
+
 cbar = fig.colorbar(cont, ax=ax, ticks=[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
                     orientation='horizontal', fraction=0.13, pad=0.01, shrink=0.8)
 cbar.set_label(
