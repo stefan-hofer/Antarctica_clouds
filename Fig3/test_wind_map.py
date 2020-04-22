@@ -35,8 +35,12 @@ fig, axs = plt.subplots(nrows=1, ncols=1, figsize=(
     16, 16), subplot_kw={'projection': proj})
 # ax = axs.ravel().tolist()
 axs.set_extent([lon_min, lon_max, lat_min, lat_max], ccrs.PlateCarree())
+# Add wind speed filled contours
+ds_wind.UV.isel(ATMLAY=19).plot.pcolormesh('lon', 'lat', ax=axs, transform=ccrs.PlateCarree(),
+                                               robust=True, cbar_kwargs={'shrink': 0.7})
 # regrid shape controls the density of the wind barbs
 axs.barbs(ds_mpy.X, ds_mpy.Y, ds_mpy.UU.values, ds_mpy.VV.values, transform=ccrs.SouthPolarStereo(), regrid_shape=20)
+
 # add the coastline
 axs.add_feature(cartopy.feature.COASTLINE.with_scale(
     '50m'), zorder=1, edgecolor='black')
