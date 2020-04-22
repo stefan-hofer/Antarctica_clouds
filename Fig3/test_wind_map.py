@@ -5,6 +5,11 @@ import cartopy.feature
 import matplotlib.pyplot as plt
 import xarray as xr
 
+# Any import of metpy will activate the accessors
+import metpy.calc as mpcalc
+from metpy.cbook import get_test_data
+from metpy.units import units
+
 # file_str = '/uio/lagringshotell/geofag/projects/miphclac/shofer/MAR/case_study_BS_2009/'
 # file_str = '/home/shofer/Dropbox/Academic/Data/Blowing_snow/'
 file_str = '/home/sh16450/Dropbox/Academic/Data/Blowing_snow/'
