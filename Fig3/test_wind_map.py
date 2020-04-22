@@ -39,7 +39,8 @@ axs.set_extent([lon_min, lon_max, lat_min, lat_max], ccrs.PlateCarree())
 ds_wind.UV.isel(ATMLAY=19).plot.pcolormesh('lon', 'lat', ax=axs, transform=ccrs.PlateCarree(),
                                                robust=True, cbar_kwargs={'shrink': 0.7})
 # regrid shape controls the density of the wind barbs
-axs.barbs(ds_mpy.X, ds_mpy.Y, ds_mpy.UU.values, ds_mpy.VV.values, transform=ccrs.SouthPolarStereo(), regrid_shape=20)
+axs.barbs(ds_mpy.X, ds_mpy.Y, ds_mpy.UU.values, ds_mpy.VV.values,
+          transform=ccrs.SouthPolarStereo(), regrid_shape=35, length=5, linewidth=1, alpha=0.8)
 
 # add the coastline
 axs.add_feature(cartopy.feature.COASTLINE.with_scale(
