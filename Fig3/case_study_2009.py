@@ -18,7 +18,10 @@ ds_nobs = xr.open_dataset(
     file_str + 'MAR35_nDS_Oct2009.nc')
 ds_bs = xr.open_dataset(
     file_str + 'MAR35_DS_Oct2009.nc')
+# Calculate overall CC from CC3D
+ds_bs['CC'] = ds_bs.CC3D.max(dim='ATMLAY')
 ds_atm = xr.open_dataset(file_str + 'MAR35_DS_Oct2009_UVSMT.nc')
+ds_rh = xr.open_dataset(file_str + 'MAR35_DS_Oct2009_RHTTSP.nc')
 MAR_grid = xr.open_dataset(
     file_str + 'MARcst-AN35km-176x148.cdf')
 
