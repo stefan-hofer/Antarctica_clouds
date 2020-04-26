@@ -16,15 +16,24 @@ file_str = '/home/sh16450/Dropbox/Academic/Data/Blowing_snow/'
 # Open all the files for Oct 2009
 ds_nobs = xr.open_dataset(
     file_str + 'MAR35_nDS_Oct2009.nc')
+ds_rh_nobs = xr.open_dataset(
+    file_str + 'MAR35_nDS_Oct2009_RHTT.nc')
+ds_nobs['RH'] = ds_rh_nobs.RH
+ds_nobs['TT'] = ds_rh_nobs.TT
+
+
 ds_bs = xr.open_dataset(
     file_str + 'MAR35_DS_Oct2009.nc')
 # Calculate overall CC from CC3D
-ds_bs['CC'] = ds_bs.CC3D.max(dim='ATMLAY')
 ds_atm = xr.open_dataset(file_str + 'MAR35_DS_Oct2009_UVSMT.nc')
 ds_rh = xr.open_dataset(file_str + 'MAR35_DS_Oct2009_RHTTSP.nc')
+ds_bs['CC'] = ds_bs.CC3D.max(dim='ATMLAY')
+ds_bs['RH'] = ds_rh.RH
+ds_bs['TT'] = ds_rh.TT
+
+
 MAR_grid = xr.open_dataset(
     file_str + 'MARcst-AN35km-176x148.cdf')
-
 ds_grid = xr.Dataset({'RIGNOT': (['y', 'x'], MAR_grid.RIGNOT.values),
                       'SH': (['y', 'x'], MAR_grid.SH.values),
                       'LAT': (['y', 'x'], MAR_grid.LAT.values),
@@ -46,7 +55,7 @@ lon_max = 180
 #                                          (ds_bs.LAT < -lat_max) & (ds_bs.LON < lon_max) & (ds_bs.LON > lon_min))
 diff = ds_bs.sel(TIME='2009-10-14') - ds_nobs.sel(TIME='2009-10-14')
 
-ds = xr.Dataset(diff[['CC', 'IWP', 'CWP', 'QQ', 'LQI', 'LQS']].isel(TIME=0),
+ds = xr.Dataset(diff[['CC', 'IWP', 'CWP', 'QQ', 'LQI', 'LQS', 'RH', 'TT']].isel(TIME=0),
                 coords={'lat': (('Y', 'X'), ds_grid.LAT), 'lon': (('Y', 'X'), ds_grid.LON)})
 ds_wind = xr.Dataset(ds_atm[['UU', 'VV', 'UV']].sel(TIME='2009-10-14').isel(TIME=0),
                 coords={'lat': (('Y', 'X'), ds_grid.LAT), 'lon': (('Y', 'X'), ds_grid.LON)})
