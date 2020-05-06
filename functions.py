@@ -9,11 +9,6 @@ import metpy.calc as mpcalc
 from metpy.cbook import get_test_data
 from metpy.units import units
 
-file_str = '/home/sh16450/Dropbox/Academic/Data/Blowing_snow/'
-ds_rh = xr.open_dataset(file_str + 'MAR35_DS_Oct2009_RHTTSP.nc')
-ds_rh_nds = xr.open_dataset(file_str + 'MAR35_nDS_Oct2009_RHTT.nc')
-ds_rh_nds['SP'] = ds_rh.SP
-
 
 def thetae_mar(ds):
     '''Converts dataset, containing surface pressure, temperature
@@ -35,6 +30,3 @@ def thetae_mar(ds):
                                                      ds_mpy.TT, ds_td)
 
     return thetae
-
-
-thetae = thetae_mar(ds_rh)
