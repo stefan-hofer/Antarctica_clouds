@@ -9,28 +9,42 @@ import metpy.calc as mpcalc
 from metpy.cbook import get_test_data
 from metpy.units import units
 
+from functions import thetae_mar
+
 # file_str = '/uio/lagringshotell/geofag/projects/miphclac/shofer/MAR/case_study_BS_2009/'
 # file_str = '/home/shofer/Dropbox/Academic/Data/Blowing_snow/'
 file_str = '/home/sh16450/Dropbox/Academic/Data/Blowing_snow/'
 
-# Open all the files for Oct 2009
+# Open the no driftig snow file
 ds_nobs = xr.open_dataset(
     file_str + 'MAR35_nDS_Oct2009.nc')
+# Open the nods relative humidity file
 ds_rh_nobs = xr.open_dataset(
     file_str + 'MAR35_nDS_Oct2009_RHTT.nc')
 ds_nobs['RH'] = ds_rh_nobs.RH
 ds_nobs['TT'] = ds_rh_nobs.TT
 
-
+# Open the drifting snow file
 ds_bs = xr.open_dataset(
     file_str + 'MAR35_DS_Oct2009.nc')
-# Calculate overall CC from CC3D
+# Open the ds wind file
 ds_atm = xr.open_dataset(file_str + 'MAR35_DS_Oct2009_UVSMT.nc')
+# Open the ds rh, tt and sp file
 ds_rh = xr.open_dataset(file_str + 'MAR35_DS_Oct2009_RHTTSP.nc')
+# Calculate overall CC from CC3D
 ds_bs['CC'] = ds_bs.CC3D.max(dim='ATMLAY')
 ds_bs['RH'] = ds_rh.RH
 ds_bs['TT'] = ds_rh.TT
-
+# Add surface pressure to RH nods data
+ds_rh_nobs['SP'] = ds_rh.SP
+# Calculate ThetaE for ds case
+thetae_ds = thetae_mar(ds_rh)
+thetae_da = xr.DataArray(thetae_ds, coords=[ds_bs.TIME, ds_bs.Y, ds_bs.X],
+                         dims = ['TIME', 'Y', 'X'])
+# Calculate ThetaE for nods case
+thetae_nods = thetae_mar(ds_rh_nobs)
+thetae_da_nods = xr.DataArray(thetae_nods, coords=[ds_bs.TIME, ds_bs.Y, ds_bs.X],
+                         dims = ['TIME', 'Y', 'X'])
 
 MAR_grid = xr.open_dataset(
     file_str + 'MARcst-AN35km-176x148.cdf')
@@ -50,9 +64,8 @@ lat_min = -90
 lat_max = -60
 lon_min = -180  # 70
 lon_max = 180
-# diff = ds_bs.sel(TIME='2009-10-14').where((ds_bs.LAT > lat_min) & (ds_bs.LAT < lat_max) & (ds_bs.LON < lon_max) & (ds_bs.LON > lon_min)) - \
-#     ds_nobs.sel(TIME='2009-10-14').where((ds_bs.LAT > lat_min) &
-#                                          (ds_bs.LAT < -lat_max) & (ds_bs.LON < lon_max) & (ds_bs.LON > lon_min))
+
+
 diff = ds_bs.sel(TIME='2009-10-14') - ds_nobs.sel(TIME='2009-10-14')
 
 ds = xr.Dataset(diff[['CC', 'IWP', 'CWP', 'QQ', 'LQI', 'LQS', 'RH', 'TT']].isel(TIME=0),
