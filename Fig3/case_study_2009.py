@@ -110,18 +110,18 @@ ax[0].quiver(ds_mpy.X.values, ds_mpy.Y.values, ds_wind.UU.isel(ATMLAY=19).values
             regrid_shape=30, scale=260)
 cont_1 = (ds.QQ.sel(ATMLAY=1, method='nearest')
           .plot.pcolormesh('lon', 'lat', ax=ax[1], transform=ccrs.PlateCarree(),
-          robust=True, cbar_kwargs={'shrink': 0.7}))
+          robust=True, cbar_kwargs={'shrink': 0.7, 'label': r'$\Delta$ Specific Humidity (g/kg)'}))
 cont_2 = (ds.LQS.isel(ATMLAY=slice(13, 19)).sum(dim='ATMLAY')
           .plot.pcolormesh('lon', 'lat', ax=ax[2], transform=ccrs.PlateCarree(),
           robust=True, cbar_kwargs={'shrink': 0.7, 'label': r'$\Delta$ Snow mixing ratio (g/kg)'}))
 
 cont_3 = ds.CC.plot.pcolormesh('lon', 'lat', ax=ax[3], transform=ccrs.PlateCarree(
-), robust=True, cbar_kwargs={'shrink': 0.7})
+), robust=True, cbar_kwargs={'shrink': 0.7, 'label': r'$\Delta$ Cloud Cover (%)'})
 cont_4 = ds.IWP.plot.pcolormesh('lon', 'lat', ax=ax[4], transform=ccrs.PlateCarree(
-), robust=True, cbar_kwargs={'shrink': 0.7})
+), robust=True, cbar_kwargs={'shrink': 0.7, 'label': r'$\Delta$ Ice Water Path ($kg/m^{2}$)'})
 
 cont_5 = ds.CWP.plot.pcolormesh('lon', 'lat', ax=ax[5], transform=ccrs.PlateCarree(
-), robust=True, cbar_kwargs={'shrink': 0.7})
+), robust=True, cbar_kwargs={'shrink': 0.7, 'label': r'$\Delta$ Liq. Water Path ($kg/m^{2}$)'})
 
 
 for i in range(6):
