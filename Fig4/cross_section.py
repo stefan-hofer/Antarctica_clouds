@@ -1,7 +1,7 @@
 import xarray as xr
-import metpy as mp
+import xesmf as xe
 from datetime import datetime
-
+import seaborn as sns
 
 import seaborn as sns
 import cartopy.crs as ccrs
@@ -55,6 +55,19 @@ ds_grid = xr.Dataset({'RIGNOT': (['y', 'x'], MAR_grid.RIGNOT.values),
                      coords={'x': (['x'], MAR_grid.x),
                              'y': (['y'], MAR_grid.y)})
 
+# Create a new grid for interpolation of MAR data via xesmf
+# 0.25 deg resolution
+lon = np.arange(0, 360, 0.25)
+lat = np.arange(-90, -55, 0.25)
+# fake variable of zeros
+ds_var = np.zeros([shape(lat)[0], shape(lon)[0]])
+# New array
+ds_grid_new = xr.Dataset({'variable': (['lat', 'lon'], ds_var)},
+                         coords={'lat': (['lat'], lat),
+                                 'lon': (['lon'], lon)})
+
+
+
 # ================================================================
 # =========== ANALYSIS ===========================================
 # ================================================================
@@ -63,16 +76,42 @@ diff = ds_bs - ds_nobs
 diff['LAT'] = ds_grid.LAT
 diff['LON'] = ds_grid.LON
 # Create metpy accesory
-data = diff.assign_coords({'lat':ds_bs.LAT, 'lon': ds_bs.LON, 'x': ds_bs.X, 'y': ds_bs.Y}).metpy.parse_cf().squeeze()
+data = diff.assign_coords({'lat':ds_bs.LAT, 'lon': ds_bs.LON, 'x': ds_bs.X, 'y': ds_bs.Y}).metpy.parse_cf()
 # Cross section along 69.3 latitude and between 1 and 25 longitude
 # Andenes = 16deg longitude
 start = (-90, 0)
-end = (-55, 0)
+end = (-65, 0)
 
-cross = cross_section(data, start, end).set_coords(('lat', 'lon'))
+# This also works to plot a cross section
+# diff.SWNC3D.sel(X=0,Y=slice(-2400,2400),TIME='2009-10-14').plot()
+# Create regridder
+ds_in = diff.TT.assign_coords({'lat':ds_bs.LAT, 'lon': ds_bs.LON, 'x': ds_bs.X, 'y': ds_bs.Y})
+# Create the regridder
+regridder = xe.Regridder(ds_in, ds_grid_new, 'bilinear', reuse_weights=True)
+# Regrid the data
+ds_TT = regridder(ds_in)
+ds_LQS = regridder(diff.CC3D.assign_coords({'lat':ds_bs.LAT, 'lon': ds_bs.LON,
+                                          'x': ds_bs.X, 'y': ds_bs.Y}))
+# Create the cross section
+ds_TT = ds_TT.interp(lat=np.arange(start[0], end[0], 0.25), lon=start[1])
+ds_LQS = ds_LQS.interp(lat=np.arange(start[0], end[0], 0.25), lon=start[1])
 
+# Plot the cross section
+fig, axs = plt.subplots(
+    nrows=1, ncols=2, figsize=(14, 10), sharex=True, sharey=True)
+# ax = axs.ravel().tolist()
 
-# Cross section along 69.3 latitude and between 1 and 25 longitude
-# Andenes = 16deg longitude
-start = (69.3, 1)
-end = (69.3, 25)
+# Plot RH using contourf
+contour = (ds_TT.isel(ATMLAY=slice(10,-1))
+           .sel(TIME='2009-10-14')[0, :, :].plot(robust=True, ax=axs[0]))
+
+# Plot cloud fraction using contour, with some custom labeling
+lqs_contour = (ds_LQS.isel(ATMLAY=slice(10,-1))
+               .sel(TIME='2009-10-14')[0, :, :].plot(robust=True, ax=axs[1]))
+# Reverse the y axis to get surface pressure at the bottom
+# Ony one reversal bc axes are shared!
+axs[0].set_ylim(axs[0].get_ylim()[::-1])
+
+fig.tight_layout()
+sns.despine()
+fig.savefig('/home/sh16450/Documents/repos/Antarctica_clouds/Fig4/Fig5.png', format='PNG', dpi=300)
