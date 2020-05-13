@@ -75,7 +75,7 @@ names = ['Wind', 'Spec.Humidity', 'Low level Qs',
 proj = ccrs.SouthPolarStereo()
 
 fig, axs = plt.subplots(nrows=2, ncols=3, figsize=(
-    26, 16), subplot_kw={'projection': proj})
+    14, 8), subplot_kw={'projection': proj})
 ax = axs.ravel().tolist()
 
 for i in range(6):
@@ -138,7 +138,7 @@ fig.savefig('/home/sh16450/Documents/repos/Antarctica_clouds/Fig3/Fig3.png', for
 # ===========================================================
 names = ['ThetaE', 'RH', 'TT']
 fig, axs = plt.subplots(nrows=1, ncols=3, figsize=(
-    19, 9), subplot_kw={'projection': proj})
+    15, 7), subplot_kw={'projection': proj})
 ax = axs.ravel().tolist()
 
 for i in range(3):

@@ -96,22 +96,31 @@ ds_LQS = regridder(diff.CC3D.assign_coords({'lat':ds_bs.LAT, 'lon': ds_bs.LON,
 ds_TT = ds_TT.interp(lat=np.arange(start[0], end[0], 0.25), lon=start[1])
 ds_LQS = ds_LQS.interp(lat=np.arange(start[0], end[0], 0.25), lon=start[1])
 
+
+# =============================================================================
 # Plot the cross section
+# =============================================================================
 fig, axs = plt.subplots(
-    nrows=1, ncols=2, figsize=(14, 10), sharex=True, sharey=True)
+    nrows=1, ncols=2, figsize=(10, 7), sharex=True, sharey=True)
 # ax = axs.ravel().tolist()
 
 # Plot RH using contourf
 contour = (ds_TT.isel(ATMLAY=slice(10,-1))
-           .sel(TIME='2009-10-14')[0, :, :].plot(robust=True, ax=axs[0]))
+           .sel(TIME='2009-10-14')[0, :, :].plot(robust=True, ax=axs[0],
+           cbar_kwargs={'label': r'$\Delta$ Temperature $(\circ C)$'}, yincrease=False))
 
 # Plot cloud fraction using contour, with some custom labeling
 lqs_contour = (ds_LQS.isel(ATMLAY=slice(10,-1))
-               .sel(TIME='2009-10-14')[0, :, :].plot(robust=True, ax=axs[1]))
-# Reverse the y axis to get surface pressure at the bottom
-# Ony one reversal bc axes are shared!
-axs[0].set_ylim(axs[0].get_ylim()[::-1])
+               .sel(TIME='2009-10-14')[0, :, :].plot(robust=True, ax=axs[1], yincrease=False,
+               cbar_kwargs={'shrink': 1, 'label': r'$\Delta$ Cloud Cover (%)'}))
+
+fs = 11
+for ax in axs:
+    ax.set_ylabel('Sigma level', fontsize=fs)
+    ax.set_xlabel('Latitude', fontsize=fs)
+    ax.set_title('')
 
 fig.tight_layout()
+
 sns.despine()
 fig.savefig('/home/sh16450/Documents/repos/Antarctica_clouds/Fig4/Fig5.png', format='PNG', dpi=300)
