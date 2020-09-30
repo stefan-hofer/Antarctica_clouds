@@ -8,22 +8,28 @@ import matplotlib.pyplot as plt
 # file_str = '/home/shofer/Dropbox/Academic/Data/Blowing_snow/'
 # file_str = '/home/sh16450/Dropbox/Academic/Data/Blowing_snow/'
 
-file_str = '/projects/NS9600K/shofer/blowing_snow/MAR/case_study_BS_2009/'
+file_str = '/projects/NS9600K/shofer/blowing_snow/MAR/3D_monthly/'
+file_str_nobs = '/projects/NS9600K/shofer/blowing_snow/MAR/3D_monthly_nDR/'
+file_str_zz = '/projects/NS9600K/shofer/blowing_snow/MAR/case_study_BS_2009/'
 
 # Open the no driftig snow file
-ds_nobs = xr.open_dataset(
-    file_str + 'MAR35_nDS_Oct2009.nc')
+ds_bs_CC = xr.open_dataset(
+    file_str + 'mon-CC3D-MAR_ERA5-1979-2019.nc')
+ds_bs_TT = xr.open_dataset(
+    file_str + 'mon-TT-MAR_ERA5-1979-2019.nc')
 
 # Open the drifting snow file
-ds_bs = xr.open_dataset(
-    file_str + 'MAR35_DS_Oct2009.nc')
+ds_nobs_CC = xr.open_dataset(
+    file_str_nobs + 'mon-CC3D-MAR_ERA5-1979-2019.nc')
+ds_nobs_TT = xr.open_dataset(
+    file_str_nobs + 'mon-TT-MAR_ERA5-1979-2019.nc')
 
 # Open the height file of sigma levels
-ds_zz = xr.open_dataset(file_str + 'MAR35_nDS_Oct2009_zz.nc')
+ds_zz = xr.open_dataset(file_str_zz + 'MAR35_nDS_Oct2009_zz.nc')
 layer_agl = ds_zz.ZZ - ds_zz.SH
 # Read in the grid
 MAR_grid = xr.open_dataset(
-    file_str + 'MARcst-AN35km-176x148.cdf')
+    file_str_zz + 'MARcst-AN35km-176x148.cdf')
 ds_grid = xr.Dataset({'RIGNOT': (['y', 'x'], MAR_grid.RIGNOT.values),
                       'SH': (['y', 'x'], MAR_grid.SH.values),
                       'LAT': (['y', 'x'], MAR_grid.LAT.values),
