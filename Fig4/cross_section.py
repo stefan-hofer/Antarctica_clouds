@@ -33,7 +33,7 @@ ds_grid = xr.Dataset({'RIGNOT': (['y', 'x'], MAR_grid.RIGNOT.values),
 
 # Create a new grid for interpolation of MAR data via xesmf
 # 0.25 deg resolution rectangual lat/lon grid
-lon = np.arange(0, 360, 0.25)
+lon = np.arange(-180, 180, 0.25)
 lat = np.arange(-90, -55, 0.25)
 # fake variable of zeros
 ds_var = np.zeros([shape(lat)[0], shape(lon)[0]])
