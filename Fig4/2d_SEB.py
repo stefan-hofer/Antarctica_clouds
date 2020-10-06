@@ -154,5 +154,6 @@ fig.tight_layout()
 #                    orientation = 'horizontal', fraction = 0.13, pad = 0.01, shrink = 0.8)
 # cbar.set_label(
 #    'Average DJF cloud cover 2002-2015 (%)', fontsize=18)
-fig.savefig('/uio/kant/geo-metos-u1/shofer/repos/Antarctica_clouds/Plots/Trend_TT_DJF_1990-2019_1x2.pdf',
-            format='PDF')
+
+fig.savefig('/projects/NS9600K/shofer/blowing_snow/SEB.png',
+            format='PNG', dpi=300)
