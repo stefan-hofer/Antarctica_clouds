@@ -55,30 +55,37 @@ end = (-65, 0)
 # diff.SWNC3D.sel(X=0,Y=slice(-2400,2400),TIME='2009-10-14').plot()
 # Create regridder
 ds_in = diff.LWN3D.assign_coords({'lat': ds_bs.LAT, 'lon': ds_bs.LON, 'x': ds_bs.X,
-                              'y': ds_bs.Y})
+                                  'y': ds_bs.Y})
 # Create the regridder
-regridder = xe.Regridder(ds_in, ds_grid_new, 'bilinear', reuse_weights=True)
+regridder = xe.Regridder(
+    ds_in, ds_grid_new, 'bilinear', reuse_weights=True)
 # Regrid the data to the 0.25x0.25 grid
 ds_LWN3D = regridder(ds_in)
 ds_SWN3D = regridder(diff.SWN3D.assign_coords({'lat': ds_bs.LAT, 'lon': ds_bs.LON,
-                                           'x': ds_bs.X, 'y': ds_bs.Y}))
+                                               'x': ds_bs.X, 'y': ds_bs.Y}))
 ds_SWNC3D = regridder(diff.SWNC3D.assign_coords({'lat': ds_bs.LAT, 'lon': ds_bs.LON,
-                                           'x': ds_bs.X, 'y': ds_bs.Y}))
+                                                 'x': ds_bs.X, 'y': ds_bs.Y}))
 ds_LWNC3D = regridder(diff.LWNC3D.assign_coords({'lat': ds_bs.LAT, 'lon': ds_bs.LON,
-                                           'x': ds_bs.X, 'y': ds_bs.Y}))
+                                                 'x': ds_bs.X, 'y': ds_bs.Y}))
 ds_height = regridder(layer_agl.assign_coords({'lat': ds_bs.LAT, 'lon': ds_bs.LON,
-                                              'x': ds_bs.X, 'y': ds_bs.Y}))
+                                               'x': ds_bs.X, 'y': ds_bs.Y}))
 # Create the cross section by using xarray interpolation routine
 # Interpolate along all lats and 0 longitude (could be any lat lon line)
-ds_LWN3D = ds_LWN3D.interp(lat=np.arange(start[0], end[0], 0.25), lon=start[1])
-ds_SWN3D = ds_SWN3D.interp(lat=np.arange(start[0], end[0], 0.25), lon=start[1])
+ds_LWN3D = ds_LWN3D.interp(lat=np.arange(
+    start[0], end[0], 0.25), lon=start[1])
+ds_SWN3D = ds_SWN3D.interp(lat=np.arange(
+    start[0], end[0], 0.25), lon=start[1])
 net = ds_SWN3D + ds_LWN3D
-ds_SWNC3D = ds_SWNC3D.interp(lat=np.arange(start[0], end[0], 0.25), lon=start[1])
-ds_LWNC3D = ds_LWNC3D.interp(lat=np.arange(start[0], end[0], 0.25), lon=start[1])
+ds_SWNC3D = ds_SWNC3D.interp(lat=np.arange(
+    start[0], end[0], 0.25), lon=start[1])
+ds_LWNC3D = ds_LWNC3D.interp(lat=np.arange(
+    start[0], end[0], 0.25), lon=start[1])
 net_clear = ds_SWNC3D + ds_LWNC3D
-ds_h = ds_height.interp(lat=np.arange(start[0], end[0], 0.25), lon=start[1])
+ds_h = ds_height.interp(lat=np.arange(
+    start[0], end[0], 0.25), lon=start[1])
 # mean height of sigma layer (m agl)
-mean_sigma = ds_h.sel(TIME='2009-10-14').where(ds_h.lat < -70).mean(dim='lat')[0, :]
+mean_sigma = ds_h.sel(
+    TIME='2009-10-14').where(ds_h.lat < -70).mean(dim='lat')[0, :]
 # =============================================================================
 # Plot the cross section
 # =============================================================================
@@ -87,33 +94,38 @@ fig, axs = plt.subplots(
 axs = axs.ravel().tolist()
 
 # Plot LWnet diff using contourf
-ds_LWN3D = ds_LWN3D.assign_coords({'height': (('ATMLAY'), mean_sigma.values)})
-contour = ds_LWN3D.isel(ATMLAY=slice(10,-1)).sel(TIME='2009-10-14')[0, :, :].plot.pcolormesh('lat', 'height',
-          robust=True, ax=axs[0], cbar_kwargs={'label': r'$\Delta$ LWnet $(Wm^{2})$'})
+ds_LWN3D = ds_LWN3D.assign_coords(
+    {'height': (('ATMLAY'), mean_sigma.values)})
+contour = ds_LWN3D.isel(ATMLAY=slice(10, -1)).sel(TIME='2009-10-14')[0, :, :].plot.pcolormesh('lat', 'height',
+                                                                                              robust=True, ax=axs[0], cbar_kwargs={'label': r'$\Delta$ LWnet $(Wm^{-2})$'})
 
 # Plot SWnet diff using contourf
-ds_SWN3D = ds_SWN3D.assign_coords({'height': (('ATMLAY'), mean_sigma.values)})
-contour = ds_SWN3D.isel(ATMLAY=slice(10,-1)).sel(TIME='2009-10-14')[0, :, :].plot.pcolormesh('lat', 'height',
-          robust=True, ax=axs[1], cbar_kwargs={'label': r'$\Delta$ SWnet $(Wm^{2})$'})
+ds_SWN3D = ds_SWN3D.assign_coords(
+    {'height': (('ATMLAY'), mean_sigma.values)})
+contour = ds_SWN3D.isel(ATMLAY=slice(10, -1)).sel(TIME='2009-10-14')[0, :, :].plot.pcolormesh('lat', 'height',
+                                                                                              robust=True, ax=axs[1], cbar_kwargs={'label': r'$\Delta$ SWnet $(Wm^{-2})$'})
 # Plot Net diff using contourf
 net = net.assign_coords({'height': (('ATMLAY'), mean_sigma.values)})
-contour = net.isel(ATMLAY=slice(10,-1)).sel(TIME='2009-10-14')[0, :, :].plot.pcolormesh('lat', 'height',
-          robust=True, ax=axs[2], cbar_kwargs={'label': r'$\Delta$ Net Rad. $(Wm^{2})$'})
+contour = net.isel(ATMLAY=slice(10, -1)).sel(TIME='2009-10-14')[0, :, :].plot.pcolormesh('lat', 'height',
+                                                                                         robust=True, ax=axs[2], cbar_kwargs={'label': r'$\Delta$ Net Rad. $(Wm^{-2})$'})
 
 # Plot LWnet clear diff using contourf
-ds_LWNC3D = ds_LWNC3D.assign_coords({'height': (('ATMLAY'), mean_sigma.values)})
-contour = ds_LWNC3D.isel(ATMLAY=slice(10,-1)).sel(TIME='2009-10-14')[0, :, :].plot.pcolormesh('lat', 'height',
-          robust=True, ax=axs[3], cbar_kwargs={'label': r'$\Delta$ LWnet clear $(Wm^{2})$'})
+ds_LWNC3D = ds_LWNC3D.assign_coords(
+    {'height': (('ATMLAY'), mean_sigma.values)})
+contour = ds_LWNC3D.isel(ATMLAY=slice(10, -1)).sel(TIME='2009-10-14')[0, :, :].plot.pcolormesh('lat', 'height',
+                                                                                               robust=True, ax=axs[3], cbar_kwargs={'label': r'$\Delta$ LWnet clear $(Wm^{-2})$'})
 
 # Plot LWnet clear diff using contourf
-ds_SWNC3D = ds_SWNC3D.assign_coords({'height': (('ATMLAY'), mean_sigma.values)})
-contour = ds_SWNC3D.isel(ATMLAY=slice(10,-1)).sel(TIME='2009-10-14')[0, :, :].plot.pcolormesh('lat', 'height',
-          robust=True, ax=axs[4], cbar_kwargs={'label': r'$\Delta$ SWnet clear $(Wm^{2})$'})
+ds_SWNC3D = ds_SWNC3D.assign_coords(
+    {'height': (('ATMLAY'), mean_sigma.values)})
+contour = ds_SWNC3D.isel(ATMLAY=slice(10, -1)).sel(TIME='2009-10-14')[0, :, :].plot.pcolormesh('lat', 'height',
+                                                                                               robust=True, ax=axs[4], cbar_kwargs={'label': r'$\Delta$ SWnet clear $(Wm^{-2})$'})
 
 # Plot Net diff using contourf
-net_clear = net_clear.assign_coords({'height': (('ATMLAY'), mean_sigma.values)})
-contour = net_clear.isel(ATMLAY=slice(10,-1)).sel(TIME='2009-10-14')[0, :, :].plot.pcolormesh('lat', 'height',
-          robust=True, ax=axs[5], cbar_kwargs={'label': r'$\Delta$ Clear Net Rad. $(Wm^{2})$'})
+net_clear = net_clear.assign_coords(
+    {'height': (('ATMLAY'), mean_sigma.values)})
+contour = net_clear.isel(ATMLAY=slice(10, -1)).sel(TIME='2009-10-14')[0, :, :].plot.pcolormesh('lat', 'height',
+                                                                                               robust=True, ax=axs[5], cbar_kwargs={'label': r'$\Delta$ Clear Net Rad. $(Wm^{-2})$'})
 
 fs = 11
 for ax in axs:
@@ -124,4 +136,5 @@ for ax in axs:
 fig.tight_layout()
 
 sns.despine()
-fig.savefig('/home/sh16450/Documents/repos/Antarctica_clouds/Fig4/Fig6.png', format='PNG', dpi=300)
+fig.savefig('/home/sh16450/Documents/repos/Antarctica_clouds/Fig4/Fig6.png',
+            format='PNG', dpi=300)
