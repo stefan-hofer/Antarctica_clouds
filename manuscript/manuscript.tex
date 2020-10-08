@@ -1,0 +1,272 @@
+\documentclass[12pt]{article}
+
+% Use special characters directly in text
+\usepackage[utf8]{inputenc}
+\DeclareUnicodeCharacter{2010}{-}% support older LaTeX versions
+\usepackage[T1]{fontenc}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage[margin=25mm]{geometry}
+\usepackage{booktabs}
+\usepackage{todonotes}
+\usepackage{amsmath}
+%\usepackage{hyperref}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+% Users of the {thebibliography} environment or BibTeX should use the
+% scicite.sty package, downloadable from *Science* at
+% http://www.sciencemag.org/authors/preparing-manuscripts-using-latex 
+% This package should properly format in-text
+% reference calls and reference-list numbers.
+\usepackage[export]{adjustbox}
+%\usepackage[
+%		style=numeric,
+%		backend=biber,
+%		sorting=none,
+%		defernumbers=true,
+%		url=false,
+%		isbn=false,
+%		uniquename=true]{biblatex}
+%\usepackage[sorting=none,defernumbers=true]{biblatex}
+
+\usepackage[sortcites,sorting=none,url=false,isbn=false,backend=biber,uniquename=true, defernumbers]{biblatex}
+
+
+
+\bibliography{./References/bibliography}
+% Package for line numbers
+\usepackage{lineno}
+
+
+% Graphics preamble
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[font={footnotesize}]{caption} % Exclude automatic numbering of figures 
+\usepackage{textcomp}
+
+\usepackage{times}
+
+% The preamble here sets up a lot of new/revised commands and
+% environments.  It's annoying, but please do *not* try to strip these
+% out into a separate .sty file (which could lead to the loss of some
+% information when we convert the file to other formats).  Instead, keep
+% them in the preamble of your main LaTeX source file.
+
+% Define folder for graphics
+\graphicspath{{./Plots/}}
+
+% The following parameters seem to provide a reasonable page setup.
+
+\topmargin 0.0cm
+\oddsidemargin 0.2cm
+\textwidth 16cm 
+\textheight 21cm
+\footskip 1.0cm
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% This is the original, well working setup
+%\topmargin 0.0cm
+%\oddsidemargin 0.2cm
+%\textwidth 16cm 
+%\textheight 21cm
+%\footskip 1.0cm
+
+%The next command sets up an environment for the abstract to your paper.
+
+\newenvironment{sciabstract}{%
+\begin{quote} \bf}
+{\end{quote}}
+
+
+
+% Include your paper's title here
+%\title{Differences in future Greenland melt controlled by cloud microphysics and circulation}
+
+
+\title{The contribution of blowing snow to cloud properties and the atmospheric radiative budget over Antarctica}
+%\title{Doubling of future Greenland Ice Sheet surface melt revealed by the new CMIP6 high-emission scenario}
+%\title{Cloud microphysics and circulation anomalies control future Greenland Ice Sheet melt} 
+
+
+% Place the author information here.  Please hand-code the contact
+% information and notecalls; do *not* use \footnote commands.  Let the
+% author contact information appear immediately below the author names
+% as shown.  We would also prefer that you don't change the type-size
+% settings shown here.
+
+\author
+{Stefan Hofer,$^{1\ast}$ Charles Amory,$^{2}$ Christoph Kittel,$^{2}$ and Trude Storelvmo$^{1}$ \\
+\\
+\normalsize{$^{1}$Department of Geosciences, University of Oslo, Oslo, Norway}\\
+\normalsize{$^{2}$Laboratory of Climatology, Department of Geography, University of Liège, Belgium}\\
+\\
+\normalsize{$^\ast$Corresponding author: Stefan Hofer, stefan.hofer@geo.uio.no}
+}
+
+% Include the date command, but leave its argument blank.
+
+\date{}
+
+
+
+%%%%%%%%%%%%%%%%% END OF PREAMBLE %%%%%%%%%%%%%%%%
+
+
+
+\begin{document} 
+%\begin{refsection}
+% Double-space the manuscript.
+
+\baselineskip24pt
+
+% Make the title.
+
+\maketitle 
+%BibTeX users: After compilation, comment out the following two lines and paste in
+% the generated .bbl file. 
+
+
+
+% Place your abstract within the special {sciabstract} environment.
+
+%\begin{sciabstract}
+%  This document presents a number of hints about how to set up your
+%  {\it Science\/} paper in \LaTeX\ .  We provide a template file,
+%  \texttt{scifile.tex}, that you can use to set up the \LaTeX\ source
+%  for your article.  An example of the style is the special
+%  \texttt{\{sciabstract\}} environment used to set up the abstract you
+%  see here.
+%\end{sciabstract}
+
+
+
+% In setting up this template for *Science* papers, we've used both
+% the \section* command and the \paragraph* command for topical
+% divisions.  Which you use will of course depend on the type of paper
+% you're writing.  Review Articles tend to have displayed headings, for
+% which \section* is more appropriate; Research Articles, when they have
+% formal topical divisions at all, tend to signal them with bold text
+% that runs into the paragraph, for which \paragraph* is the right
+% choice.  Either way, use the asterisk (*) modifier, as shown, to
+% suppress numbering.
+\newpage
+\linenumbers
+
+\textbf{Antarctica and its surroundings are one of the main areas for biases in climate models, mostly due to uncertainties in the representation of clouds. Over the Antarctic Ice Sheet, temperature inversions and strong temperature gradients between the cold interior and the edges lead to strong katabatic downslope winds, transporting snow and moisture from the interior towards the peripheral regions at the southern edge of the Southern Ocean’s storm track. These blowing snow layers are usually 100-200 m thick, but can reach a thickness of more than 500 m and can be advected offshore from Antarctica over open ocean waters (Scarchili et al., 2010; Palm et al., 2017). However, the impacts of moisture and wind-induced snow mass transport (i.e. ice nucleating particles) on cloud structure and development over Antarctica has not been thoroughly investigated and most state-of-the-art climate models do not account for its presence. Here, we use a regional climate model with a newly developed fully active blowing snow scheme and satellite data, to show that accounting for drifting snow notably alters the spatial distribution, vertical structure and radiative contribution of clouds over Antarctica and its periphery. Additionally, our results indicate that the advection of blowing snow and air with a higher humidity content over the Southern Ocean also impacts clouds and their microphysics in areas outside of Antarctica. While our study area is limited to 60S, our results highlight the need to study the impact of missing blowing snow processes on the future evolution of clouds not just over Antarctica, but potentially also over the Southern Ocean, an area with significant uncertainties in future climate projections.}
+
+%OLD ABSTRACT
+% Here, we show that the total GrIS melt during the 21st century almost doubles when using CMIP6 forcing compared to the previous CMIP5 model ensemble, despite an equal global radiative forcing of +8.5 W/m\textsuperscript{2} in 2100 in both RCP8.5 and SSP58.5 scenarios. The total GrIS sea level rise contribution from surface melt in our high-resolution (15 km) projections is 17.8 cm in SSP58.5, 7.9 cm more than in our RCP8.5 simulations, despite the same radiative forcing. We identify a +1.7\textdegree C greater Arctic amplification in the CMIP6 ensemble as the main driver behind the presented doubling of future GrIS sea level rise contribution.
+
+%
+\section*{Introduction} 
+
+\textbf{First paragraph:} Main facts about Antarctica and clouds there
+Radiative effects, influence on surface temperature (SEB). a bit about melt (even in winter; see Kuipers-Munneke 2014).
+
+\textbf{Second paragraph:} describing BS as near-surface clouds + source of moisture and condensation nuclei for additional cloud formation in the lower atmosphere
+
+\textbf{Third paragraph:} What are the open questions? 
+i) Does BS lead to improved representation of cloud properties in the model and ii) how does it affect the representation of clouds?
+
+Clouds are known to notably affect the present and future climates of polar ice sheets \cite{Hofer2017, Hofer2019, VanTricht2016, Izeboud2020, Hahn2019}. Clouds have the ability to amend incoming shortwave and longwave fluxes, depending on the cloud phase, height and particle size distribution, impacting the rate of surface melt and snowpack warming. Blowing snow, while not accounted for in most global and regional climate models, can change the vertical structure and radiative impact of clouds, most notably because blowing snow sublimation changes the atmospheric humidity and temperature distribution (cite Louis 2020). Blowing snow particles can also act as ice nucleating particles for cloud formation, which also impacts the longevity, structure and cloud-phase distribution within pre-existing clouds. Additionally, optically thick blowing snow layers can act as a cloud themselves, increasing the atmospheric longwave emissivity and shortwave transparency of the atmosphere. However, so far very little is known about how clouds are influenced by blowing snow processes in climate models, and how accounting for blowing snow over the current climate influences key polar cloud-, and therefore climate processes.
+
+\textbf{Fourth paragraph:} How are we planning to address the questions? 
+Two sets of simulations + satellite products
+
+Here, we use two regional climate model simulations spanning the period of 1979-2019, one with a dynamic representation of blowing snow and one without, to assess the impact of accounting for blowing snow on Antarctic clouds and radiative fluxes. We compare our two simulations to satellite products of cloud cover and the ERA5 reanalysis product, to show whether accounting for drifting snow only amends or also improves the representation of polar clouds. However, due to the remote location and complications of detecting cloud structure and microphysics from satellites over highly reflective surfaces, we don’t expect to comprehensively address whether blowing snow improves cloud representation over Antarctica. Nevertheless, our results deliver a clear indication that accounting for blowing snow over polar ice sheets changes the 3D-structure of clouds, their phase and ultimately their contribution to the surface energy budget. In conclusion, not accounting for drifting snow in future projections of the Antarctica climate and sea level rise contribution might significantly bias the drawn conclusions.  
+
+\section*{Results}
+
+%For a comparison between the regional climate response of Greenland in the high-emission scenario in CMIP5 and CMIP6, we forced the regional climate model MAR with 6 general circulation models (GCMs) from the CMIP5 model suite \cite{Taylor2012,Moss2010} and 5 GCMs from the CMIP6 project \cite{Eyring2016,ONeill2016}. From the CMIP5 project we chose the Representative Concentration Pathway 8.5 scenario, while we chose the SSP58.5 scenario for the CMIP6 models. Both of these high-emission scenarios correspond to a surface energy budget (SEB) forcing due to greenhouse gas emissions of 8.5 W/m\textsuperscript{2} in 2100 \cite{Moss2010,Taylor2012,Eyring2016,ONeill2016}.
+
+\textbf{Potential subtitle here}
+
+
+\begin{figure}[H]
+	\includegraphics[scale=0.7,center]{cross_section_lt.png}
+	\caption{\textbf{Difference in temperature and cloud properties between MAR with and without blowing snow.} A) Cross-section of temperature differences between MAR with blowing snow turned on, and MAR without blowing snow (positive means MARbs is warmer), along the path shown in \textbf{MISSING FIGURE XX}. B) Same as panel A), but showing the difference in cloud cover (in \%) between the two simulations. C) Same as panel A) and B), but for the difference in the cloud radiative effect ($Wm^{-2}$). }
+	\label{fig:Test}
+\end{figure}
+
+
+\begin{figure}[H]
+	\includegraphics[scale=0.7,center]{SEB.png}
+	\caption{\textbf{Difference in radiative components at the surface between MAR with and without blowing snow.} A) Difference in incoming shortwave radiation (SWD) at the surface in $Wm^{-2}$. Red color indicates a greater downwelling shortwave flux in MAR with active blowing snow parameterisation. B) Same A) but for the downwelling longwave flux at the surface. C) Same as A) and B), but for the difference in the net radiation at the surface ($R= SWD * (1 - \alpha) + LWD - LWU$).}
+	\label{fig:SEB}
+\end{figure}
+
+
+\section*{Discussion}
+
+
+
+%\nolinenumbers
+\cleardoublepage
+\printbibliography[title={Main References}]
+%\printbibliography[keyword=main, title={Main References}]
+%\end{refsection}
+
+%\begin{refsection}
+\baselineskip24pt
+%\linenumbers
+\section*{Materials and Methods}
+
+\subsection*{MAR}
+
+%
+\subsection*{MODIS}
+
+\subsection*{AVHRR}
+
+\subsection*{ERA5}
+
+
+\subsection*{Modèle Atmosphérique Régional (MAR)}
+For the downscaling of coarse-resolution CMIP5 and CMIP6 data we used the Modèle Atmosphérique Régional (MAR), an open-source and widely used polar regional climate model
+\cite{Fettweis2007,Fettweis2013,Fettweis2017,Gallee1994,Gallee1995,Hofer2017,Hofer2019,Kittel2018, Delhasse2018,Lang2015, Agosta2019}. MAR consists of a hydrostatic dynamical core which solves the primitive equation set \cite{Gallee1994,Gallee1995}. A full description of the model setup, the underlying physical parameterizations and evaluation of MAR for polar climates are described in \cite{Gallee1994,Gallee1995,Fettweis2007,Fettweis2017,Hofer2017,Hofer2019,Kittel2018,Agosta2019}. In this study we used the MARv3.9.6 version, evaluated in \textcite{Delhasse2019}, and the source code of MAR for the reproduction of this study is available via the MAR hompeage at \textbf{http://mar.cnrs.fr}.
+
+Within MAR, the snow and ice properties at the ice sheet-atmosphere interface are calculated in the Soil Ice Vegetation Atmosphere Transfer module (SISVAT) \cite{Gallee1994}. This module calculates the main snowpack based on the snow module CROCUS \cite{Gallee2001,Vionnet2012}, but also handles the mass and energy exchange between the atmosphere (e.g. radiation, precipitation, temperature) and the bare-ice surfaces, the snowpack and the Arctic tundra that surrounds the GrIS \cite{Gallee1994,Fettweis2007}.
+
+For the 6 CMIP5 and 5 CMIP6 future projections we downscaled we prescribed the boundary conditions in exactly the same manner and also used the MAR version and setup throughout. Overall, MAR was forced at its lateral boundaries (pressure, wind speed, temperature, specific humidity), at the top of the stratosphere (temperature, wind speed) and at the ocean surface (sea ice concentration, sea surface temperature) every 6 hours using GCM and ERA-Interim reanalysis fields \cite{Agosta2019,Kittel2018,Fettweis2007,Fettweis2013}. We ran MAR at a spatial resolution of 15 km x 15 km on a polar stereographic projection, which represents a significant increase in resolution compared to previous GrIS regional climate projections with MAR in \textcite{Fettweis2013}, and which was used in the IPCC AR5 \cite{IPCC2014}. The MAR setup used in this study has been thoroughly compared to observations from weather stations, observed radiative fluxes, satellite cloud cover, satellite albedo and melt extent, ablation and SMB in-situ measurements \cite{Tedesco2019,Fettweis2007,Fettweis2017,Hofer2017,Delhasse2019}. 
+
+
+
+
+
+\nolinenumbers
+\cleardoublepage
+\printbibliography[keyword=methods, title={Methods References}]
+%\end{refsection}
+%\section*{Supplementary material}
+%\begin{figure}[H]
+%	\includegraphics[scale=0.90,center]{SMB.png}
+%	\caption*{} 
+%	\label{fig:S1}
+%\end{figure}
+
+
+
+\section*{Acknowledgments}
+This project has received funding from the European Research Council (ERC) under the European Union’s Horizon 2020 research and innovation programme (Grant agreement No. 758005). Computational resources have been provided by the Consortium des Equipements de Calcul Intensif (CECI), funded by the Fonds de la Recherche Scientifique de Belgique (F.R.S.-FNRS) under grant no. 2.5020.11 and the Tier-1 supercomputer (Zenobe) of the Fédération Wallonie Bruxelles infrastructure funded by the Walloon Region under the grant agreement no. 1117545. This work was also supported by the Fonds de la Recherche Scientifique (FNRS) and the Fonds Wetenschappelijk Onderzoek-Vlaanderen (FWO) under the EOS Project n° O0100718F. 
+We thank Katherine Thayer-Calder and William Lipscomb for providing 6-hourly output data from CESM2.
+
+\section*{Author contributions}
+
+S.H., C.K., C.A., X.F., C.L. and A.T. designed the study. S.H. analyzed the data and wrote the manuscript. C.L. provided the analysis for the supplementary material. X.F. did the MAR simulations. All authors discussed the final version of manuscript.
+
+\section*{Competing interests}
+The authors declare that they have no competing interests.
+
+\section*{Code and data availability}
+
+%The monthly means used in this study, from 1980-2100 of all three MAR RCP 8.5 simulations are available via ftp://ftp.climato.be/fettweis/MARv3.9/Greenland/. In case daily outputs are required, these can be requested from Xavier Fettweis (xavier.fettweis@uliege.be) and Stefan Hofer (s.hofer@bristol.ac.uk).
+%
+All the code used for the analysis in this study is available upon request from the corresponding author (stefan.hofer@geo.uio.no). All the MAR model results are available for download on ftp://ftp.climato.be/fettweis/MARv3.9/ISMIP6/GrIS/ in the framework of the ISMIP6 exercise (https://tc.copernicus.org/articles/14/2331/2020/).
+
+
+
+
+
+
+\end{document}
