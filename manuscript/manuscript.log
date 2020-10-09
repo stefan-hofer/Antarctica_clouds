@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.3.19)  8 OCT 2020 15:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.3.19)  9 OCT 2020 11:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1172,7 +1172,7 @@ File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 162.
  [2]
-Overfull \hbox (17.93544pt too wide) in paragraph at lines 172--173
+Overfull \hbox (17.93544pt too wide) in paragraph at lines 176--177
 []\T1/ptm/m/n/12 Clouds are known to no-tably af-fect the present and fu-ture c
 li-mates of po-lar ice sheets [[],
  []
@@ -1181,18 +1181,18 @@ li-mates of po-lar ice sheets [[],
 <./Plots/cross_section_lt.png, id=46, 361.35pt x 722.7pt>
 File: ./Plots/cross_section_lt.png Graphic file (type png)
 <use ./Plots/cross_section_lt.png>
-Package pdftex.def Info: ./Plots/cross_section_lt.png  used on input line 187.
+Package pdftex.def Info: ./Plots/cross_section_lt.png  used on input line 191.
 (pdftex.def)             Requested size: 252.94327pt x 505.88655pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 188.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 192.
  [4]
 <./Plots/SEB.png, id=51, 505.89pt x 708.246pt>
 File: ./Plots/SEB.png Graphic file (type png)
 <use ./Plots/SEB.png>
-Package pdftex.def Info: ./Plots/SEB.png  used on input line 194.
+Package pdftex.def Info: ./Plots/SEB.png  used on input line 198.
 (pdftex.def)             Requested size: 354.12057pt x 495.76881pt.
  [5 <./Plots/cross_section_lt.png>] [6 <./Plots/SEB.png>] [7]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 206.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 210.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
@@ -1200,20 +1200,20 @@ File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 
 ]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 215.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 219.
  [9] [10]
 
-Package biblatex Warning: Keyword 'methods' not found on input line 239.
+Package biblatex Warning: Keyword 'methods' not found on input line 243.
 
 
-LaTeX Warning: Empty bibliography on input line 239.
+LaTeX Warning: Empty bibliography on input line 243.
 
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 251.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 255.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Overfull \hbox (0.45313pt too wide) in paragraph at lines 251--253
+Overfull \hbox (0.45313pt too wide) in paragraph at lines 255--257
 \T1/ptm/m/n/12 pean Union's Hori-zon 2020 re-search and in-no-va-tion pro-gramm
 e (Grant agree-ment No. 758005).
  []
@@ -1246,7 +1246,7 @@ hare/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/ti
 mes/utmri8a.pfb>
-Output written on manuscript.pdf (12 pages, 1292281 bytes).
+Output written on manuscript.pdf (12 pages, 1293432 bytes).
 PDF statistics:
  128 PDF objects out of 1000 (max. 8388607)
  80 compressed objects within 1 object stream
