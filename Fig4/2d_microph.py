@@ -20,10 +20,10 @@ file_str = '/projects/NS9600K/shofer/blowing_snow/MAR/3D_monthly/'
 file_str_nobs = '/projects/NS9600K/shofer/blowing_snow/MAR/3D_monthly_nDR/'
 file_str_zz = '/projects/NS9600K/shofer/blowing_snow/MAR/case_study_BS_2009/'
 
-# Wessel file folders
-file_str = '/uio/kant/geo-metos-u1/shofer/data/3D_monthly/'
-file_str_nobs = '/uio/kant/geo-metos-u1/shofer/data/3D_monthly_nDR/'
-file_str_zz = '/uio/kant/geo-metos-u1/shofer/data/MAR_ANT_35/'
+# # Wessel file folders
+# file_str = '/uio/kant/geo-metos-u1/shofer/data/3D_monthly/'
+# file_str_nobs = '/uio/kant/geo-metos-u1/shofer/data/3D_monthly_nDR/'
+# file_str_zz = '/uio/kant/geo-metos-u1/shofer/data/MAR_ANT_35/'
 
 year_s = '2000-01-01'
 year_e = '2019-12-31'
@@ -99,11 +99,6 @@ ax2 = fig.add_subplot(spec2[0, 1], projection=proj)
 # plt.setp(ax2.get_yticklabels(), visible=False)
 ax3 = fig.add_subplot(spec2[1, 0], projection=proj)
 ax4 = fig.add_subplot(spec2[1, 1], projection=proj)
-# PLOT EVERYTHING
-# (diff_CC.CC *100).plot.pcolormesh('x', 'y', transform=proj, ax=ax1, robust=True, cbar_kwargs={'label': r'$\Delta$ CC (%)$', 'shrink':0.7})
-# diff_weighted_COD.plot.pcolormesh('x', 'y', transform=proj, ax=ax2, robust=True, cbar_kwargs={'label':'r'$\Delta$ COD', 'shrink':0.7})
-# diff_weighted_LWP.plot.pcolormesh('x', 'y', transform=proj, ax=ax3, robust=True, cbar_kwargs={'label':'r'$\Delta$ LWP (g/kg)', 'shrink':0.7})
-# diff_weighted_IWP.plot.pcolormesh('x', 'y', transform=proj, ax=ax4, robust=True, cbar_kwargs={'label':'r'$\Delta$ IWP (g/kg)', 'shrink':0.7})
 
 
 ax = [ax1, ax2, ax3, ax4]
@@ -127,17 +122,34 @@ for i in range(4):
 
     ax[i].set_boundary(circle, transform=ax[i].transAxes)
 
-cmap = 'YlGnBu_r'
-cont = ax[0].pcolormesh(diff_CC['x'], diff_CC['y'],
-                        (diff_CC.CC)*100,
-                        transform=proj, cmap='Reds')
-cont2 = ax[1].pcolormesh(diff_COD['x'], diff_COD['y'],
-                         diff_COD.COD,
-                         transform=proj, cmap='RdBu_r')
-cont3 = ax[2].pcolormesh(diff_LWP['x'], diff_LWP['y'],
-                         diff_LWP.CWP, transform=proj, cmap='RdBu_r')
-cont4 = ax[3].pcolormesh(diff_IWP['x'], diff_IWP['y'],
-                         diff_IWP.IWP, transform=proj, cmap='RdBu_r')
+# PLOT EVERYTHING
+
+(diff_CC.CC * 100).plot.pcolormesh('x', 'y', transform=proj, ax=ax1,
+                                   robust=True, cbar_kwargs={
+                                       'label': r'$\Delta$ CC (%)', 'shrink': 1, 'orientation': 'horizontal',
+                                       'ticks': [-20, -10, 0, 10, 20], 'pad': 0.05})
+diff_weighted_COD.plot.pcolormesh('x', 'y', transform=proj, ax=ax2, robust=True, cbar_kwargs={
+                                  'label': r'$\Delta$ COD', 'shrink': 1, 'orientation': 'horizontal',
+                                  'pad': 0.05, 'fraction': 0.15})
+(diff_weighted_LWP*1000).plot.pcolormesh('x', 'y', transform=proj, ax=ax3,
+                                         robust=True, cbar_kwargs={
+                                             'label': r'$\Delta$ LWP (g/kg)', 'shrink': 1, 'orientation': 'horizontal',
+                                             'ticks': [-2, -1, 0, 1, 2], 'pad': 0.05})
+(diff_weighted_IWP*1000).plot.pcolormesh('x', 'y', transform=proj, ax=ax4,
+                                         robust=True, cbar_kwargs={
+                                             'label': r'$\Delta$ IWP (g/kg)', 'shrink': 1, 'orientation': 'horizontal',
+                                             'ticks': [-20, -10, 0, 10, 20], 'pad': 0.05})
+#
+# cont = ax[0].pcolormesh(diff_CC['x'], diff_CC['y'],
+#                         (diff_CC.CC)*100,
+#                         transform=proj, cmap='Reds')
+# cont2 = ax[1].pcolormesh(diff_COD['x'], diff_COD['y'],
+#                          diff_COD.COD,
+#                          transform=proj, cmap='RdBu_r')
+# cont3 = ax[2].pcolormesh(diff_LWP['x'], diff_LWP['y'],
+#                          diff_LWP.CWP, transform=proj, cmap='RdBu_r')
+# cont4 = ax[3].pcolormesh(diff_IWP['x'], diff_IWP['y'],
+#                          diff_IWP.IWP, transform=proj, cmap='RdBu_r')
 # cont2 = ax[1].pcolormesh(trend_CC['lon'], trend_CC['lat'],
 #                          trend_CC.slope*30, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
 letters = ['A', 'B', 'C', 'D']
@@ -151,10 +163,6 @@ for i in range(4):
 
 # fig.canvas.draw()
 
-cb = fig.colorbar(cont, ax=ax[2], ticks=list(
-    np.arange(-4, 4.5, 1)), shrink=0.8)
-cb.set_label(r'$\Delta$ Radiative Flux $(Wm^{-2})$', fontsize=16)
-cb.ax.tick_params(labelsize=11)
 fig.tight_layout()
 # fig.colorbar(cont2, ax=ax[1], ticks=list(
 #     np.arange(-15, 15.5, 3)), shrink=0.8)
