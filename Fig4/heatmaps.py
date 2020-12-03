@@ -58,47 +58,59 @@ for var in ['Mean bias', 'RMSE', 'correlation']:
         i += 1
     final_arrs.append(arr)
 
+cols_final = ['LWD', 'SWD', 'LWU', 'SWU']
+
 df_mb = pd.DataFrame(
     final_arrs[0], columns=list_cols, index=list(df.Station.values))
 df_mb.index = df_mb.index.rename('Station')
+# For percentage changes this works (WIP)
+df_mb_perc = (-1)*((abs(df_mb.mean().iloc[[0, 2, 4, 6]].values) - abs(df_mb.mean().iloc[[
+    1, 3, 5, 7]])) / abs(df_mb.mean().iloc[[0, 2, 4, 6]].values)) * 100
+# For absolute changes in Wm-2 this works
+df_mb_abs = (-1)*(abs(df_mb.mean().iloc[[0, 2, 4, 6]].values) -
+                  abs((df_mb.mean().iloc[[1, 3, 5, 7]])))
+
+
+df_mb_perc_final = pd.DataFrame(df_mb_perc.values.reshape(
+    1, 4), columns=cols_final, index=[r'$\Delta$ Mean bias (%)'])
+
+df_mb_abs_final = pd.DataFrame(df_mb_abs.values.reshape(
+    1, 4), columns=cols_final, index=[r'$\Delta$ Mean bias $(Wm^{-2})$'])
+
 
 df_rmse = pd.DataFrame(
     final_arrs[1], columns=list_cols, index=list(df.Station.values))
+df_rmse.index = df_rmse.index.rename('Station')
+df_rmse_perc = (-1)*((abs(df_rmse.mean().iloc[[0, 2, 4, 6]].values) - abs(df_rmse.mean().iloc[[
+    1, 3, 5, 7]])) / abs(df_rmse.mean().iloc[[0, 2, 4, 6]].values)) * 100
+df_rmse_abs = (-1)*(abs(df_rmse.mean().iloc[[0, 2, 4, 6]].values) -
+                    abs((df_rmse.mean().iloc[[1, 3, 5, 7]])))
+
+df_rmse_perc_final = pd.DataFrame(df_rmse_perc.values.reshape(
+    1, 4), columns=cols_final, index=[r'$\Delta$ RMSE (%)'])
+
+df_rmse_abs_final = pd.DataFrame(df_rmse_abs.values.reshape(
+    1, 4), columns=cols_final, index=[r'$\Delta$ RMSE'])
 
 df_correlation = pd.DataFrame(
     final_arrs[2], columns=list_cols, index=list(df.Station.values))
-
-df_weights = pd.DataFrame(arr_weights, columns=[
-                          list_cols], index=list(points.Station))
-df_weights.index = df_weights.index.rename('Station')
-df_weights.to_csv('WEIGHTS.csv')
-
-
-df_final = pd.DataFrame(
-    arr, columns=[list_cols], index=list(points.Station))
-df_final.index = df_final.index.rename('Station')
-# To get R**2 instead of R
-df_final = df_final ** 2
-df_final.to_csv('R2.csv')
-
-df_rmse = pd.DataFrame(
-    arr_rmse, columns=[list_cols], index=list(points.Station))
-# df_rmse = df_rmse.drop(['SCO_L', 'QAS_U', 'NUK_U', 'NUK_L', 'TAS_U', 'S5', 'S6', 'S9'])
-# df_rmse = df_rmse.drop(['SCO_L', 'QAS_U', 'NUK_U', 'NUK_L', 'TAS_U', 'MIT', 'KAN_B'])
-df_rmse.index = df_rmse.index.rename('Station')
-df_rmse.to_csv('RMSE.csv')
-df_rmse_final = pd.DataFrame(df_rmse.mean().values.reshape(
-    1, 8), columns=[list_cols], index=['RMSE'])
-df_rmse.to_csv('RMSE_mean.csv')
-
-df_mb = pd.DataFrame(
-    arr_mb, columns=[list_cols], index=list(points.Station))
-# df_mb = df_mb.drop(['SCO_L', 'QAS_U', 'NUK_U', 'NUK_L', 'TAS_U', 'S5', 'S6', 'S9'])
-# df_mb = df_mb.drop(['SCO_L', 'QAS_U', 'NUK_U', 'NUK_L', 'TAS_U', 'MIT', 'KAN_B'])
-# df_mb = df_mb.drop(['SCO_L', 'QAS_U', 'NUK_U', 'NUK_L', 'TAS_U', 'S5', 'S6', 'S9', 'MIT', 'KAN_B'])
-
-df_mb.index = df_mb.index.rename('Station')
-df_mb.to_csv('MB.csv')
-df_mb_final = pd.DataFrame(df_mb.mean().values.reshape(
-    1, 8), columns=[list_cols], index=['Mean bias'])
-df_mb_final.to_csv('MB_mean.csv')
+df_correlation.index = df_correlation.index.rename('Station')
+df_correlation_perc = (-1)*((abs(df_correlation.mean().iloc[[0, 2, 4, 6]].values) - abs(df_correlation.mean().iloc[[
+    1, 3, 5, 7]])) / abs(df_correlation.mean().iloc[[0, 2, 4, 6]].values)) * 100
+df_correlation_abs = (-1)*(abs(df_correlation.mean().iloc[[0, 2, 4, 6]].values) -
+                           abs((df_correlation.mean().iloc[[1, 3, 5, 7]])))
+# FROM HERE DOWN COPIED FROM DIFFERENT SCRIPT
+figg, axx = plt.subplots(
+    nrows=3, ncols=1, figsize=(10, 3), sharex=True)
+h = sns.heatmap(df_mb_abs_final, annot=True,
+                ax=axx[0], cmap='RdBu_r', center=0, annot_kws={"size": 12})
+j = sns.heatmap(df_mb_perc_final, annot=True,
+                ax=axx[1], cmap='RdBu_r', center=0, annot_kws={"size": 12})
+k = sns.heatmap(df_rmse_abs_final, annot=True,
+                ax=axx[2], cmap='RdBu_r', center=0, annot_kws={"size": 12})
+h.set_yticklabels(h.get_yticklabels(), rotation=0)
+j.set_yticklabels(j.get_yticklabels(), rotation=0)
+k.set_yticklabels(k.get_yticklabels(), rotation=0)
+for ax in axx:
+    ax.set_xlabel('')
+figg.tight_layout()
