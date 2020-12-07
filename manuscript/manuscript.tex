@@ -219,6 +219,15 @@ Changes in cloud macrophysical properties due to blowing snow go hand-in-hand wi
 
 When looking at the net radiative effect of blowing snow (Fig. \ref{fig:SEB}C), we see that including blowing snow leads to a net warming of \textbf{+ XX WM2} over the Antarctic Ice Sheet. Here, the warming effect is mostly caused by an increase in LWD, most notably over the steep margins. Over the sloping terrain we see an increase in cloud cover, together with the strongest increase in cloud IWP (enhanced WBF process?), causing an enhanced cloud longwave emissivity (Fig. \ref{fig:micro}D). Conversely, we also see a net cooling effect over open ocean, where we see a decrease in CC, COD, LWP and IWP (Fig.\ref{fig:micro}A-D). However, for future sea level rise projections, the most important result is that blowing snow can induce a warming over Antarctica, where it can potentially enhance melt and mass loss rates over the grounded ice part of Antarctica (Fig.\ref{fig:SEB}C).
 
+\begin{figure}[H]
+	\includegraphics[scale=0.7,center]{heatmap.png}
+	\caption{\textbf{Difference in radiative components at the surface between MAR with and without blowing snow.} A) Difference in incoming shortwave radiation (SWD) at the surface in $Wm^{-2}$. Red color indicates a greater downwelling shortwave flux in MAR with active blowing snow parameterisation. B) Same A) but for the downwelling longwave flux at the surface. C) Same as A) and B), but for the difference in the net radiation at the surface ($R= SWD * (1 - \alpha) + LWD - LWU$).}
+	\label{fig:heat}
+\end{figure}
+
+When comparing MAR with active blowing snow to 19 in-situ weather station observations across the Antarctic Ice Sheet, we see a reduction in the mean bias (Fig. \ref{fig:heat}, the mean bias across all station can be found in Supplementary Fig. \ref{fig:heat_all}). The reduction of the mean bias in absolute terms is greatest in the longwave part of the spectrum with -0.96 Wm\textsuperscript{-2} in the downwelling longwave radiation (LWD) and -1.5 Wm\textsuperscript{-2} in the outgoing longwave radiation (LWU, Fig. \ref{fig:heat} first row). Additionally, we see a slight improvement in the outgoing shortwave radiation (SWU), where the mean bias is reduced by -0.43 Wm\textsuperscript{-2} when accounting for blowing snow, while it is slightly increased in the downwelling shortwave component (SWD) at +0.34 Wm\textsuperscript{-2}.  When we add all the changes in the mean bias of the radiative components we see that accounting for blowing snow in MAR over Antarctica leads to a 2.65 Wm\textsuperscript{-2} better representation of the radiative fluxes when compared to observations (-1.50 - 0.96 - 0.43 + 0.34 = -2.65 Wm\textsuperscript{-2}). Overall, we see the greatest improvement in the mean bias in the longwave components of the surface energy budget when explicitly modelling blowing snow over Antarctica.
+
+Comparing the change in the mean biases when accounting for blowing snow in MAR to the initial absolute mean biases of the base model without blowing snow we see a slightly different weighting (Fig. \ref{fig:heat}, second row). Our model results with blowing snow show an -48\% decrease of the mean bias in LWU, followed by a -9.4\% decrease in the LWD mean bias. Slightly less pronounced are the changes in SWU with a reduction of -3.4\% and a slight increase of 3.5\% in the SWD component (Fig. \ref{fig:heat}, second row). Conversely, the largest improvement in the root-mean-square-error (RMSE) occurs in LWD (-0.36, Fig. \ref{fig:heat},third row) and LWU (-0.34).  Additionally, accounting for blowing snow leads to a decrease in the RMSE in SWU of -0.09 and a slightly higher RMSE in the SWD component of +0.2. Overall, we again see the most notable improvement when using the active blowing snow scheme in MAR in the longwave part of the radiative spectrum, i.e. incoming and outgoing longwave radiation.
 
 \section*{Discussion}
 
@@ -288,7 +297,13 @@ The authors declare that they have no competing interests.
 All the code used for the analysis in this study is available upon request from the corresponding author (stefan.hofer@geo.uio.no). All the MAR model results are available for download on ftp://ftp.climato.be/fettweis/MARv3.9/ISMIP6/GrIS/ in the framework of the ISMIP6 exercise (https://tc.copernicus.org/articles/14/2331/2020/).
 
 
+\section*{Supplementary Material}
 
+\begin{figure}[H]
+	\includegraphics[scale=0.9,center]{heatmap_all_mb.png}
+	\caption{\textbf{Difference in radiative components at the surface between MAR with and without blowing snow.} A) Difference in incoming shortwave radiation (SWD) at the surface in $Wm^{-2}$. Red color indicates a greater downwelling shortwave flux in MAR with active blowing snow parameterisation. B) Same A) but for the downwelling longwave flux at the surface. C) Same as A) and B), but for the difference in the net radiation at the surface ($R= SWD * (1 - \alpha) + LWD - LWU$).}
+	\label{fig:heat_all}
+\end{figure}
 
 
 

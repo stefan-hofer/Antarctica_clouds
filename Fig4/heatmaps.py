@@ -3,11 +3,13 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import itertools
 
+
 folder = '/projects/NS9600K/shofer/blowing_snow/observations/'
 
 # Open up all the data
-LWD_Y_no = pd.read_csv(folder + 'Out_YYR_LD_o.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
-                                                                                                     'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
+LWD_Y_no = pd.read_csv(folder + 'Out_YYR_LD_o.dat', sep='\s+', engine='python',
+                       skipfooter=1, names=['Period', 'Station', 'Var',
+                                            'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
 LWD_Y_bs = pd.read_csv(folder + 'Out_YYR_LD_a.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
                                                                                                      'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
 SWD_Y_no = pd.read_csv(folder + 'Out_YYR_SD_o.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
@@ -64,11 +66,11 @@ df_mb = pd.DataFrame(
     final_arrs[0], columns=list_cols, index=list(df.Station.values))
 df_mb.index = df_mb.index.rename('Station')
 # For percentage changes this works (WIP)
-df_mb_perc = (-1)*((abs(df_mb.mean().iloc[[0, 2, 4, 6]].values) - abs(df_mb.mean().iloc[[
+df_mb_perc = (-1) * ((abs(df_mb.mean().iloc[[0, 2, 4, 6]].values) - abs(df_mb.mean().iloc[[
     1, 3, 5, 7]])) / abs(df_mb.mean().iloc[[0, 2, 4, 6]].values)) * 100
 # For absolute changes in Wm-2 this works
-df_mb_abs = (-1)*(abs(df_mb.mean().iloc[[0, 2, 4, 6]].values) -
-                  abs((df_mb.mean().iloc[[1, 3, 5, 7]])))
+df_mb_abs = (-1) * (abs(df_mb.mean().iloc[[0, 2, 4, 6]].values) -
+                    abs((df_mb.mean().iloc[[1, 3, 5, 7]])))
 
 
 df_mb_perc_final = pd.DataFrame(df_mb_perc.values.reshape(
@@ -81,10 +83,10 @@ df_mb_abs_final = pd.DataFrame(df_mb_abs.values.reshape(
 df_rmse = pd.DataFrame(
     final_arrs[1], columns=list_cols, index=list(df.Station.values))
 df_rmse.index = df_rmse.index.rename('Station')
-df_rmse_perc = (-1)*((abs(df_rmse.mean().iloc[[0, 2, 4, 6]].values) - abs(df_rmse.mean().iloc[[
+df_rmse_perc = (-1) * ((abs(df_rmse.mean().iloc[[0, 2, 4, 6]].values) - abs(df_rmse.mean().iloc[[
     1, 3, 5, 7]])) / abs(df_rmse.mean().iloc[[0, 2, 4, 6]].values)) * 100
-df_rmse_abs = (-1)*(abs(df_rmse.mean().iloc[[0, 2, 4, 6]].values) -
-                    abs((df_rmse.mean().iloc[[1, 3, 5, 7]])))
+df_rmse_abs = (-1) * (abs(df_rmse.mean().iloc[[0, 2, 4, 6]].values) -
+                      abs((df_rmse.mean().iloc[[1, 3, 5, 7]])))
 
 df_rmse_perc_final = pd.DataFrame(df_rmse_perc.values.reshape(
     1, 4), columns=cols_final, index=[r'$\Delta$ RMSE (%)'])
@@ -95,10 +97,10 @@ df_rmse_abs_final = pd.DataFrame(df_rmse_abs.values.reshape(
 df_correlation = pd.DataFrame(
     final_arrs[2], columns=list_cols, index=list(df.Station.values))
 df_correlation.index = df_correlation.index.rename('Station')
-df_correlation_perc = (-1)*((abs(df_correlation.mean().iloc[[0, 2, 4, 6]].values) - abs(df_correlation.mean().iloc[[
+df_correlation_perc = (-1) * ((abs(df_correlation.mean().iloc[[0, 2, 4, 6]].values) - abs(df_correlation.mean().iloc[[
     1, 3, 5, 7]])) / abs(df_correlation.mean().iloc[[0, 2, 4, 6]].values)) * 100
-df_correlation_abs = (-1)*(abs(df_correlation.mean().iloc[[0, 2, 4, 6]].values) -
-                           abs((df_correlation.mean().iloc[[1, 3, 5, 7]])))
+df_correlation_abs = (-1) * (abs(df_correlation.mean().iloc[[0, 2, 4, 6]].values) -
+                             abs((df_correlation.mean().iloc[[1, 3, 5, 7]])))
 # FROM HERE DOWN COPIED FROM DIFFERENT SCRIPT
 figg, axx = plt.subplots(
     nrows=3, ncols=1, figsize=(10, 3), sharex=True)
@@ -114,3 +116,15 @@ k.set_yticklabels(k.get_yticklabels(), rotation=0)
 for ax in axx:
     ax.set_xlabel('')
 figg.tight_layout()
+figg.savefig('/tos-project2/NS9600K/shofer/blowing_snow/heatmap.png')
+
+# Plot for all the stations mean bias
+figg, axx = plt.subplots(
+    nrows=1, ncols=1, figsize=(7, 7), sharex=True)
+h = sns.heatmap(df_mb, annot=True,
+                ax=axx, cmap='RdBu_r', center=0, annot_kws={"size": 12})
+
+h.set_yticklabels(h.get_yticklabels(), rotation=0)
+axx.set_xlabel(r'Radiation - Mean bias $(Wm^{-2})$')
+figg.tight_layout()
+figg.savefig('/tos-project2/NS9600K/shofer/blowing_snow/heatmap_all_mb.png')
