@@ -19,6 +19,764 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global}
+    \entry{Fretwell2013}{article}{}
+      \name{author}{60}{}{%
+        {{un=0,uniquepart=base,hash=c9ae74a155290908ea981a199c2647f5}{%
+           family={Fretwell},
+           familyi={F\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1c9043e72161a2a6074b78209365da6f}{%
+           family={Pritchard},
+           familyi={P\bibinitperiod},
+           given={H.\bibnamedelimi D.},
+           giveni={H\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f0a0102280833de1a09fdfb33b0efa86}{%
+           family={Vaughan},
+           familyi={V\bibinitperiod},
+           given={D.\bibnamedelimi G.},
+           giveni={D\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fd4876364063201df5ed60d08c86d931}{%
+           family={Bamber},
+           familyi={B\bibinitperiod},
+           given={J.\bibnamedelimi L.},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ca986ea217f139fae62eafd3ffcbd486}{%
+           family={Barrand},
+           familyi={B\bibinitperiod},
+           given={N.\bibnamedelimi E.},
+           giveni={N\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=44e057bfb865c6e13190d32b773029dc}{%
+           family={Bell},
+           familyi={B\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fa428613d8c3829622768ce0f149ce7b}{%
+           family={Bianchi},
+           familyi={B\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1501853333819c1c1cf6ac2fda24c3e4}{%
+           family={Bingham},
+           familyi={B\bibinitperiod},
+           given={R.\bibnamedelimi G.},
+           giveni={R\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b13d2d6d5d1d4fabb27c16cc0e27c1fd}{%
+           family={Blankenship},
+           familyi={B\bibinitperiod},
+           given={D.\bibnamedelimi D.},
+           giveni={D\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dd03d332aa9a7f2462d4b536f2a99d90}{%
+           family={Casassa},
+           familyi={C\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=968ae721889fe9274e970b6aa5e2d5e6}{%
+           family={Catania},
+           familyi={C\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c6fccde5f7808cdfa0f0603d83ebe115}{%
+           family={Callens},
+           familyi={C\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c6f5bc2433b9d1bbdc618313b1ae3bf7}{%
+           family={Conway},
+           familyi={C\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c94930e8164c833f74a23621464efa59}{%
+           family={Cook},
+           familyi={C\bibinitperiod},
+           given={A.\bibnamedelimi J.},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a0dcf8e56bc91876f95a4daf8d2d5568}{%
+           family={Corr},
+           familyi={C\bibinitperiod},
+           given={H.\bibnamedelimi F.\bibnamedelimi J.},
+           giveni={H\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d86a0e428b44aa20a87c3fdcb2dbc679}{%
+           family={Damaske},
+           familyi={D\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2b8918ce04c8434f0f444c412e226e78}{%
+           family={Damm},
+           familyi={D\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=216e291f303b82eae241993cf8b35cd6}{%
+           family={Ferraccioli},
+           familyi={F\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0e29e9230fc587d0d8282df9492a5ccc}{%
+           family={Forsberg},
+           familyi={F\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8cfb2ac817810f65dedb12b4b288e098}{%
+           family={Fujita},
+           familyi={F\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bae035c2cc18347e5246c7876fa3972c}{%
+           family={Gim},
+           familyi={G\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b4769011592e3872d8443f46ca071a7e}{%
+           family={Gogineni},
+           familyi={G\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=524fbcce8d2eb8e0b6a1685673f00c53}{%
+           family={Griggs},
+           familyi={G\bibinitperiod},
+           given={J.\bibnamedelimi A.},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bc442cc14b397800d166c4b81e599370}{%
+           family={Hindmarsh},
+           familyi={H\bibinitperiod},
+           given={R.\bibnamedelimi C.\bibnamedelimi A.},
+           giveni={R\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=31be040cef7a74768310d86856709bba}{%
+           family={Holmlund},
+           familyi={H\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=502d1400275a56cf2df0ea4c178d0c2a}{%
+           family={Holt},
+           familyi={H\bibinitperiod},
+           given={J.\bibnamedelimi W.},
+           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4dd11441defd852cf7d8be668ad80fba}{%
+           family={Jacobel},
+           familyi={J\bibinitperiod},
+           given={R.\bibnamedelimi W.},
+           giveni={R\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fd6a2815ce5370333dbf37188c45b041}{%
+           family={Jenkins},
+           familyi={J\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ceb8d303dfadf1715e941e09706a4cad}{%
+           family={Jokat},
+           familyi={J\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e99bb807daae30d6bdf77a63da8942aa}{%
+           family={Jordan},
+           familyi={J\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9a5121c3368023df9870be29fb54fa74}{%
+           family={King},
+           familyi={K\bibinitperiod},
+           given={E.\bibnamedelimi C.},
+           giveni={E\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c1d922f427bea55d6e4c5ca5fb3dbd12}{%
+           family={Kohler},
+           familyi={K\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f82cf50c92290754887ad8a769059386}{%
+           family={Krabill},
+           familyi={K\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1913efaf0342a846b411356c0273c43f}{%
+           family={Riger-Kusk},
+           familyi={R\bibinithyphendelim K\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d728b214d807564e3da49a7f93db656e}{%
+           family={Langley},
+           familyi={L\bibinitperiod},
+           given={K.\bibnamedelimi A.},
+           giveni={K\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ec49b2ece1bc4843cc4b657a55425c36}{%
+           family={Leitchenkov},
+           familyi={L\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=07f36869d36b7523ff086b7a3dfe4bb6}{%
+           family={Leuschen},
+           familyi={L\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=784a68e31928766c1deb97237bb9e3d9}{%
+           family={Luyendyk},
+           familyi={L\bibinitperiod},
+           given={B.\bibnamedelimi P.},
+           giveni={B\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=af5906f620ac54f5bbffccc2b58de8bb}{%
+           family={Matsuoka},
+           familyi={M\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=aabeacc946020ec52fabeedda4029bb3}{%
+           family={Mouginot},
+           familyi={M\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=76632e2b49675ef384decfc73970681b}{%
+           family={Nitsche},
+           familyi={N\bibinitperiod},
+           given={F.\bibnamedelimi O.},
+           giveni={F\bibinitperiod\bibinitdelim O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=79372ee56cf96c9c74e3a2eec40b9c26}{%
+           family={Nogi},
+           familyi={N\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d3f4c96fd61d968728d9d57171f5c257}{%
+           family={Nost},
+           familyi={N\bibinitperiod},
+           given={O.\bibnamedelimi A.},
+           giveni={O\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f14d0583be4771686281ae25147a1338}{%
+           family={Popov},
+           familyi={P\bibinitperiod},
+           given={S.\bibnamedelimi V.},
+           giveni={S\bibinitperiod\bibinitdelim V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=aa4517fc9dc917ea4f00e65d801af715}{%
+           family={Rignot},
+           familyi={R\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0806bdf5c439682a794a40fd3e6eab52}{%
+           family={Rippin},
+           familyi={R\bibinitperiod},
+           given={D.\bibnamedelimi M.},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d6cdc10e584567480cbc584ff94272a7}{%
+           family={Rivera},
+           familyi={R\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a57e41a448c4801949a5976973a6fa72}{%
+           family={Roberts},
+           familyi={R\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b766a5aa4cbf8f93ee0b5e5837472a0c}{%
+           family={Ross},
+           familyi={R\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e08e53301044176c11c21b9f1d2eaabe}{%
+           family={Siegert},
+           familyi={S\bibinitperiod},
+           given={M.\bibnamedelimi J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bb173b721d32bba5f065023f5d635b65}{%
+           family={Smith},
+           familyi={S\bibinitperiod},
+           given={A.\bibnamedelimi M.},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7d31e179ddc343d56e0c834908efb221}{%
+           family={Steinhage},
+           familyi={S\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=92a6211f12adbc7c9ec9dffccc37b4e0}{%
+           family={Studinger},
+           familyi={S\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6e16aa4068db42a4d6a601d334f40032}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ba2dea321c537fb3dc949f7bbe1c96eb}{%
+           family={Tinto},
+           familyi={T\bibinitperiod},
+           given={B.\bibnamedelimi K.},
+           giveni={B\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=55c33f43a04ac9468470d5820ce4b3ec}{%
+           family={Welch},
+           familyi={W\bibinitperiod},
+           given={B.\bibnamedelimi C.},
+           giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=298935088e8b0a1c4a1121d96e38b322}{%
+           family={Wilson},
+           familyi={W\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=32eb9c2e77423c9db0f3b30de0ec600a}{%
+           family={Young},
+           familyi={Y\bibinitperiod},
+           given={D.\bibnamedelimi A.},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5e32de62f039430ec48fc0a0b6dc31da}{%
+           family={Xiangbin},
+           familyi={X\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9cf8994ffed9f573ba30f9cc0eabb251}{%
+           family={Zirizzotti},
+           familyi={Z\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{46e8f9eff1a77b1f9b3a442bdac2a1e3}
+      \strng{fullhash}{4aa2fbf3f195b4a3b8375391730642bf}
+      \strng{bibnamehash}{46e8f9eff1a77b1f9b3a442bdac2a1e3}
+      \strng{authorbibnamehash}{46e8f9eff1a77b1f9b3a442bdac2a1e3}
+      \strng{authornamehash}{46e8f9eff1a77b1f9b3a442bdac2a1e3}
+      \strng{authorfullhash}{4aa2fbf3f195b4a3b8375391730642bf}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Cryosphere}
+      \field{number}{1}
+      \field{title}{Bedmap2: improved ice bed, surface and thickness datasets for Antarctica}
+      \field{volume}{7}
+      \field{year}{2013}
+      \field{pages}{375\bibrangedash 393}
+      \range{pages}{19}
+      \verb{doi}
+      \verb 10.5194/tc-7-375-2013
+      \endverb
+      \verb{urlraw}
+      \verb https://tc.copernicus.org/articles/7/375/2013/
+      \endverb
+      \verb{url}
+      \verb https://tc.copernicus.org/articles/7/375/2013/
+      \endverb
+    \endentry
+    \entry{Morlighem2017}{article}{}
+      \name{author}{32}{}{%
+        {{un=0,uniquepart=base,hash=3e4faffb5334d575b51aa21acedeebdd}{%
+           family={Morlighem},
+           familyi={M\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=37911515ea59d958266f7f9c119390db}{%
+           family={Williams},
+           familyi={W\bibinitperiod},
+           given={C.\bibnamedelimi N.},
+           giveni={C\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=aa4517fc9dc917ea4f00e65d801af715}{%
+           family={Rignot},
+           familyi={R\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4e921d4dd6ad7e03e59c0f2f35a30ad4}{%
+           family={An},
+           familyi={A\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ee5e1aeb175a4af02ebeb0d4d1603a34}{%
+           family={Arndt},
+           familyi={A\bibinitperiod},
+           given={J.\bibnamedelimi E.},
+           giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fd4876364063201df5ed60d08c86d931}{%
+           family={Bamber},
+           familyi={B\bibinitperiod},
+           given={J.\bibnamedelimi L.},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=968ae721889fe9274e970b6aa5e2d5e6}{%
+           family={Catania},
+           familyi={C\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=638d09dfb55b7e3a648ed39daab9513d}{%
+           family={Chauch{é}},
+           familyi={C\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0fa8161781c1cf5f0768a1961777f803}{%
+           family={Dowdeswell},
+           familyi={D\bibinitperiod},
+           given={J.\bibnamedelimi A.},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e3078508c7ba220995d4de70be0083a1}{%
+           family={Dorschel},
+           familyi={D\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c7cf64cd2d211c0b6a00ab807ec44dff}{%
+           family={Fenty},
+           familyi={F\bibinitperiod},
+           given={I.},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0838c8a8d6d781fe25854f75760a07f1}{%
+           family={Hogan},
+           familyi={H\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b59befaa7b3bd9c303f3495c33dda0ac}{%
+           family={Howat},
+           familyi={H\bibinitperiod},
+           given={I.},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fcc7afe44b8e5c3020caca03b6e3f0b7}{%
+           family={Hubbard},
+           familyi={H\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=db34fb1358fd1b18737e314b333b38fa}{%
+           family={Jakobsson},
+           familyi={J\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=84b541b70295d92bddf32fd471d7ff63}{%
+           family={Jordan},
+           familyi={J\bibinitperiod},
+           given={T.\bibnamedelimi M.},
+           giveni={T\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3df932b49342d205e86dd3eb653b810c}{%
+           family={Kjeldsen},
+           familyi={K\bibinitperiod},
+           given={K.\bibnamedelimi K.},
+           giveni={K\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=17fc2cdd2b8f622915eae0818a3d52c7}{%
+           family={Millan},
+           familyi={M\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d769253c1c2fc084e26d8da19e1f23f3}{%
+           family={Mayer},
+           familyi={M\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=aabeacc946020ec52fabeedda4029bb3}{%
+           family={Mouginot},
+           familyi={M\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1bfa012e5b080f32485e7074aa42694a}{%
+           family={No{ë}l},
+           familyi={N\bibinitperiod},
+           given={B.\bibnamedelimi P.Y.},
+           giveni={B\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=50138824d983667d7c007f716a2a5838}{%
+           family={O'Cofaigh},
+           familyi={O\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c0aa336243e0b45fa753da14e86aaed5}{%
+           family={Palmer},
+           familyi={P\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d3adb30bf5712bd52118988c7e711d35}{%
+           family={Rysgaard},
+           familyi={R\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=10440fac8ec9e28f06dd31278feb1aae}{%
+           family={Seroussi},
+           familyi={S\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e08e53301044176c11c21b9f1d2eaabe}{%
+           family={Siegert},
+           familyi={S\bibinitperiod},
+           given={M.\bibnamedelimi J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=74c6ed37f47152b57649f6a5898254aa}{%
+           family={Slabon},
+           familyi={S\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d7f4aab8ce81e4fdb1186f26aff461da}{%
+           family={Straneo},
+           familyi={S\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ec407c54ceeec76a336eb72afb8194b1}{%
+           family={Broeke},
+           familyi={B\bibinitperiod},
+           given={M.\bibnamedelimi R.},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0,
+           prefix={van\bibnamedelima den},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod},
+           prefixun=0}}%
+        {{un=0,uniquepart=base,hash=b696927a7edb2a8cc98bd2efc70c9255}{%
+           family={Weinrebe},
+           familyi={W\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d1424a32d4aee86fcfcc72fdc7aef451}{%
+           family={Wood},
+           familyi={W\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e93fb0a3b70905f30895be9007f8a46e}{%
+           family={Zinglersen},
+           familyi={Z\bibinitperiod},
+           given={K.\bibnamedelimi B.},
+           giveni={K\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a892cf5f77cd4a6b24e9a16271ee9e1e}
+      \strng{fullhash}{f564ea04ccd6f4ab379ba10cde922b62}
+      \strng{bibnamehash}{a892cf5f77cd4a6b24e9a16271ee9e1e}
+      \strng{authorbibnamehash}{a892cf5f77cd4a6b24e9a16271ee9e1e}
+      \strng{authornamehash}{a892cf5f77cd4a6b24e9a16271ee9e1e}
+      \strng{authorfullhash}{f564ea04ccd6f4ab379ba10cde922b62}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Greenland's bed topography is a primary control on ice flow, grounding line migration, calving dynamics, and subglacial drainage. Moreover, fjord bathymetry regulates the penetration of warm Atlantic water (AW) that rapidly melts and undercuts Greenland's marine-terminating glaciers. Here we present a new compilation of Greenland bed topography that assimilates seafloor bathymetry and ice thickness data through a mass conservation approach. A new 150 m horizontal resolution bed topography/bathymetric map of Greenland is constructed with seamless transitions at the ice/ocean interface, yielding major improvements over previous data sets, particularly in the marine-terminating sectors of northwest and southeast Greenland. Our map reveals that the total sea level potential of the Greenland ice sheet is 7.42 ± 0.05 m, which is 7 cm greater than previous estimates. Furthermore, it explains recent calving front response of numerous outlet glaciers and reveals new pathways by which AW can access glaciers with marine-based basins, thereby highlighting sectors of Greenland that are most vulnerable to future oceanic forcing.}
+      \field{isbn}{0094-8276}
+      \field{issn}{19448007}
+      \field{journaltitle}{Geophysical Research Letters}
+      \field{title}{{BedMachine v3: Complete Bed Topography and Ocean Bathymetry Mapping of Greenland From Multibeam Echo Sounding Combined With Mass Conservation}}
+      \field{year}{2017}
+      \verb{doi}
+      \verb 10.1002/2017GL074954
+      \endverb
+      \verb{file}
+      \verb :home/sh16450/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Morlighem et al. - 2017 - BedMachine v3 Complete Bed Topography and Ocean Bathymetry Mapping of Greenland From Multibeam Echo Sounding C.pdf:pdf
+      \endverb
+      \keyw{Greenland,bathymetry,glaciology,mass conservation,multibeam echo sounding,radar echo sounding}
+    \endentry
+    \entry{Gilbert2020}{article}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=f61c4de9b69d92458241131862404fee}{%
+           family={Gilbert},
+           familyi={G\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b7c8e452e8f19f580676323dcc2428dc}{%
+           family={Orr},
+           familyi={O\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e97a550c410913dd2078ca3e5970917d}{%
+           family={King},
+           familyi={K\bibinitperiod},
+           given={J.\bibnamedelimi C.},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5dfde844c40ca863847b9665781cedb0}{%
+           family={Renfrew},
+           familyi={R\bibinitperiod},
+           given={I.\bibnamedelimi A.},
+           giveni={I\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=eccdd8b6226d33a8167279b356d36259}{%
+           family={Lachlan-Cope},
+           familyi={L\bibinithyphendelim C\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=51d27ebaf0aad1e6864c06093f5e9928}{%
+           family={Field},
+           familyi={F\bibinitperiod},
+           given={P.\bibnamedelimi F.},
+           giveni={P\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=185b6fdd3016fce4dff0d42edff32967}{%
+           family={Boutle},
+           familyi={B\bibinitperiod},
+           given={I.\bibnamedelimi A.},
+           giveni={I\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4502575c1beca2732f053b597cbb80c0}
+      \strng{fullhash}{ff068aae053e2b9f3d1bda57ec3de404}
+      \strng{bibnamehash}{4502575c1beca2732f053b597cbb80c0}
+      \strng{authorbibnamehash}{4502575c1beca2732f053b597cbb80c0}
+      \strng{authornamehash}{4502575c1beca2732f053b597cbb80c0}
+      \strng{authorfullhash}{ff068aae053e2b9f3d1bda57ec3de404}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Abstract Surface melting on Antarctic Peninsula ice shelves can influence ice shelf mass balance, and consequently sea level rise. We show that summertime cloud phase on the Larsen C ice shelf on the Antarctic Peninsula strongly influences the amount of radiation received at the surface and can determine whether or not melting occurs. While previous work has separately evaluated cloud phase and the surface energy balance (SEB) during summertime over Larsen C, no previous studies have examined this relationship quantitatively. Furthermore, regional climate models frequently produce surface radiation biases related to cloud ice and liquid water content. This study uses a high-resolution regional configuration of the UK Met Office Unified Model (MetUM) to assess the influence of cloud ice and liquid properties on the SEB, and consequently melting, over the Larsen C ice shelf. Results from a case-study show that simulations producing a vertical cloud phase structure more comparable to aircraft observations exhibit smaller surface radiative biases. A configuration of the MetUM adapted to improve the simulation of cloud phase reproduces the observed surface melt most closely. During a five-week simulation of summertime conditions, model melt biases are reduced to <2 W·m−2: a four-fold improvement on a previous study that used default MetUM settings. This demonstrates the importance of cloud phase in determining summertime melt rates on Larsen C.}
+      \field{journaltitle}{Quarterly Journal of the Royal Meteorological Society}
+      \field{number}{729}
+      \field{title}{Summertime cloud phase strongly influences surface melting on the Larsen C ice shelf, Antarctica}
+      \field{volume}{146}
+      \field{year}{2020}
+      \field{pages}{1575\bibrangedash 1589}
+      \range{pages}{15}
+      \verb{doi}
+      \verb https://doi.org/10.1002/qj.3753
+      \endverb
+      \verb{eprint}
+      \verb https://rmets.onlinelibrary.wiley.com/doi/pdf/10.1002/qj.3753
+      \endverb
+      \verb{urlraw}
+      \verb https://rmets.onlinelibrary.wiley.com/doi/abs/10.1002/qj.3753
+      \endverb
+      \verb{url}
+      \verb https://rmets.onlinelibrary.wiley.com/doi/abs/10.1002/qj.3753
+      \endverb
+      \keyw{Antarctic Peninsula,cloud phase,Larsen C ice shelf,regional climate modelling,surface energy balance,surface melt}
+    \endentry
+    \entry{Ricaud2017}{article}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=586b4b7a602b560e1f91db48f65164c6}{%
+           family={Ricaud},
+           familyi={R\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d602fc955d9d42eb217ca4f66cf8376b}{%
+           family={Bazile},
+           familyi={B\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2024530ac852ed47957e8ea70b11c2cc}{%
+           family={Guasta},
+           familyi={G\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0,
+           prefix={del},
+           prefixi={d\bibinitperiod},
+           prefixun=0}}%
+        {{un=0,uniquepart=base,hash=3ef9579003573baff47fc29b4dd94130}{%
+           family={Lanconelli},
+           familyi={L\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8a4b129399aba720eef3e4f04e7dc6e9}{%
+           family={Grigioni},
+           familyi={G\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3992318f977adb044c72a282ccb4fa1f}{%
+           family={Mahjoub},
+           familyi={M\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{339529cce91b2eac45abb0697d57dd8a}
+      \strng{fullhash}{bdf23c0b2a7fee0a19cb25577e86f67f}
+      \strng{bibnamehash}{339529cce91b2eac45abb0697d57dd8a}
+      \strng{authorbibnamehash}{339529cce91b2eac45abb0697d57dd8a}
+      \strng{authornamehash}{339529cce91b2eac45abb0697d57dd8a}
+      \strng{authorfullhash}{bdf23c0b2a7fee0a19cb25577e86f67f}
+      \field{sortinit}{4}
+      \field{sortinithash}{e071e0bcb44634fab398d68ad04e69f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Atmospheric Chemistry and Physics}
+      \field{number}{8}
+      \field{title}{Genesis of diamond dust, ice fog and thick cloud episodes observed and modelled above Dome C, Antarctica}
+      \field{volume}{17}
+      \field{year}{2017}
+      \field{pages}{5221\bibrangedash 5237}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.5194/acp-17-5221-2017
+      \endverb
+      \verb{urlraw}
+      \verb https://acp.copernicus.org/articles/17/5221/2017/
+      \endverb
+      \verb{url}
+      \verb https://acp.copernicus.org/articles/17/5221/2017/
+      \endverb
+    \endentry
     \entry{Hofer2017}{article}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=5c575471b179b473cb87832829ae30bd}{%
@@ -53,8 +811,8 @@
       \strng{authornamehash}{a7153a1c7a414dd2422dd161308bc981}
       \strng{authorfullhash}{c5834986b1656508c17a6a226db52c7e}
       \field{extraname}{1}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{sortinit}{5}
+      \field{sortinithash}{5dd416adbafacc8226114bc0202d5fdd}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{The Greenland Ice Sheet (GrIS) has been losing mass at an accelerating rate since the mid-1990s. This has been due to both increased ice discharge into the ocean and melting at the surface, with the latter being the dominant contribution. This change in state has been attributed to rising temperatures and a decrease in surface albedo. We show, using satellite data and climate model output, that the abrupt reduction in surface mass balance since about 1995 can be attributed largely to a coincident trend of decreasing summer cloud cover enhancing the melt-albedo feedback. Satellite observations show that, from 1995 to 2009, summer cloud cover decreased by 0.9 ± 0.3{\%} per year. Model output indicates that the GrIS summer melt increases by 27 ± 13 gigatons (Gt) per percent reduction in summer cloud cover, principally because of the impact of increased shortwave radiation over the low albedo ablation zone. The observed reduction in cloud cover is strongly correlated with a state shift in the North Atlantic Oscillation promoting anticyclonic conditions in summer and suggests that the enhanced surface mass loss from the GrIS is driven by synoptic-scale changes in Arctic-wide atmospheric circulation.}
@@ -105,8 +863,8 @@
       \strng{authornamehash}{a7153a1c7a414dd2422dd161308bc981}
       \strng{authorfullhash}{c5834986b1656508c17a6a226db52c7e}
       \field{extraname}{2}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{sortinit}{5}
+      \field{sortinithash}{5dd416adbafacc8226114bc0202d5fdd}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Recently, the Greenland Ice Sheet (GrIS) has become the main source of barystatic sea-level rise1,2. The increase in the GrIS melt is linked to anticyclonic circulation anomalies, a reduction in cloud cover and enhanced warm-air advection3–7. The Climate Model Intercomparison Project fifth phase (CMIP5) General Circulation Models (GCMs) do not capture recent circulation dynamics; therefore, regional climate models (RCMs) driven by GCMs still show significant uncertainties in future GrIS sea-level contribution, even within one emission scenario5,8–10. Here, we use the RCM Mod{è}le Atmosph{è}rique R{è}gional to show that the modelled cloud water phase is the main source of disagreement among future GrIS melt projections. We show that, in the current climate, anticyclonic circulation results in more melting than under a neutral-circulation regime. However, we find that the GrIS longwave cloud radiative effect is extremely sensitive to the modelled cloud liquid-water path, which explains melt anomalies of +378 Gt yr–1 (+1.04 mm yr–1 global sea level equivalent) in a +2 °C-warmer climate with a neutral-circulation regime (equivalent to 21{\%} more melt than under anticyclonic circulation). The discrepancies between modelled cloud properties within a high-emission scenario introduce larger uncertainties in projected melt volumes than the difference in melt between low- and high-emission scenarios11.}
@@ -191,8 +949,8 @@
       \strng{authorbibnamehash}{22cfbe89b4cebeb8fbb879fd745039fd}
       \strng{authornamehash}{22cfbe89b4cebeb8fbb879fd745039fd}
       \strng{authorfullhash}{e182750daf57a5af7e56fab4c995855d}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{sortinit}{5}
+      \field{sortinithash}{5dd416adbafacc8226114bc0202d5fdd}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{The Greenland ice sheet has become one of the main contributors to global sea level rise, predominantly through increased meltwater runoff. The main drivers of Greenland ice sheet runoff, however, remain poorly understood. Here we show that clouds enhance meltwater runoff by about one-third relative to clear skies, using a unique combination of active satellite observations, climate model data and snow model simulations. This impact results from a cloud radiative effect of 29.5 (±5.2) W m−2. Contrary to conventional wisdom, however, the Greenland ice sheet responds to this energy through a new pathway by which clouds reduce meltwater refreezing as opposed to increasing surface melt directly, thereby accelerating bare-ice exposure and enhancing meltwater runoff. The high sensitivity of the Greenland ice sheet to both ice-only and liquid-bearing clouds highlights the need for accurate cloud representations in climate models, to better predict future contributions of the Greenland ice sheet to global sea level rise.}
@@ -206,6 +964,540 @@
       \endverb
       \verb{file}
       \verb :home/sh16450/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Turner - 2016 - Clouds enhance Greenland ice sheet meltwater runoff Clouds enhance Greenland ice sheet meltwater runoff.pdf:pdf
+      \endverb
+    \endentry
+    \entry{Izeboud2020}{article}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=86dad2cb0031f72ee61a33a130fa160d}{%
+           family={Izeboud},
+           familyi={I\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=65f86355e00a6c7cde60e5765ab3703f}{%
+           family={Lhermitte},
+           familyi={L\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b348ad983a25bdb92d178f80340283cf}{%
+           family={Van\bibnamedelima Tricht},
+           familyi={V\bibinitperiod\bibinitdelim T\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3826924188004c4cf36462b5b4a1d258}{%
+           family={Lenaerts},
+           familyi={L\bibinitperiod},
+           given={J.\bibnamedelimi T.\bibnamedelimi M.},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6e6c11548ed95ca4cd1ded36ad1d009f}{%
+           family={Van\bibnamedelima Lipzig},
+           familyi={V\bibinitperiod\bibinitdelim L\bibinitperiod},
+           given={N.\bibnamedelimi P.\bibnamedelimi M.},
+           giveni={N\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2c446271ab3c8fd0a10422d47f5dbf64}{%
+           family={Wever},
+           familyi={W\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{1bd3fa64a2a5b327ce9ac02290447c0e}
+      \strng{fullhash}{2b49f5517fc00387e4e2c5509077614d}
+      \strng{bibnamehash}{1bd3fa64a2a5b327ce9ac02290447c0e}
+      \strng{authorbibnamehash}{1bd3fa64a2a5b327ce9ac02290447c0e}
+      \strng{authornamehash}{1bd3fa64a2a5b327ce9ac02290447c0e}
+      \strng{authorfullhash}{2b49f5517fc00387e4e2c5509077614d}
+      \field{sortinit}{5}
+      \field{sortinithash}{5dd416adbafacc8226114bc0202d5fdd}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Abstract To better understand and quantify the impact of clouds on the Greenland Ice Sheet surface mass balance (SMB), we study the spatiotemporal variability of the cloud radiative effect (CRE). The total CRE is separated in short-term and long-term impacts by performing multiple simulations with the SNOWPACK model for 2001-+2010. The annual total CRE is 16.8 ± 4.5 W m−2, reducing the SMB with −157 ± 3.8 Gt yr−1. Summer cloud radiative cooling is −6.4 ± 5.7 W m−2 in the ablation area, increasing the SMB with 121 ± 2.2 Gt yr−1. The annual integrated impact is cloud-reduced SMB of −36 Gt yr−1. The short-term effect dominates the opposing long-term effects through the albedo-melt feedback. A long-term warming effect decreases the albedo and so preconditions the surface for enhanced (summer) melt. The impact of the CRE, determined by spatial, temporal and initial conditions, explains existing conflicted views on the role of cloud radiation and emphasizes the need for accurate cloud and albedo representations in future studies.}
+      \field{journaltitle}{Geophysical Research Letters}
+      \field{note}{e2020GL087315 10.1029/2020GL087315}
+      \field{number}{12}
+      \field{title}{The Spatiotemporal Variability of Cloud Radiative Effects on the Greenland Ice Sheet Surface Mass Balance}
+      \field{volume}{47}
+      \field{year}{2020}
+      \field{pages}{e2020GL087315}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb https://doi.org/10.1029/2020GL087315
+      \endverb
+      \verb{eprint}
+      \verb https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2020GL087315
+      \endverb
+      \verb{urlraw}
+      \verb https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2020GL087315
+      \endverb
+      \verb{url}
+      \verb https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2020GL087315
+      \endverb
+      \keyw{cloud radiative effect,Greenland ice sheet,cloud impact}
+    \endentry
+    \entry{Hahn2019}{article}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=f8cef143f6f1e53050803b251010524d}{%
+           family={Hahn},
+           familyi={H\bibinitperiod},
+           given={L.\bibnamedelimi C.},
+           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=16bc27448b8099ffb3c8879f0d10163d}{%
+           family={Storelvmo},
+           familyi={S\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d8f9b8e2e6031770c4a8b6aaa7cc2150}{%
+           family={Hofer},
+           familyi={H\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bf6f2d6dbe967f35b1c69aac78dbeef6}{%
+           family={Parfitt},
+           familyi={P\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=10e400c1c91e2c0b9d9404ee0ae4a985}{%
+           family={Ummenhofer},
+           familyi={U\bibinitperiod},
+           given={C.\bibnamedelimi C.},
+           giveni={C\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Boston MA, USA}%
+      }
+      \list{publisher}{1}{%
+        {American Meteorological Society}%
+      }
+      \strng{namehash}{e6da2e7156fa043646cc3acf6f0904e1}
+      \strng{fullhash}{58a617d0ccd7e903f73650dddc9a8a28}
+      \strng{bibnamehash}{e6da2e7156fa043646cc3acf6f0904e1}
+      \strng{authorbibnamehash}{e6da2e7156fa043646cc3acf6f0904e1}
+      \strng{authornamehash}{e6da2e7156fa043646cc3acf6f0904e1}
+      \strng{authorfullhash}{58a617d0ccd7e903f73650dddc9a8a28}
+      \field{sortinit}{5}
+      \field{sortinithash}{5dd416adbafacc8226114bc0202d5fdd}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Climate}
+      \field{number}{10}
+      \field{title}{Importance of Orography for Greenland Cloud and Melt Response to Atmospheric Blocking}
+      \field{volume}{33}
+      \field{year}{15 May. 2020}
+      \field{pages}{4187\bibrangedash 4206}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1175/JCLI-D-19-0527.1
+      \endverb
+      \verb{urlraw}
+      \verb https://journals.ametsoc.org/view/journals/clim/33/10/jcli-d-19-0527.1.xml
+      \endverb
+      \verb{url}
+      \verb https://journals.ametsoc.org/view/journals/clim/33/10/jcli-d-19-0527.1.xml
+      \endverb
+    \endentry
+    \entry{Tan2016}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=3a1800f708a71a0e81006bb739c57eda}{%
+           family={Tan},
+           familyi={T\bibinitperiod},
+           given={Ivy},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f83ceba0576e417ee594760af7c86c3c}{%
+           family={Storelvmo},
+           familyi={S\bibinitperiod},
+           given={Trude},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=347b0eae09d32e7898e90117b34d9914}{%
+           family={Zelinka},
+           familyi={Z\bibinitperiod},
+           given={Mark\bibnamedelima D.},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{f31122f5ef2ad6164d0925e88cfb1886}
+      \strng{fullhash}{f31122f5ef2ad6164d0925e88cfb1886}
+      \strng{bibnamehash}{f31122f5ef2ad6164d0925e88cfb1886}
+      \strng{authorbibnamehash}{f31122f5ef2ad6164d0925e88cfb1886}
+      \strng{authornamehash}{f31122f5ef2ad6164d0925e88cfb1886}
+      \strng{authorfullhash}{f31122f5ef2ad6164d0925e88cfb1886}
+      \field{sortinit}{6}
+      \field{sortinithash}{7851c86048328b027313775d8fbd2131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Global climate model (GCM) estimates of the equilibrium global mean surface temperature response to a doubling of atmospheric CO2, measured by the equilibrium climate sensitivity (ECS), range from 2.0° to 4.6°C. Clouds are among the leading causes of this uncertainty. Here we show that the ECS can be up to 1.3°C higher in simulations where mixed-phase clouds consisting of ice crystals and supercooled liquid droplets are constrained by global satellite observations. The higher ECS estimates are directly linked to a weakened cloud-phase feedback arising from a decreased cloud glaciation rate in a warmer climate. We point out the need for realistic representations of the supercooled liquid fraction in mixed-phase clouds in GCMs, given the sensitivity of the ECS to the cloud-phase feedback.}
+      \field{eprintclass}{arXiv:gr-qc}
+      \field{eprinttype}{arXiv}
+      \field{isbn}{9780874216561}
+      \field{issn}{10959203}
+      \field{journaltitle}{Science}
+      \field{number}{6282}
+      \field{title}{{Observational constraints on mixed-phase clouds imply higher climate sensitivity}}
+      \field{volume}{352}
+      \field{year}{2016}
+      \field{pages}{224\bibrangedash 227}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1126/science.aad5300
+      \endverb
+      \verb{eprint}
+      \verb 9809069v1
+      \endverb
+      \verb{file}
+      \verb :home/sh16450/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Tan, Storelvmo, Zelinka - 2016 - Observational constraints on mixed-phase clouds imply higher climate sensitivity.pdf:pdf
+      \endverb
+    \endentry
+    \entry{Tan2019}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=3a1800f708a71a0e81006bb739c57eda}{%
+           family={Tan},
+           familyi={T\bibinitperiod},
+           given={Ivy},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f83ceba0576e417ee594760af7c86c3c}{%
+           family={Storelvmo},
+           familyi={S\bibinitperiod},
+           given={Trude},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{21cec88638b2a02a741b8e084af8f7c8}
+      \strng{fullhash}{21cec88638b2a02a741b8e084af8f7c8}
+      \strng{bibnamehash}{21cec88638b2a02a741b8e084af8f7c8}
+      \strng{authorbibnamehash}{21cec88638b2a02a741b8e084af8f7c8}
+      \strng{authornamehash}{21cec88638b2a02a741b8e084af8f7c8}
+      \strng{authorfullhash}{21cec88638b2a02a741b8e084af8f7c8}
+      \field{sortinit}{6}
+      \field{sortinithash}{7851c86048328b027313775d8fbd2131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{<p>Underestimate of the proportion of supercooled liquid in mixed‐phase clouds in climate models has called into question its impact on Arctic climate change. We show that correcting for this bias in the CESM model can either enhance or reduce Arctic amplification depending on the microphysical characteristics of the clouds as a corollary to the cloud phase feedback. Replacement of ice with liquid in the cloud phase feedback results in more downward longwave radiation, which is effectively trapped as heat at the surface in the Arctic due to its unique stable stratification conditions, and this ultimately leads to a more positive lapse rate feedback. The larger the ice particles are to begin with, the stronger Arctic amplification becomes due to the lower precipitation efficiency of liquid droplets compared to ice crystals. Our results emphasize the importance of realistic representations of microphysical processes in mixed‐phase clouds, particularly in the Arctic. Warming of Earth's Arctic at a faster pace relative to the rest of the globe is referred to as "Arctic amplification". Mixed‐phase clouds consisting of both liquid droplets and ice crystals are ubiquitous in Earth's Arctic. The ratio of liquid to ice in mixed‐phase clouds is typically underestimated in climate models and has been shown to lead to underestimates in global warming by underestimating the strength of the "cloud phase feedback". Replacement of cloud ice with liquid as Earth warms results in more reflected sunlight to space. Therefore, a low cloud liquid bias results in a global overestimate of the negative cloud phase feedback. In this study, we find that correcting this low bias can simultaneously reduce Arctic amplification by reducing longwave radiation to the surface that is trapped as heat in the Arctic. However, the effect is highly sensitive to the size of the cloud particles. Ice particles typically precipitate faster than liquid droplets so replacement of larger ice particles with liquid results in longer‐lived clouds that radiate more longwave radiation to the surface, which ultimately leads to enhanced Arctic amplification. The results of this study emphasize the importance of realistic representations of mixed‐phase cloud microphysics in climate models.</p>}
+      \field{issn}{19448007}
+      \field{journaltitle}{Geophysical Research Letters}
+      \field{number}{5}
+      \field{title}{{Evidence of Strong Contributions From Mixed-Phase Clouds to Arctic Climate Change}}
+      \field{volume}{46}
+      \field{year}{2019}
+      \field{pages}{2894\bibrangedash 2902}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1029/2018GL081871
+      \endverb
+      \verb{file}
+      \verb :home/sh16450/Dropbox/Academic/Papers/PDF{\_}papers/Tan{\_}et{\_}al-2019-Geophysical{\_}Research{\_}Letters.pdf:pdf
+      \endverb
+      \keyw{Arctic climate change,cloud microphysics,cloud phase feedback}
+    \endentry
+    \entry{Letoumelin2020}{article}{}
+      \name{author}{8}{}{%
+        {{un=0,uniquepart=base,hash=2e963e55e8aa3330c6d20ae2d942b3d3}{%
+           family={Le\bibnamedelima Toumelin},
+           familyi={L\bibinitperiod\bibinitdelim T\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=558345a8d6522017d834028927306c37}{%
+           family={Amory},
+           familyi={A\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b32f0d0b9cf28c7bcf5b589850077e92}{%
+           family={Favier},
+           familyi={F\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=edf9dc31e252d68ff29e4bfdbc94e0ca}{%
+           family={Kittel},
+           familyi={K\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d8f9b8e2e6031770c4a8b6aaa7cc2150}{%
+           family={Hofer},
+           familyi={H\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f1e61835d974ee6ac888013980c5c6fe}{%
+           family={Fettweis},
+           familyi={F\bibinitperiod},
+           given={X.},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=048c0167b4d66172329b450523fa70ca}{%
+           family={Gallée},
+           familyi={G\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=744ef25b34122190d89db33ceb4b573d}{%
+           family={Kayetha},
+           familyi={K\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d87eb204673ad62aaaa8307336766408}
+      \strng{fullhash}{9882fcfe7532a195d7ab24f3aa2ba4cb}
+      \strng{bibnamehash}{d87eb204673ad62aaaa8307336766408}
+      \strng{authorbibnamehash}{d87eb204673ad62aaaa8307336766408}
+      \strng{authornamehash}{d87eb204673ad62aaaa8307336766408}
+      \strng{authorfullhash}{9882fcfe7532a195d7ab24f3aa2ba4cb}
+      \field{sortinit}{7}
+      \field{sortinithash}{f615fb9c6fba11c6f962fb3fd599810e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Cryosphere Discussions}
+      \field{title}{Sensitivity of the surface energy budget to drifting snow as simulated by MAR in coastal Adelie Land, Antarctica}
+      \field{volume}{2020}
+      \field{year}{2020}
+      \field{pages}{1\bibrangedash 27}
+      \range{pages}{27}
+      \verb{doi}
+      \verb 10.5194/tc-2020-329
+      \endverb
+      \verb{urlraw}
+      \verb https://tc.copernicus.org/preprints/tc-2020-329/
+      \endverb
+      \verb{url}
+      \verb https://tc.copernicus.org/preprints/tc-2020-329/
+      \endverb
+    \endentry
+    \entry{Amory2019}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=558345a8d6522017d834028927306c37}{%
+           family={Amory},
+           familyi={A\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=2,uniquepart=given,hash=edf9dc31e252d68ff29e4bfdbc94e0ca}{%
+           family={Kittel},
+           familyi={K\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=2}}%
+      }
+      \strng{namehash}{6dc8330fbe2249c685971e6a8b418ce4}
+      \strng{fullhash}{6dc8330fbe2249c685971e6a8b418ce4}
+      \strng{bibnamehash}{6dc8330fbe2249c685971e6a8b418ce4}
+      \strng{authorbibnamehash}{6dc8330fbe2249c685971e6a8b418ce4}
+      \strng{authornamehash}{6dc8330fbe2249c685971e6a8b418ce4}
+      \strng{authorfullhash}{6dc8330fbe2249c685971e6a8b418ce4}
+      \field{sortinit}{7}
+      \field{sortinithash}{f615fb9c6fba11c6f962fb3fd599810e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Cryosphere}
+      \field{number}{12}
+      \field{title}{Brief communication: Rare ambient saturation during drifting snow occurrences at a coastal location of East Antarctica}
+      \field{volume}{13}
+      \field{year}{2019}
+      \field{pages}{3405\bibrangedash 3412}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.5194/tc-13-3405-2019
+      \endverb
+      \verb{urlraw}
+      \verb https://tc.copernicus.org/articles/13/3405/2019/
+      \endverb
+      \verb{url}
+      \verb https://tc.copernicus.org/articles/13/3405/2019/
+      \endverb
+    \endentry
+    \entry{Lenaerts2012a}{article}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=3826924188004c4cf36462b5b4a1d258}{%
+           family={Lenaerts},
+           familyi={L\bibinitperiod},
+           given={J.\bibnamedelimi T.\bibnamedelimi M.},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ec407c54ceeec76a336eb72afb8194b1}{%
+           family={Broeke},
+           familyi={B\bibinitperiod},
+           given={M.\bibnamedelimi R.},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0,
+           prefix={van\bibnamedelima den},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod},
+           prefixun=0}}%
+        {{un=0,uniquepart=base,hash=b523d5c1b6fcf8837bb521a232a4471c}{%
+           family={Déry},
+           familyi={D\bibinitperiod},
+           given={S.\bibnamedelimi J.},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=238dd688c4f1f33ae1cff24c1d59a3c2}{%
+           family={Meijgaard},
+           familyi={M\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod},
+           givenun=0,
+           prefix={van},
+           prefixi={v\bibinitperiod},
+           prefixun=0}}%
+        {{un=0,uniquepart=base,hash=928d158f831bdc88c0e8c170b6ed087a}{%
+           family={Berg},
+           familyi={B\bibinitperiod},
+           given={W.\bibnamedelimi J.},
+           giveni={W\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0,
+           prefix={van\bibnamedelima de},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod},
+           prefixun=0}}%
+        {{un=0,uniquepart=base,hash=91844cf0255f16b3c094c1abe026d9af}{%
+           family={Palm},
+           familyi={P\bibinitperiod},
+           given={Stephen\bibnamedelima P.},
+           giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=94742effb55940a0fdf8a6fcd9b5d34f}{%
+           family={Sanz\bibnamedelima Rodrigo},
+           familyi={S\bibinitperiod\bibinitdelim R\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6ad7ce574f4c36c76e5b19325783169b}
+      \strng{fullhash}{362d8c7696959f5c76e1e2bab8515ebf}
+      \strng{bibnamehash}{6ad7ce574f4c36c76e5b19325783169b}
+      \strng{authorbibnamehash}{6ad7ce574f4c36c76e5b19325783169b}
+      \strng{authornamehash}{6ad7ce574f4c36c76e5b19325783169b}
+      \strng{authorfullhash}{362d8c7696959f5c76e1e2bab8515ebf}
+      \field{sortinit}{7}
+      \field{sortinithash}{f615fb9c6fba11c6f962fb3fd599810e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{To simulate the impact of drifting snow on the lower atmosphere, surface characteristics and surface mass balance (SMB) of the Antarctic ice sheet regional atmospheric climate model (RACMO2.1/ANT) with horizontal resolution of 27 km is coupled to a drifting snow routine and forced by ERA-Interim fields at its lateral boundaries (1989–2009). This paper evaluates the near-surface and drifting snow climate of RACMO2.1/ANT. Modeled near-surface wind speed (squared correlation coefficient R2 = 0.64) and temperature (R2 = 0.93) agree well with observations. Wind speed is underestimated in topographically complex areas, where observed wind speeds are locally very high (>20 m s−1). Temperature is underestimated in winter in coastal areas due to an underestimation of downward longwave radiation. Near-surface temperature and wind speed are not significantly affected by the inclusion of drifting snow in the model. In contrast, relative humidity with respect to ice increases in regions with strong drifting snow and becomes more consistent with the observations. Drifting snow frequency is the only observable parameter to directly validate drifting snow results; therefore, we derived an empirical relation for fresh snow density, as a function of wind speed and temperature, which determines the threshold wind speed for drifting snow. Modeled drifting snow frequencies agree well with in situ measurements and novel estimates from remote sensing. Finally, we show that including drifting snow is essential to obtaining a realistic extent and spatial distribution of ablation (SMB < 0) areas.}
+      \field{journaltitle}{Journal of Geophysical Research: Atmospheres}
+      \field{number}{D5}
+      \field{title}{Modeling drifting snow in Antarctica with a regional climate model: 1. Methods and model evaluation}
+      \field{volume}{117}
+      \field{year}{2012}
+      \verb{doi}
+      \verb https://doi.org/10.1029/2011JD016145
+      \endverb
+      \verb{eprint}
+      \verb https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016145
+      \endverb
+      \verb{urlraw}
+      \verb https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2011JD016145
+      \endverb
+      \verb{url}
+      \verb https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2011JD016145
+      \endverb
+      \keyw{Antarctica,drifting snow,regional climate modeling,surface mass balance}
+    \endentry
+    \entry{Lenaerts2012b}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=3826924188004c4cf36462b5b4a1d258}{%
+           family={Lenaerts},
+           familyi={L\bibinitperiod},
+           given={J.\bibnamedelimi T.\bibnamedelimi M.},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ec407c54ceeec76a336eb72afb8194b1}{%
+           family={Broeke},
+           familyi={B\bibinitperiod},
+           given={M.\bibnamedelimi R.},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0,
+           prefix={van\bibnamedelima den},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod},
+           prefixun=0}}%
+      }
+      \strng{namehash}{400186d87f826b9ac2c6b3166b168d2a}
+      \strng{fullhash}{400186d87f826b9ac2c6b3166b168d2a}
+      \strng{bibnamehash}{400186d87f826b9ac2c6b3166b168d2a}
+      \strng{authorbibnamehash}{400186d87f826b9ac2c6b3166b168d2a}
+      \strng{authornamehash}{400186d87f826b9ac2c6b3166b168d2a}
+      \strng{authorfullhash}{400186d87f826b9ac2c6b3166b168d2a}
+      \field{sortinit}{7}
+      \field{sortinithash}{f615fb9c6fba11c6f962fb3fd599810e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper presents a model study of the impact of drifting snow on the lower atmosphere, surface snow characteristics, and surface mass balance of Antarctica. We use the regional atmospheric climate model RACMO2.1/ANT with a high horizontal resolution (27 km), equipped with a drifting snow routine and forced by ERA-Interim (1989–2009) at its lateral and ocean boundaries. Drifting snow sublimation (SUds) is significant in Antarctica, especially in the coastal regions (>150 mm water equivalent yr−1). Integrated over the ice sheet, SUds removes ∼6\% of the annually precipitated snow. Drifting snow interacts with the atmosphere, as it increases the lower atmospheric moisture content and reduces surface sublimation (SUs), and leads to increased snowfall in regions where the atmosphere usually is close to saturation. Drifting snow sublimation (SUds) is smallest in summer, when katabatic wind speeds are lower and melting and surface sublimation consolidate the snow surface. Compared to a simulation without drifting snow, total sublimation (SUds + SUs) doubles on the grounded ice sheet if drifting snow is considered. Drifting snow erosion is locally significant, but can be neglected on a continent-wide scale.}
+      \field{journaltitle}{Journal of Geophysical Research: Atmospheres}
+      \field{number}{D5}
+      \field{title}{Modeling drifting snow in Antarctica with a regional climate model: 2. Results}
+      \field{volume}{117}
+      \field{year}{2012}
+      \verb{doi}
+      \verb https://doi.org/10.1029/2010JD015419
+      \endverb
+      \verb{eprint}
+      \verb https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2010JD015419
+      \endverb
+      \verb{urlraw}
+      \verb https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2010JD015419
+      \endverb
+      \verb{url}
+      \verb https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2010JD015419
+      \endverb
+      \keyw{Antarctica,drifting snow,polar meteorology,surface mass balance}
+    \endentry
+    \entry{Lawson2014}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=0f5fb8646491b25e08e973ac3c43f151}{%
+           family={Lawson},
+           familyi={L\bibinitperiod},
+           given={R.\bibnamedelimi Paul},
+           giveni={R\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=aafec76baa0106958c6274ff52ce69b2}{%
+           family={Gettelman},
+           familyi={G\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {National Academy of Sciences}%
+      }
+      \strng{namehash}{67f1ae11349118230d3d56a71ef9f57f}
+      \strng{fullhash}{67f1ae11349118230d3d56a71ef9f57f}
+      \strng{bibnamehash}{67f1ae11349118230d3d56a71ef9f57f}
+      \strng{authorbibnamehash}{67f1ae11349118230d3d56a71ef9f57f}
+      \strng{authornamehash}{67f1ae11349118230d3d56a71ef9f57f}
+      \strng{authorfullhash}{67f1ae11349118230d3d56a71ef9f57f}
+      \field{sortinit}{8}
+      \field{sortinithash}{1b24cab5087933ef0826a7cd3b99e994}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Polar regions are foci of climate change, because of more-than-expected warming, problematic remote-sensing retrievals, and large uncertainties about cloud effects on radiation budgets. Antarctica is the world’s most remote, coldest, and driest location. Until recently, researchers have assumed that low-level clouds over the frozen Antarctic Plateau consist mainly of ice crystals. Now, measurements with a unique tethered balloon system and a ground-based lidar show that nearly 50\% of clouds in the austral summer contain supercooled water which has a significant impact on the radiative properties of Antarctic clouds. Modifying a global climate model to relax the freezing below -20 °C results in a strong simulated radiative (cooling) effect, affecting the entire Antarctic Continent and extending out into the Southern Ocean.Precious little is known about the composition of low-level clouds over the Antarctic Plateau and their effect on climate. In situ measurements at the South Pole using a unique tethered balloon system and ground-based lidar reveal a much higher than anticipated incidence of low-level, mixed-phase clouds (i.e., consisting of supercooled liquid water drops and ice crystals). The high incidence of mixed-phase clouds is currently poorly represented in global climate models (GCMs). As a result, the effects that mixed-phase clouds have on climate predictions are highly uncertain. We modify the National Center for Atmospheric Research (NCAR) Community Earth System Model (CESM) GCM to align with the new observations and evaluate the radiative effects on a continental scale. The net cloud radiative effects (CREs) over Antarctica are increased by +7.4 Wm-2, and although this is a significant change, a much larger effect occurs when the modified model physics are extended beyond the Antarctic continent. The simulations show significant net CRE over the Southern Ocean storm tracks, where recent measurements also indicate substantial regions of supercooled liquid. These sensitivity tests confirm that Southern Ocean CREs are strongly sensitive to mixed-phase clouds colder than -20 °C.}
+      \field{issn}{0027-8424}
+      \field{journaltitle}{Proceedings of the National Academy of Sciences}
+      \field{number}{51}
+      \field{title}{Impact of Antarctic mixed-phase clouds on climate}
+      \field{volume}{111}
+      \field{year}{2014}
+      \field{pages}{18156\bibrangedash 18161}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1073/pnas.1418197111
+      \endverb
+      \verb{eprint}
+      \verb https://www.pnas.org/content/111/51/18156.full.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.pnas.org/content/111/51/18156
+      \endverb
+      \verb{url}
+      \verb https://www.pnas.org/content/111/51/18156
       \endverb
     \endentry
     \entry{Fettweis2007}{article}{}
@@ -223,8 +1515,8 @@
       \strng{authorbibnamehash}{f1e61835d974ee6ac888013980c5c6fe}
       \strng{authornamehash}{f1e61835d974ee6ac888013980c5c6fe}
       \strng{authorfullhash}{f1e61835d974ee6ac888013980c5c6fe}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Results from a 28-year simulation (1979 2006) over the Greenland ice$\backslash$nsheet (GrIS) reveal an increase of solid precipitation (+ 0.4 +/-$\backslash$n2.5 km(3) yr(-2)) and runoff (+ 7.9 +/- 3.3 km(3) yr(-2)) of surface$\backslash$nmeltwater. The net effect of these competing factors is a significant$\backslash$nSurface Mass Balance (SMB) loss of -7.2 +/- 5.1 km(3) yr(-2). The$\backslash$ncontribution of changes in the net water vapour flux (+ 0.02 +/-$\backslash$n0.09 km(3) yr(-2)) and rainfall (+ 0.2 +/- 0.2 km(3) yr(-2)) to the$\backslash$nSMB variability is negligible. The meltwater supply has increased$\backslash$nbecause the GrIS surface has been warming up + 2.4 degrees C since$\backslash$n1979. Sensible heat flux, latent heat flux and net solar radiation$\backslash$nhave not varied significantly over the last three decades. However,$\backslash$nthe simulated downward infrared flux has increased by 9.3 Wm(-2)$\backslash$nsince 1979. The natural climate variability (e. g. the North Atlantic$\backslash$nOscillation) does not explain these changes. The recent global warming,$\backslash$ndue to the greenhouse gas concentration increase induced by human$\backslash$nactivities, could be a cause of these changes. The doubling of surface$\backslash$nmeltwater flux into the ocean over the period 1979-2006 suggests$\backslash$nthat the overall ice sheet mass balance has been increasingly negative,$\backslash$ngiven the likely meltwater-induced acceleration of outlet glaciers.$\backslash$nThis study suggests that increased melting overshadows over an increased$\backslash$naccumulation in a warming scenario and that the GrIS is likely to$\backslash$nkeep losing mass in the future. An enduring GrIS melting will probably$\backslash$naffect in the future an certain effect on the stability of the thermohaline$\backslash$ncirculation and the global sea level rise.}
@@ -310,8 +1602,8 @@
       \strng{authornamehash}{a998de24b45861698c0807ca1952fe97}
       \strng{authorfullhash}{74e1bda1702a7c51264b25b897e520de}
       \field{extraname}{1}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{To estimate the sea level rise (SLR) originat-ing from changes in surface mass balance (SMB) of the Greenland ice sheet (GrIS), we present 21st century cli-mate projections obtained with the regional climate model MAR (Mo ele Atmosph{é}rique R{é}gional) , forced by output of three CMIP5 (Coupled Model Intercomparison Project Phase 5) general circulation models (GCMs) . Our results in - dicate that in a warmer climate , mass gain from increased winter snowfall over the GrIS does not compensate mass loss through increased meltwater run - off in summer . Despite the large spread in the projected near - surface warming , all the MAR projections show similar non - linear increase of GrIS surface melt volume because no change is projected in the general atmospheric circulation over Greenland . By coarsely estimating the GrIS SMB changes from GCM output , we show that the uncertainty from the GCM - based forcing rep - resents about half of the projected SMB changes . In 2100 , the CMIP5 ensemble mean projects a GrIS SMB decrease equivalent to a mean SLR of +4±2 cm and +9±4 cm for the RCP (Representative Concentration Pathways) 4 . 5 and RCP 8 . 5 scenarios respectively . These estimates do not consider the positive melt – elevation feedback , although sensitivity ex - periments using perturbed ice sheet topographies consistent with the projected SMB changes demonstrate that this is a significant feedback , and highlight the importance of cou - pling regional climate models to an ice sheet model . Such a coupling will allow the assessment of future response of both surface processes and ice - dynamic changes to rising temper - atures , as well as their mutual feedbacks .}
@@ -404,8 +1696,8 @@
       \strng{authornamehash}{a998de24b45861698c0807ca1952fe97}
       \strng{authorfullhash}{f315b879b11aefb8e185719210b6d320}
       \field{extraname}{2}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{With the aim of studying the recent Greenland ice sheet (GrIS) surface mass balance (SMB) decrease relative to the last century, we have forced the regional climate MAR (Mod{è}le Atmosph{é}rique R{é}gional; version 3.5.2) model with the ERA-Interim (ECMWF Interim Re-Analysis; 1979–2015), ERA-40 (1958–2001), NCEP–NCARv1 (National Centers for Environmental Prediction–National Center for Atmospheric Research Reanalysis version 1; 1948–2015), NCEP–NCARv2 (1979–2015), JRA-55 (Japanese 55-year Reanalysis; 1958–2014), 20CRv2(c) (Twentieth Century Reanalysis version 2; 1900–2014) and ERA-20C (1900–2010) reanalyses. While all these forcing products are reanalyses that are assumed to represent the same climate, they produce significant differences in the MAR-simulated SMB over their common period. A temperature adjustment of +1 °C (respectively −1 °C) was, for example, needed at the MAR boundaries with ERA-20C (20CRv2) reanalysis, given that ERA-20C (20CRv2) is ∼ 1 °C colder (warmer) than ERA-Interim over Greenland during the period 1980–2010. Comparisons with daily PROMICE (Programme for Monitoring of the Greenland Ice Sheet) near-surface observations support these adjustments. Comparisons with SMB measurements, ice cores and satellite-derived melt extent reveal the most accurate forcing datasets for the simulation of the GrIS SMB to be ERA-Interim and NCEP–NCARv1. However, some biases remain in MAR, suggesting that some improvements are still needed in its cloudiness and radiative schemes as well as in the representation of the bare ice albedo. Results from all MAR simulations indicate that (i) the period 1961–1990, commonly chosen as a stable reference period for Greenland SMB and ice dynamics, is actually a period of anomalously positive SMB (∼ +40 Gt yr−1) compared to 1900–2010; (ii) SMB has decreased significantly after this reference period due to increasing and unprecedented melt reaching the highest rates in the 120-year common period; (iii) before 1960, both ERA-20C and 20CRv2-forced MAR simulations suggest a significant precipitation increase over 1900–1950, but this increase could be the result of an artefact in the reanalyses that are not well-enough constrained by observations during this period and (iv) since the 1980s, snowfall is quite stable after having reached a maximum in the 1970s. These MAR-based SMB and accumulation reconstructions are, however, quite similar to those from Box (2013) after 1930 and confirm that SMB was quite stable from the 1940s to the 1990s. Finally, only the ERA-20C-forced simulation suggests that SMB during the 1920–1930 warm period over Greenland was comparable to the SMB of the 2000s, due to both higher melt and lower precipitation than normal.}
@@ -441,8 +1733,8 @@
       \strng{authorbibnamehash}{06d6fab612bad6d3718df3a79a8f79d0}
       \strng{authornamehash}{06d6fab612bad6d3718df3a79a8f79d0}
       \strng{authorfullhash}{06d6fab612bad6d3718df3a79a8f79d0}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{The spatial evolution of Antarctic katabatic winds in the area of Terra Nova Bay is examined using the three- dimensional version of the Universit{é} Catholique de Louvain-Mod{è}le Atmosph{é}rique R{é}gional (UCL-MAR) mesoscale primitive equation models. The ability of the model to replicate classical linear mountain wave simulations is verified. Then, three-dimensional experiments are performed for the terrain configuration of Terra Nova (Ross Sea coastal zone) using different horizontal resolutions (5, 10, and 20 km). The model converges for resolutions lower than 10 km. Results are in qualitative agreement with available observations and previous modeling work. Strong katabatic winds are simulated with a jet over Terra Nova Bay}
@@ -483,8 +1775,8 @@
       \strng{authorbibnamehash}{423922e62587f6e29185daba7dccc7ec}
       \strng{authornamehash}{423922e62587f6e29185daba7dccc7ec}
       \strng{authorfullhash}{423922e62587f6e29185daba7dccc7ec}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Abstract The mesocyclonic activity in the southwestern Ross Sea is examined, with emphasis on its forcing by katabatic winds. The three-dimensional version of the meso-$\gamma$-scale primitive equation model Mod{è}le Atmosph{é}rique R{é}gional is used in which a representation of cloud microphysical processes has been introduced. Idealized boundary conditions are prescribed. In particular, the ocean is assumed to be completely ice-free or partially ice-covered. The former case corresponds to a fall situation that coincides with the climatological maximum of estimated precipitation at McMurdo Station on Ross Island. Due to the propagation of katabatic winds over the ocean, boundary layer fronts form. Clouds are generated in the fronts. A surface pressure trough also forms and extends northeastward from Terra Nova Bay. Mesocyclones are simulated in the trough. When the ocean is ice-free, strong sensible heat fluxes toward the atmosphere amplify the strength of the trough up to typically observed values. In this case, sn...}
@@ -498,12 +1790,12 @@
     \endentry
     \entry{Kittel2018}{article}{}
       \name{author}{9}{}{%
-        {{un=0,uniquepart=base,hash=658123e2c09805262e391d92d41e5e94}{%
+        {{un=2,uniquepart=given,hash=658123e2c09805262e391d92d41e5e94}{%
            family={Kittel},
            familyi={K\bibinitperiod},
            given={Christoph},
            giveni={C\bibinitperiod},
-           givenun=0}}%
+           givenun=2}}%
         {{un=0,uniquepart=base,hash=413091a16d25d867734c8dcad231f7fd}{%
            family={Amory},
            familyi={A\bibinitperiod},
@@ -559,8 +1851,8 @@
       \strng{authorbibnamehash}{a66847dc2c09fa584c1f4e908acc4287}
       \strng{authornamehash}{a66847dc2c09fa584c1f4e908acc4287}
       \strng{authorfullhash}{db57704ff52c7670c823931cdde1ffec}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{<p><p><strong>Abstract.</strong> Estimates for the recent period and projections of the Antarctic surface mass balance (SMB) often rely on high-resolution polar-oriented regional climate models (RCMs). However, RCMs require large-scale boundary forcing fields provided by reanalyses or general circulation models (GCMs). Since the recent variability of sea surface conditions (SSC, namely sea ice concentration (SIC) and sea surface temperature (SST)) over the Southern Ocean are not reproduced by most GCMs from the 5th phase of the Coupled Model Intercomparison Project (CMIP5) for the last decades, RCMs are then subject to potential biases. We investigate here the direct sensitivity of the Antarctic SMB to SSC perturbations around the Antarctic. With the RCM MAR, different sensitivity experiments are performed over 1979{\&}ndash;2015 by altering the ERA-Interim SSC with (i) homogeneous perturbations and (ii) mean anomalies estimated from all CMIP5 models and two extreme ones, while atmospheric lateral boundary conditions remained unchanged. Results show increased (resp. decreased) precipitation due to perturbations inducing warmer (resp. colder) SSC than ERA-Interim significantly altering the SMB of coastal areas, as precipitation is mainly related to cyclones that do not penetrate far into the continent. At the continental scale, significant SMB anomalies (i.e, greater than the interannual variability) are found for the largest combined SST/SIC perturbations. Sensitivity experiments with warmer SSC reveal integrated SMB anomalies (+5<span class="thinspace"></span>{\%}{\&}ndash;+13<span class="thinspace"></span>{\%}) over the present climate (1979{\&}ndash;2015) in the lower range of the SMB increase projected for the end of the 21st century.</p></p>}
@@ -618,8 +1910,8 @@
       \strng{authorbibnamehash}{055027964124391336cd3d91ebb8b211}
       \strng{authornamehash}{055027964124391336cd3d91ebb8b211}
       \strng{authorfullhash}{a3ff0bcb7dc1c7145e81ad93388b5864}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Abstract. Since the 2000s, a change in the atmospheric circulation over the North Atlantic resulting in more frequent blocking events has favoured warmer and sunnier weather conditions over the Greenland Ice Sheet (GrIS) in summer, enhancing the melt increase. This circulation change is not represented by general circulation models (GCMs) of the Coupled Model Intercomparison Project Phase 5 (CMIP5), which do not predict any circulation change for the next century over the North Atlantic. The goal of this study is to evaluate the impact of an atmospheric circulation change (as currently observed) on projections of the future GrIS surface mass balance (SMB). We compare GrIS SMB estimates simulated by the regional climate model MAR forced by perturbed reanalysis (ERA-Interim with a temperature correction of +1, +1.5, and +2∘C at the MAR lateral boundaries) over 1980–2016 to projections of the future GrIS SMB from MAR simulations forced by three GCMs over selected periods for which a similar temperature increase of +1, +1.5, and +2∘C is projected by the GCMs in comparison to 1980–1999. Mean SMB anomalies produced with perturbed reanalysis over the climatologically stable period 1980–1999 are similar to those produced with MAR forced by GCMs over future periods characterised by a similar warming over Greenland. However, over the 2 last decades (2000–2016) when an increase in the frequency of blocking events has been observed in summer, MAR forced by perturbed reanalysis suggests that the SMB decrease could be amplified by a factor of 2 if such atmospheric conditions persist compared to projections forced by GCMs for the same temperature increase but without any circulation change. ]]>}
@@ -673,8 +1965,8 @@
       \strng{authorbibnamehash}{614d3082a978b08f1984cd1bdca4c011}
       \strng{authornamehash}{614d3082a978b08f1984cd1bdca4c011}
       \strng{authorfullhash}{614d3082a978b08f1984cd1bdca4c011}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Abstract. With the help of the regional climate model MAR (Mod{è}le Atmosph{é}rique R{é}gional) forced by the ERA-Interim reanalysis (MARERA) and the MIROC5 (Model for Interdisciplinary Research on Climate) global model (MARMIROC5) from the CMIP5 (Coupled Model Intercomparison Project) database, we have modelled the climate and surface mass balance of Svalbard at a 10 km resolution over 1979–2013. The integrated total surface mass balance (SMB) over Svalbard modelled by MARERA is negative (−1.6 Gt yr−1) with a large interannual variability (7.1 Gt) but, unlike over Greenland, there has been no acceleration of the surface melt over the past 35 years because of the recent change in atmospheric circulation bringing northwesterly flows in summer over Svalbard, contrasting the recent observed Arctic warming. However, in 2013, the atmospheric circulation changed to a south–southwesterly flow over Svalbard causing record melt, SMB (−20.4 Gt yr−1) and summer temperature. MIROC5 is significantly colder than ERA-Interim over 1980–2005 but MARMIROC5 is able to improve the near-surface MIROC5 results by simulating not significant SMB differences with MARERA over 1980–2005. On the other hand, MIROC5 does not represent the recent atmospheric circulation shift in summer and induces in MARMIROC5 a significant trend of decreasing SMB ({\&}minus;0.6 Gt yr−2) over 1980–2005.}
@@ -775,8 +2067,8 @@
       \strng{authorbibnamehash}{078bfde05f21484c74e4506819954e35}
       \strng{authornamehash}{078bfde05f21484c74e4506819954e35}
       \strng{authorfullhash}{729637e17e2dba1c75fa13cb3d56bd40}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{<p><strong>Abstract.</strong> The Antarctic ice sheet mass balance is a major component of the sea level budget and results from the difference of two fluxes of a similar magnitude: ice flow discharging in the ocean and net snow accumulation on the ice sheet surface, i.e. the surface mass balance (SMB). Separately modelling ice dynamics and SMB is the only way to project future trends. In addition, mass balance studies frequently use regional climate models (RCMs) outputs as an alternative to observed fields because SMB observations are particularly scarce on the ice sheet. Here we evaluate new simulations of the polar RCM MAR forced by three reanalyses, ERA-Interim, JRA-55, and MERRA-2, for the period 1979–2015, and we compare MAR results to the last outputs of the RCM RACMO2 forced by ERA-Interim. We show that MAR and RACMO2 perform similarly well in simulating coast-to-plateau SMB gradients, and we find no significant differences in their simulated SMB when integrated over the ice sheet or its major basins. More importantly, we outline and quantify missing or underestimated processes in both RCMs. Along stake transects, we show that both models accumulate too much snow on crests, and not enough snow in valleys, as a result of drifting snow transport fluxes not included in MAR and probably underestimated in RACMO2 by a factor of 3. Our results tend to confirm that drifting snow transport and sublimation fluxes are much larger than previous model-based estimates and need to be better resolved and constrained in climate models. Sublimation of precipitating particles in low-level atmospheric layers is responsible for the significantly lower snowfall rates in MAR than in RACMO2 in katabatic channels at the ice sheet margins. Atmospheric sublimation in MAR represents 363<span class="thinspace"></span><span class="inline-formula">Gt</span><span class="thinspace"></span><span class="inline-formula">yr<sup>−1</sup></span> over the grounded ice sheet for the year 2015, which is 16<span class="thinspace"></span>{\%} of the simulated snowfall loaded at the ground. This estimate is consistent with a recent study based on precipitation radar observations and is more than twice as much as simulated in RACMO2 because of different time residence of precipitating particles in the atmosphere. The remaining spatial differences in snowfall between MAR and RACMO2 are attributed to differences in advection of precipitation with snowfall particles being likely advected too far inland in MAR.</p>}
@@ -849,8 +2141,8 @@
       \strng{authorbibnamehash}{12cb34f9b74223ba371f9472e4abae2a}
       \strng{authornamehash}{12cb34f9b74223ba371f9472e4abae2a}
       \strng{authorfullhash}{2dc7861f03f911576dba3eda7ee12869}
-      \field{sortinit}{6}
-      \field{sortinithash}{7851c86048328b027313775d8fbd2131}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{The Cryosphere}
@@ -900,8 +2192,8 @@
       \strng{authorbibnamehash}{593f63747fa86c15c8c36074c3dd3cce}
       \strng{authornamehash}{593f63747fa86c15c8c36074c3dd3cce}
       \strng{authorfullhash}{593f63747fa86c15c8c36074c3dd3cce}
-      \field{sortinit}{9}
-      \field{sortinithash}{54047ffb55bdefa0694bbd554c1b11a0}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{A mesoscale atmospheric numerical model is coupled with a physically based snow-pack model and with a snow-drift model. The snow model is verified for the French Alps by comparing its simulations to observations performed at the Col de Porte in the Chartreuse Massif. The snow erosion threshold depends on snow-pack properties such as density, dendricity, sphericity and particle size. The atmospheric turbulence scheme is modified in order to take into account stabilization effects due to airborne blown snow particles. In particular, vertically integrated stability functions for the stable boundary layer are completed by including the threshold friction velocity for snow erosion. The snow-drift model is calibrated by simulating the conditions observed during the Byrd snow project, held in West Antarctica in 1962. Finally, sensitivity experiments to the snow-surface properties show the importance of their accurate representation when modelling the contribution of deflation to the Antarctic surface mass balance.}
@@ -986,8 +2278,8 @@
       \strng{authorbibnamehash}{a0184aa1701bb0b5f3203b10f72d9219}
       \strng{authornamehash}{a0184aa1701bb0b5f3203b10f72d9219}
       \strng{authorfullhash}{07aa8a6dc99f2c81cedfab40e950437a}
-      \field{sortinit}{9}
-      \field{sortinithash}{54047ffb55bdefa0694bbd554c1b11a0}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Abstract. Detailed studies of snow cover processes require models that offer a fine description of the snow cover properties. The detailed snowpack model Crocus is such a scheme, and has been run operationally for avalanche forecasting over the French mountains for 20 yr. It is also used for climate or hydrological studies. To extend its potential applications, Crocus has been recently integrated within the framework of the externalized surface module SURFEX. SURFEX computes the exchanges of energy and mass between different types of surface and the atmosphere. It includes in particular the land surface scheme ISBA (Interactions between Soil, Biosphere, and Atmosphere). It allows Crocus to be run either in stand-alone mode, using a time series of forcing meteorological data or in fully coupled mode (explicit or fully implicit numerics) with atmospheric models ranging from meso-scale models to general circulation models. This approach also ensures a full coupling between the snow cover and the soil beneath. Several applications of this new simulation platform are presented. They range from a 1-D stand-alone simulation (Col de Porte, France) to fully-distributed simulations in complex terrain over a whole mountain range (Massif des Grandes Rousses, France), or in coupled mode such as a surface energy balance and boundary layer simulation over the East Antarctic Ice Sheet (Dome C).}
@@ -1026,8 +2318,8 @@
       \strng{authorbibnamehash}{676f7b9b8e5bb30500c01e2385e59174}
       \strng{authornamehash}{676f7b9b8e5bb30500c01e2385e59174}
       \strng{authorfullhash}{676f7b9b8e5bb30500c01e2385e59174}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{This Synthesis Report is based on the reports of the three Working Groups of the Intergovernmental Panel on Climate Change (IPCC), including relevant Special Reports. It provides an integrated view of climate change as the final part of the IPCC's Fifth Assessment Report (AR5). This summary follows the structure of the longer report which addresses the following topics: Observed changes and their causes; Future climate change, risks and impacts; Future pathways for adaptation, mitigation and sustainable development; Adaptation and mitigation. In the Synthesis Report, the certainty in key assessment findings is communicated as in the Working Group Reports and Special Reports. It is based on the author teams' evaluations of underlying scientific understanding and is expressed as a qualitative level of confidence (from very low to very high) and, when possible, probabilistically with a quantified likelihood (from exceptionally unlikely to virtually certain)1 . Where appropriate, findings are also formulated as statements of fact with- out using uncertainty qualifiers. This report includes information relevant to Article 2 of the United Nations Framework Convention on Climate Change (UNFCCC)}
@@ -1069,8 +2361,8 @@
       \strng{authorbibnamehash}{6b073fc8a2feb999b5c047f3ae03fe76}
       \strng{authornamehash}{6b073fc8a2feb999b5c047f3ae03fe76}
       \strng{authorfullhash}{6b073fc8a2feb999b5c047f3ae03fe76}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{The Cryosphere}
@@ -1091,8 +2383,6 @@
       \endverb
     \endentry
   \enddatalist
-  \missing{Hahn2019}
-  \missing{Izeboud2020}
 \endrefsection
 \endinput
 
