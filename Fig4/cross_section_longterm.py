@@ -121,8 +121,8 @@ regridder = xe.Regridder(
     ds_in, ds_grid_new, 'bilinear')
 # Regrid the data to the 0.25x0.25 grid
 ds_TT = regridder(ds_in)
-ds_LQS = regridder((diff_CC.CC3D*100).assign_coords({'lat': diff.LAT, 'lon': diff.LON,
-                                                     'x': diff.x, 'y': diff.y}))
+ds_LQS = regridder((diff_CC.CC3D * 100).assign_coords({'lat': diff.LAT, 'lon': diff.LON,
+                                                       'x': diff.x, 'y': diff.y}))
 ds_height = regridder(layer_agl.assign_coords({'lat': diff.LAT, 'lon': diff.LON,
                                                'x': diff.x, 'y': diff.y}))
 
@@ -138,7 +138,7 @@ ds_COD = regridder(diff_COD.assign_coords({'lat': diff.LAT, 'lon': diff.LON,
 
 def merge_over_south_pole(ds, lon, lat_start=-90, lat_end=-65):
     new_lats = np.arange(lat_end, lat_start, -0.25)
-    ds_test = ds.interp(lat=new_lats, lon=lon-180)
+    ds_test = ds.interp(lat=new_lats, lon=lon - 180)
     # fake that it is the actual longitude
     ds_test['lon'] = lon
     ds_test.attrs['actual_lon'] = lon - 180
@@ -186,6 +186,7 @@ mean_sigma = ds_h.sel(
     TIME='2009-10-14').where(ds_h.lat < -70).mean(dim='lat')[0, :]
 mean_masl = ds_h_masl.sel(TIME='2009-10-14')[0, :, :]
 mean_masl_merged = merged_masl.ZZ.sel(TIME='2009-10-14')[0, :, :]
+mean_h_merged = merged_h.height.sel(TIME='2009-10-14')[0, :, :]
 
 
 # =============================================================================
@@ -225,41 +226,38 @@ fig.savefig('/home/sh16450/Documents/repos/Antarctica_clouds/Fig4/Fig5.png',
 # === SECOND OPTION PLOT ===========
 # ==================================
 # RESCALE THE height axis
+# This plots with meter above sea level
 ds_TTm = merged_TT.assign_coords(
     {'height': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
 ds_LQSm = merged_CC.assign_coords(
     {'height': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
 ds_CREm = merged_CRE.assign_coords(
     {'height': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
-# ds_CODm = merged_COD.assign_coords(
+ds_CODm = merged_COD.assign_coords(
     {'height': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
 
 
 def scale(val, src, dst):
-    """
-    Scale the given value from the scale of src to the scale of dst.
-    """
-    return ((val - src[0]) / (src[1]-src[0])) * (dst[1]-dst[0]) + dst[0]
+    """Scale the given value from the scale of src to the scale of dst."""
+    return ((val - src[0]) / (src[1] - src[0])) * (dst[1] - dst[0]) + dst[0]
 
 
-source_scale=(4000, 11000)  # Scale values between 100 and 600
-destination_scale=(4000, 6000)  # to a scale between 100 and 150
+source_scale = (4000, 11000)  # Scale values between 100 and 600
+destination_scale = (4000, 6000)  # to a scale between 100 and 150
 
 # create the scaled height array
 # height_scaled = scale(ds_LQS.height, source_scale, destination_scale)
-height_scaled=scale(
+height_scaled = scale(
     ds_LQSm.height, source_scale, destination_scale)
 # Replace only values where height is greater than 4000
 # mean_masl = mean_masl.where(mean_masl < 4000).fillna(height_scaled)
-mean_masl=mean_masl_merged.where(
-    mean_masl_merged < 4000).fillna(height_scaled)
+mean_masl = mean_masl_merged.where(
+    mean_masl_merged < 4000).fillna(height_scaled)ea level
 
 # ax.plot(data_scaled)
-
-
 # ==================================================================
-fig, axs=plt.subplots(
-    nrows = 3, ncols = 1, figsize = (5, 10), sharex = True, sharey = True)
+fig, axs = plt.subplots(
+    nrows=3, ncols=1, figsize=(5, 10), sharex=True, sharey=True)
 # Set the y-ticks to a custom scale
 for ax in axs.flatten():
     ax.set_yticks([0, 1000, 2000, 3000, 4000, 4333,
@@ -273,15 +271,15 @@ for ax in axs.flatten():
 # ax = axs.ravel().tolist()
 # TESTING
 
-contour=ds_TTm.TT.isel(ATMLAY = slice(0, -1)).plot.pcolormesh('lat', 'height', robust = True,
-                                                              ax = axs[0], cbar_kwargs = {'label': r'$\Delta$ Temperature $(\circ C)$'})
+contour = ds_TTm.TT.isel(ATMLAY=slice(0, -1)).plot.pcolormesh('lat', 'height', robust=True,
+                                                              ax=axs[0], cbar_kwargs={'label': r'$\Delta$ Temperature $(\circ C)$'})
 
 
 # Plot cloud fraction using contour, with some custom labeling
 
-lqs_contour=ds_LQSm.CC3D.isel(ATMLAY = slice(0, -1)).plot.pcolormesh('lat', 'height',
-                                                                     robust = True, ax = axs[1], cbar_kwargs = {'shrink': 1, 'label': r'$\Delta$ Cloud Cover (%)'})
-cre_contour=ds_CREm.CRE.isel(ATMLAY = slice(0, -1)).plot.pcolormesh('lat', 'height',
+lqs_contour = ds_LQSm.CC3D.isel(ATMLAY=slice(0, -1)).plot.pcolormesh('lat', 'height',
+                                                                     robust=True, ax=axs[1], cbar_kwargs={'shrink': 1, 'label': r'$\Delta$ Cloud Cover (%)'})
+cre_contour = ds_CREm.CRE.isel(ATMLAY=slice(0, -1)).plot.pcolormesh('lat', 'height',
                                                                     robust=True, ax=axs[2], cbar_kwargs={'shrink': 1, 'label': r'$\Delta$ CRE ($Wm^{-2}$)'})
 # cod_contour = ds_CODm.COD.isel(ATMLAY=slice(0, -1)).plot.pcolormesh('lat', 'height',
 #                                                                robust=True, ax=axs[1][1], cbar_kwargs={'shrink': 1, 'label': r'$\Delta$ COD (unitless)'})
@@ -297,3 +295,92 @@ sns.despine()
 
 fig.savefig('/projects/NS9600K/shofer/blowing_snow/cross_section_lt.png',
             format='PNG', dpi=300)
+
+# ==================================
+# === THIRD OPTION PLOT ===========
+# ==================================
+# RESCALE THE height axis
+# This plots with meter above GROUND
+ds_TTmm = merged_TT.assign_coords(
+    {'height': ((['ATMLAY', 'lat']), mean_h_merged.values)})
+ds_LQSmm = merged_CC.assign_coords(
+    {'height': ((['ATMLAY', 'lat']), mean_h_merged.values)})
+ds_CREmm = merged_CRE.assign_coords(
+    {'height': ((['ATMLAY', 'lat']), mean_h_merged.values)})
+ds_CODmm = merged_COD.assign_coords(
+    {'height': ((['ATMLAY', 'lat']), mean_h_merged.values)})
+
+ds_TTmmm = merged_TT.assign_coords(
+    {'amsl': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
+ds_LQSmmm = merged_CC.assign_coords(
+    {'amsl': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
+ds_CREmmm = merged_CRE.assign_coords(
+    {'amsl': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
+ds_CODmmm = merged_COD.assign_coords(
+    {'amsl': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
+
+
+# ==================================================================
+fig, axs = plt.subplots(
+    nrows=3, ncols=1, figsize=(5, 10), sharex=True, sharey=True)
+# Set the y-ticks to a custom scale
+for ax in axs.flatten():
+    # ax.set_yticks([0, 1000, 2000, 3000, 4000, 4333,
+                  # 4666, 5000, 5333, 5666, 6000, 6333])
+    #ax.set_ylim(0, 5000)
+    # Set the labels to the actual values
+    # ax.set_yticklabels(["0", "1000", "2000", "3000", "4000",
+                        # "5000", "6000", "7000", "8000", "9000", "10000", "11000"])
+    ax.set_xticks([-110, -100, -90, -80, -70])
+    ax.set_xticklabels(["-70", "-80", "-90", "-80", "-70"])
+# ax = axs.ravel().tolist()
+# TESTING
+
+contour = ds_TTmm.TT.isel(ATMLAY=slice(0, -1)).plot.pcolormesh('lat', 'height', robust=True,
+                                                               ax=axs[0], cbar_kwargs={'label': r'$\Delta$ Temperature $(\circ C)$'})
+
+
+# Plot cloud fraction using contour, with some custom labeling
+
+lqs_contour = ds_LQSmm.CC3D.isel(ATMLAY=slice(0, -1)).plot.pcolormesh('lat', 'height',
+                                                                      robust=True, ax=axs[1], cbar_kwargs={'shrink': 1, 'label': r'$\Delta$ Cloud Cover (%)'})
+cre_contour = ds_CREmm.CRE.isel(ATMLAY=slice(0, -1)).plot.pcolormesh('lat', 'height',
+                                                                     robust=True, ax=axs[2], cbar_kwargs={'shrink': 1, 'label': r'$\Delta$ CRE ($Wm^{-2}$)'})
+# cod_contour = ds_CODm.COD.isel(ATMLAY=slice(0, -1)).plot.pcolormesh('lat', 'height',
+#                                                                robust=True, ax=axs[1][1], cbar_kwargs={'shrink': 1, 'label': r'$\Delta$ COD (unitless)'})
+
+for ax in axs.flatten():
+    fs = 11
+    ax.set_ylabel('Height above ground (m)', fontsize=fs)
+    ax.set_xlabel('Latitude', fontsize=fs)
+    ax.set_title('')
+
+fig.tight_layout()
+sns.despine()
+
+
+# ds contains absolute height
+# ds_one contains meters above sea level
+def print_height_avg_std(ds, ds_one, amsl=2000, agl=500):
+    mean = ds.where((ds_one.amsl > amsl) & (ds.height < agl)).mean()
+    std = ds.where((ds_one.amsl > amsl) & (ds.height < agl)).std()
+
+    print('The mean is: {}'.format(mean.values))
+    print('The std is: {}'.format(std.values))
+
+
+def print_height_avg_std_shelves(ds, ds_one, amsl=100, agl=500):
+    mean = ds.where((ds_one.amsl < amsl) & (ds.height < agl)).mean()
+    std = ds.where((ds_one.amsl < amsl) & (ds.height < agl)).std()
+
+    print('The mean is: {}'.format(mean.values))
+    print('The std is: {}'.format(std.values))
+
+
+print_height_avg_std(ds_TTmm, ds_TTmmm)
+print_height_avg_std(ds_LQSmm, ds_LQSmmm)
+print_height_avg_std(ds_CREmm, ds_CREmmm)
+
+print_height_avg_std_shelves(ds_TTmm, ds_TTmmm)
+print_height_avg_std_shelves(ds_LQSmm, ds_LQSmmm)
+print_height_avg_std_shelves(ds_CREmm, ds_CREmmm)
