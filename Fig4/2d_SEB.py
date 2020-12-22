@@ -63,6 +63,36 @@ ds_grid = xr.Dataset({'RIGNOT': (['y', 'x'], MAR_grid.RIGNOT.values),
                      coords={'x': (['x'], ds_nobs_SWD.X),
                              'y': (['y'], ds_nobs_SWD.Y)})
 
+# ==========================================================================
+# CREATE the ICE MASK
+MSK = xr.open_dataset(
+    file_str_zz + 'MARcst-AN35km-176x148.cdf', decode_times=False)
+MSK = MSK.rename_dims({'x': 'X', 'y': 'Y'})  # change dim from ferret
+
+
+ais = MSK['AIS'].where(MSK['AIS'] > 0)  # Only AIS=1, other islands  =0
+# Ice where ICE mask >= 30% (ICE[0-100%], dividing by 100 in the next ligne)
+ice = MSK['ICE'].where(MSK['ICE'] > 30)
+# Combine ais + ice/100 * factor area for taking into account the projection
+ice_msk = (ais * ice * MSK['AREA'] / 100)
+
+grd = MSK['GROUND'].where(MSK['GROUND'] > 30)
+grd_msk = (ais * grd * MSK['AREA'] / 100)
+
+lsm = (MSK['AIS'] < 1)
+ground = (MSK['GROUND'] * MSK['AIS'] > 30)
+
+shf = (MSK['ICE'] / MSK['ICE']).where((MSK['ICE'] > 30) &
+                                      (MSK['GROUND'] < 50) & (MSK['ROCK'] < 30) & (ais > 0))
+shelf = (shf > 0)
+
+x2D, y2D = np.meshgrid(MSK['x'], MSK['y'])
+sh = MSK['SH']
+
+dh = (MSK['x'].values[0] - MSK['x'].values[1]) / 2.
+
+# ==========================================================
+
 
 diff_SWD = (ds_bs_SWD - ds_nobs_SWD).rename(
     {'X': 'x', 'Y': 'y'}).isel(x=slice(5, -5), y=slice(5, -5))
@@ -117,7 +147,7 @@ for i in range(3):
     # Compute a circle in axes coordinates, which we can use as a boundary
     # for the map. We can pan/zoom as much as we like - the boundary will be
     # permanently circular.
-    theta = np.linspace(0, 2*np.pi, 100)
+    theta = np.linspace(0, 2 * np.pi, 100)
     center, radius = [0.5, 0.5], 0.5
     verts = np.vstack([np.sin(theta), np.cos(theta)]).T
     circle = mpath.Path(verts * radius + center)
@@ -125,13 +155,13 @@ for i in range(3):
     ax[i].set_boundary(circle, transform=ax[i].transAxes)
 
 cmap = 'YlGnBu_r'
-cont = ax[0].pcolormesh(diff_SWD['x']*1000, diff_SWD['y']*1000,
+cont = ax[0].pcolormesh(diff_SWD['x'] * 1000, diff_SWD['y'] * 1000,
                         diff_SWD.SWD,
                         transform=proj, vmin=-4, vmax=4, cmap='RdBu_r')
-cont2 = ax[1].pcolormesh(diff_LWD['x']*1000, diff_LWD['y']*1000,
+cont2 = ax[1].pcolormesh(diff_LWD['x'] * 1000, diff_LWD['y'] * 1000,
                          diff_LWD.LWD,
                          transform=proj, vmin=-4, vmax=4, cmap='RdBu_r')
-cont3 = ax[2].pcolormesh(abs_diff['x']*1000, abs_diff['y']*1000,
+cont3 = ax[2].pcolormesh(abs_diff['x'] * 1000, abs_diff['y'] * 1000,
                          abs_diff, transform=proj, vmin=-4, vmax=4, cmap='RdBu_r')
 # cont2 = ax[1].pcolormesh(trend_CC['lon'], trend_CC['lat'],
 #                          trend_CC.slope*30, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
