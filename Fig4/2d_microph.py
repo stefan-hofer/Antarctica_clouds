@@ -53,28 +53,87 @@ for ds in [ds_nobs_CC, ds_nobs_COD, ds_nobs_IWP, ds_nobs_LWP]:
     ds['X'] = ds['X'] * 1000
     ds['Y'] = ds['Y'] * 1000
 # ============================================
+# ==========================================================================
+# CREATE the ICE MASK
+# =========================================================
+
 MAR_grid = xr.open_dataset(
     file_str_zz + 'MARcst-AN35km-176x148.cdf')
 ds_grid = xr.Dataset({'RIGNOT': (['y', 'x'], MAR_grid.RIGNOT.values),
                       'SH': (['y', 'x'], MAR_grid.SH.values),
                       'LAT': (['y', 'x'], MAR_grid.LAT.values),
-                      'LON': (['y', 'x'], MAR_grid.LON.values)},
+                      'LON': (['y', 'x'], MAR_grid.LON.values),
+                      'ICE': (['y', 'x'], MAR_grid.ICE.values),
+                      'AIS': (['y', 'x'], MAR_grid.AIS.values),
+                      'GROUND': (['y', 'x'], MAR_grid.GROUND.values),
+                      'AREA': (['y', 'x'], MAR_grid.AREA.values),
+                      'ROCK': (['y', 'x'], MAR_grid.ROCK.values)},
                      coords={'x': (['x'], ds_nobs_CC.X),
                              'y': (['y'], ds_nobs_CC.Y)})
 
+ais = ds_grid['AIS'].where(ds_grid)['AIS'] > 0  # Only AIS=1, other islands  =0
+# Ice where ICE mask >= 30% (ICE[0-100%], dividing by 100 in the next ligne)
+ice = ds_grid['ICE'].where(ds_grid['ICE'] > 30)
+# Combine ais + ice/100 * factor area for taking into account the projection
+ice_msk = (ais * ice * ds_grid['AREA'] / 100)
+
+grd = ds_grid['GROUND'].where(ds_grid['GROUND'] > 30)
+grd_msk = (ais * grd * ds_grid['AREA'] / 100)
+
+lsm = (ds_grid['AIS'] < 1)
+ground = (ds_grid['GROUND'] * ds_grid['AIS'] > 30)
+
+shf = (ds_grid['ICE'] / ds_grid['ICE']).where((ds_grid['ICE'] > 30) &
+                                              (ds_grid['GROUND'] < 50) & (ds_grid['ROCK'] < 30) & (ais > 0))
+shelf = (shf > 0)
+
+x2D, y2D = np.meshgrid(MSK['x'], ds_grid['y'])
+sh = ds_grid['SH']
+
+dh = (ds_grid['x'].values[0] - ds_grid['x'].values[1]) / 2.
+
+# =======================================================================
+
 
 diff_CC = (ds_bs_CC - ds_nobs_CC).rename(
-    {'X': 'x', 'Y': 'y'}).isel(x=slice(5, -5), y=slice(5, -5))
+    {'X': 'x', 'Y': 'y'}).isel(x=slice(10, -10), y=slice(10, -10))
 diff_COD = (ds_bs_COD - ds_nobs_COD).rename(
-    {'X': 'x', 'Y': 'y'}).isel(x=slice(5, -5), y=slice(5, -5))
+    {'X': 'x', 'Y': 'y'}).isel(x=slice(10, -10), y=slice(10, -10))
 diff_IWP = (ds_bs_IWP - ds_nobs_IWP).rename(
-    {'X': 'x', 'Y': 'y'}).isel(x=slice(5, -5), y=slice(5, -5))
+    {'X': 'x', 'Y': 'y'}).isel(x=slice(10, -10), y=slice(10, -10))
 diff_LWP = (ds_bs_LWP - ds_nobs_LWP).rename(
-    {'X': 'x', 'Y': 'y'}).isel(x=slice(5, -5), y=slice(5, -5))
+    {'X': 'x', 'Y': 'y'}).isel(x=slice(10, -10), y=slice(10, -10))
 
+# Weighted by difference in Cloud cover bc values are just monthly means
 diff_weighted_LWP = diff_LWP.CWP - (diff_CC.CC * diff_LWP.CWP)
 diff_weighted_IWP = diff_IWP.IWP - (diff_CC.CC * diff_IWP.IWP)
 diff_weighted_COD = diff_COD.COD - (diff_CC.CC * diff_COD.COD)
+
+# Extract values for paper
+# Grounded ice
+diff_weighted_LWP.where(ground == 1).mean() * 1000
+# Shelves
+diff_weighted_LWP.where(shelf == 1).mean() * 1000
+# Ocean
+diff_weighted_LWP.where((ais == 0) & (shelf == 0)).mean() * 1000
+# Grounded ice
+diff_weighted_IWP.where(ground == 1).mean() * 1000
+# Shelves
+diff_weighted_IWP.where(shelf == 1).mean() * 1000
+# Ocean
+diff_weighted_IWP.where((ais == 0) & (shelf == 0)).mean() * 1000
+# Grounded ice
+diff_weighted_COD.where(ground == 1).mean()
+# Shelves
+diff_weighted_COD.where(shelf == 1).mean()
+# Ocean
+diff_weighted_COD.where((ais == 0) & (shelf == 0)).mean()
+# Grounded ice
+diff_CC.CC.where(ground == 1).mean() * 100
+# Shelves
+diff_CC.CC.where(shelf == 1).mean() * 100
+# Ocean
+diff_CC.CC.where((ais == 0) & (shelf == 0)).mean() * 100
 
 diff_CC['LAT'] = ds_grid.LAT
 diff_CC['LON'] = ds_grid.LON
@@ -115,7 +174,7 @@ for i in range(4):
     # Compute a circle in axes coordinates, which we can use as a boundary
     # for the map. We can pan/zoom as much as we like - the boundary will be
     # permanently circular.
-    theta = np.linspace(0, 2*np.pi, 100)
+    theta = np.linspace(0, 2 * np.pi, 100)
     center, radius = [0.5, 0.5], 0.5
     verts = np.vstack([np.sin(theta), np.cos(theta)]).T
     circle = mpath.Path(verts * radius + center)
@@ -131,14 +190,14 @@ for i in range(4):
 diff_weighted_COD.plot.pcolormesh('x', 'y', transform=proj, ax=ax2, robust=True, cbar_kwargs={
                                   'label': r'$\Delta$ COD', 'shrink': 1, 'orientation': 'horizontal',
                                   'pad': 0.05, 'fraction': 0.15})
-(diff_weighted_LWP*1000).plot.pcolormesh('x', 'y', transform=proj, ax=ax3,
-                                         robust=True, cbar_kwargs={
-                                             'label': r'$\Delta$ LWP (g/kg)', 'shrink': 1, 'orientation': 'horizontal',
-                                             'ticks': [-2, -1, 0, 1, 2], 'pad': 0.05})
-(diff_weighted_IWP*1000).plot.pcolormesh('x', 'y', transform=proj, ax=ax4,
-                                         robust=True, cbar_kwargs={
-                                             'label': r'$\Delta$ IWP (g/kg)', 'shrink': 1, 'orientation': 'horizontal',
-                                             'ticks': [-20, -10, 0, 10, 20], 'pad': 0.05})
+(diff_weighted_LWP * 1000).plot.pcolormesh('x', 'y', transform=proj, ax=ax3,
+                                           robust=True, cbar_kwargs={
+                                               'label': r'$\Delta$ LWP (g/kg)', 'shrink': 1, 'orientation': 'horizontal',
+                                               'ticks': [-2, -1, 0, 1, 2], 'pad': 0.05})
+(diff_weighted_IWP * 1000).plot.pcolormesh('x', 'y', transform=proj, ax=ax4,
+                                           robust=True, cbar_kwargs={
+                                               'label': r'$\Delta$ IWP (g/kg)', 'shrink': 1, 'orientation': 'horizontal',
+                                               'ticks': [-20, -10, 0, 10, 20], 'pad': 0.05})
 #
 # cont = ax[0].pcolormesh(diff_CC['x'], diff_CC['y'],
 #                         (diff_CC.CC)*100,

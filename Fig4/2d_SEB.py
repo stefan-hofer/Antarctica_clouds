@@ -68,7 +68,7 @@ ds_grid = xr.Dataset({'RIGNOT': (['y', 'x'], MAR_grid.RIGNOT.values),
 MSK = xr.open_dataset(
     file_str_zz + 'MARcst-AN35km-176x148.cdf', decode_times=False)
 MSK = MSK.rename_dims({'x': 'X', 'y': 'Y'})  # change dim from ferret
-
+MSK = MSK.swap_dims({'X': 'x', 'Y': 'y'})  # change dim from ferret
 
 ais = MSK['AIS'].where(MSK['AIS'] > 0)  # Only AIS=1, other islands  =0
 # Ice where ICE mask >= 30% (ICE[0-100%], dividing by 100 in the next ligne)
