@@ -87,10 +87,11 @@ shf = (ds_grid['ICE'] / ds_grid['ICE']).where((ds_grid['ICE'] > 30) &
                                               (ds_grid['GROUND'] < 50) & (ds_grid['ROCK'] < 30) & (ais > 0))
 shelf = (shf > 0)
 
-x2D, y2D = np.meshgrid(MSK['x'], ds_grid['y'])
+x2D, y2D = np.meshgrid(ds_grid['x'], ds_grid['y'])
 sh = ds_grid['SH']
 
 dh = (ds_grid['x'].values[0] - ds_grid['x'].values[1]) / 2.
+
 
 # =======================================================================
 
@@ -109,31 +110,62 @@ diff_weighted_LWP = diff_LWP.CWP - (diff_CC.CC * diff_LWP.CWP)
 diff_weighted_IWP = diff_IWP.IWP - (diff_CC.CC * diff_IWP.IWP)
 diff_weighted_COD = diff_COD.COD - (diff_CC.CC * diff_COD.COD)
 
-# Extract values for paper
+
+def print_avg_antarctica(ds, mask, value, factor=1,
+                         part='Grounded', var='LWP'):
+    ds_new = ds.where(mask == value).mean() * factor
+
+    return print('For {} the mean of variable {} is {}!'.format(part, var, ds_new.values))
+
+
 # Grounded ice
-diff_weighted_LWP.where(ground == 1).mean() * 1000
+LWP_one = diff_weighted_LWP.where(ground == 1).mean() * 1000
 # Shelves
-diff_weighted_LWP.where(shelf == 1).mean() * 1000
+LWP_two = diff_weighted_LWP.where(shelf == 1).mean() * 1000
 # Ocean
-diff_weighted_LWP.where((ais == 0) & (shelf == 0)).mean() * 1000
+LWP_three = diff_weighted_LWP.where((ais == 0) & (shelf == 0)).mean() * 1000
+
+print('{}: Grounded={:.2f}, Shelves={:.2f}, Ocean={:.2f}'.format(
+    'LWP', LWP_one.values, LWP_two.values, LWP_three.values))
 # Grounded ice
-diff_weighted_IWP.where(ground == 1).mean() * 1000
+IWP_one = diff_weighted_IWP.where(ground == 1).mean() * 1000
 # Shelves
-diff_weighted_IWP.where(shelf == 1).mean() * 1000
+IWP_two = diff_weighted_IWP.where(shelf == 1).mean() * 1000
 # Ocean
-diff_weighted_IWP.where((ais == 0) & (shelf == 0)).mean() * 1000
+IWP_three = diff_weighted_IWP.where((ais == 0) & (shelf == 0)).mean() * 1000
+
+print('{}: Grounded={:.2f}, Shelves={:.2f}, Ocean={:.2f}'.format(
+    'IWP', IWP_one.values, IWP_two.values, IWP_three.values))
 # Grounded ice
-diff_weighted_COD.where(ground == 1).mean()
+COD_one = diff_weighted_COD.where(ground == 1).mean()
 # Shelves
-diff_weighted_COD.where(shelf == 1).mean()
+COD_two = diff_weighted_COD.where(shelf == 1).mean()
 # Ocean
-diff_weighted_COD.where((ais == 0) & (shelf == 0)).mean()
+COD_three = diff_weighted_COD.where((ais == 0) & (shelf == 0)).mean()
+
+print('{}: Grounded={:.2f}, Shelves={:.2f}, Ocean={:.2f}'.format(
+    'COD', COD_one.values, COD_two.values, COD_three.values))
 # Grounded ice
-diff_CC.CC.where(ground == 1).mean() * 100
+CC_one = diff_CC.CC.where(ground == 1).mean() * 100
 # Shelves
-diff_CC.CC.where(shelf == 1).mean() * 100
+CC_two = diff_CC.CC.where(shelf == 1).mean() * 100
 # Ocean
-diff_CC.CC.where((ais == 0) & (shelf == 0)).mean() * 100
+CC_three = diff_CC.CC.where((ais == 0) & (shelf == 0)).mean() * 100
+
+print('{}: Grounded={:.2f}, Shelves={:.2f}, Ocean={:.2f}'.format(
+    'CC', CC_one.values, CC_two.values, CC_three.values))
+
+# oh no I think I do .sum of var*grd_msk.values*35*35 and then divide it by the grounded area (in km2)
+
+
+def xymean(mvar2d, marea2d):
+    return (mvar2d * marea2d).sum() / (marea2d).sum()
+
+
+# To assess mean of cloud optical depth
+test = ds_nobs_COD.rename({'X': 'x', 'Y': 'y'}).isel(
+    x=slice(10, -10), y=slice(10, -10))
+
 
 diff_CC['LAT'] = ds_grid.LAT
 diff_CC['LON'] = ds_grid.LON
@@ -186,18 +218,19 @@ for i in range(4):
 (diff_CC.CC * 100).plot.pcolormesh('x', 'y', transform=proj, ax=ax1,
                                    robust=True, cbar_kwargs={
                                        'label': r'$\Delta$ CC (%)', 'shrink': 1, 'orientation': 'horizontal',
-                                       'ticks': [-20, -10, 0, 10, 20], 'pad': 0.05})
+                                       'ticks': [-20, -10, 0, 10, 20], 'pad': 0.05, 'extend': 'both'})
 diff_weighted_COD.plot.pcolormesh('x', 'y', transform=proj, ax=ax2, robust=True, cbar_kwargs={
                                   'label': r'$\Delta$ COD', 'shrink': 1, 'orientation': 'horizontal',
-                                  'pad': 0.05, 'fraction': 0.15})
+                                  'pad': 0.05, 'fraction': 0.15, 'extend': 'both'})
+
 (diff_weighted_LWP * 1000).plot.pcolormesh('x', 'y', transform=proj, ax=ax3,
                                            robust=True, cbar_kwargs={
                                                'label': r'$\Delta$ LWP (g/kg)', 'shrink': 1, 'orientation': 'horizontal',
-                                               'ticks': [-2, -1, 0, 1, 2], 'pad': 0.05})
+                                                'pad': 0.05, 'extend': 'both'})
 (diff_weighted_IWP * 1000).plot.pcolormesh('x', 'y', transform=proj, ax=ax4,
                                            robust=True, cbar_kwargs={
                                                'label': r'$\Delta$ IWP (g/kg)', 'shrink': 1, 'orientation': 'horizontal',
-                                               'ticks': [-20, -10, 0, 10, 20], 'pad': 0.05})
+                                                'pad': 0.05, 'extend': 'both'})
 #
 # cont = ax[0].pcolormesh(diff_CC['x'], diff_CC['y'],
 #                         (diff_CC.CC)*100,

@@ -38,6 +38,10 @@ ds_bs_SWN.name = 'SWN'
 ds_bs_LWN = (ds_bs_LWD.LWD - ds_bs_LWU.LWU)
 ds_bs_LWN.name = 'LWN'
 
+for ds in [ds_bs_SWD, ds_bs_SWU, ds_bs_LWD, ds_bs_LWU, ds_bs_AL, ds_bs_SWN, ds_bs_LWN]:
+    ds['X'] = ds['X'] * 1000
+    ds['Y'] = ds['Y'] * 1000
+
 # ========================================
 ds_nobs_SWD = (xr.open_dataset(
     file_str_nobs + 'mon-SWD-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
@@ -53,55 +57,63 @@ ds_nobs_SWN = (ds_nobs_SWD.SWD - ds_nobs_SWU.SWU)
 ds_nobs_SWN.name = 'SWN'
 ds_nobs_LWN = (ds_nobs_LWD.LWD - ds_nobs_LWU.LWU)
 ds_nobs_LWN.name = 'LWN'
+
+for ds in [ds_nobs_SWD, ds_nobs_SWU, ds_nobs_LWD, ds_nobs_LWU, ds_nobs_AL, ds_nobs_SWN, ds_nobs_LWN]:
+    ds['X'] = ds['X'] * 1000
+    ds['Y'] = ds['Y'] * 1000
 # ============================================
+# ==========================================================================
+# CREATE the ICE MASK
+# =========================================================
+
 MAR_grid = xr.open_dataset(
     file_str_zz + 'MARcst-AN35km-176x148.cdf')
 ds_grid = xr.Dataset({'RIGNOT': (['y', 'x'], MAR_grid.RIGNOT.values),
                       'SH': (['y', 'x'], MAR_grid.SH.values),
                       'LAT': (['y', 'x'], MAR_grid.LAT.values),
-                      'LON': (['y', 'x'], MAR_grid.LON.values)},
-                     coords={'x': (['x'], ds_nobs_SWD.X),
-                             'y': (['y'], ds_nobs_SWD.Y)})
+                      'LON': (['y', 'x'], MAR_grid.LON.values),
+                      'ICE': (['y', 'x'], MAR_grid.ICE.values),
+                      'AIS': (['y', 'x'], MAR_grid.AIS.values),
+                      'GROUND': (['y', 'x'], MAR_grid.GROUND.values),
+                      'AREA': (['y', 'x'], MAR_grid.AREA.values),
+                      'ROCK': (['y', 'x'], MAR_grid.ROCK.values)},
+                     coords={'x': (['x'], ds_nobs_CC.X),
+                             'y': (['y'], ds_nobs_CC.Y)})
 
-# ==========================================================================
-# CREATE the ICE MASK
-MSK = xr.open_dataset(
-    file_str_zz + 'MARcst-AN35km-176x148.cdf', decode_times=False)
-MSK = MSK.rename_dims({'x': 'X', 'y': 'Y'})  # change dim from ferret
-MSK = MSK.swap_dims({'X': 'x', 'Y': 'y'})  # change dim from ferret
-
-ais = MSK['AIS'].where(MSK['AIS'] > 0)  # Only AIS=1, other islands  =0
+ais = ds_grid['AIS'].where(ds_grid)['AIS'] > 0  # Only AIS=1, other islands  =0
 # Ice where ICE mask >= 30% (ICE[0-100%], dividing by 100 in the next ligne)
-ice = MSK['ICE'].where(MSK['ICE'] > 30)
+ice = ds_grid['ICE'].where(ds_grid['ICE'] > 30)
 # Combine ais + ice/100 * factor area for taking into account the projection
-ice_msk = (ais * ice * MSK['AREA'] / 100)
+ice_msk = (ais * ice * ds_grid['AREA'] / 100)
 
-grd = MSK['GROUND'].where(MSK['GROUND'] > 30)
-grd_msk = (ais * grd * MSK['AREA'] / 100)
+grd = ds_grid['GROUND'].where(ds_grid['GROUND'] > 30)
+grd_msk = (ais * grd * ds_grid['AREA'] / 100)
 
-lsm = (MSK['AIS'] < 1)
-ground = (MSK['GROUND'] * MSK['AIS'] > 30)
+lsm = (ds_grid['AIS'] < 1)
+ground = (ds_grid['GROUND'] * ds_grid['AIS'] > 30)
 
-shf = (MSK['ICE'] / MSK['ICE']).where((MSK['ICE'] > 30) &
-                                      (MSK['GROUND'] < 50) & (MSK['ROCK'] < 30) & (ais > 0))
+shf = (ds_grid['ICE'] / ds_grid['ICE']).where((ds_grid['ICE'] > 30) &
+                                              (ds_grid['GROUND'] < 50) & (ds_grid['ROCK'] < 30) & (ais > 0))
 shelf = (shf > 0)
 
-x2D, y2D = np.meshgrid(MSK['x'], MSK['y'])
-sh = MSK['SH']
+x2D, y2D = np.meshgrid(ds_grid['x'], ds_grid['y'])
+sh = ds_grid['SH']
 
-dh = (MSK['x'].values[0] - MSK['x'].values[1]) / 2.
+dh = (ds_grid['x'].values[0] - ds_grid['x'].values[1]) / 2.
+
 
 # ==========================================================
 
 
 diff_SWD = (ds_bs_SWD - ds_nobs_SWD).rename(
-    {'X': 'x', 'Y': 'y'}).isel(x=slice(5, -5), y=slice(5, -5))
+    {'X': 'x', 'Y': 'y'}).isel(x=slice(10, -10), y=slice(10, -10))
 diff_LWD = (ds_bs_LWD - ds_nobs_LWD).rename(
-    {'X': 'x', 'Y': 'y'}).isel(x=slice(5, -5), y=slice(5, -5))
+    {'X': 'x', 'Y': 'y'}).isel(x=slice(10, -10), y=slice(10, -10))
 diff_SWN = (ds_bs_SWN - ds_nobs_SWN).rename(
-    {'X': 'x', 'Y': 'y'}).isel(x=slice(5, -5), y=slice(5, -5))
+    {'X': 'x', 'Y': 'y'}).isel(x=slice(10, -10), y=slice(10, -10))
 diff_LWN = (ds_bs_LWN - ds_nobs_LWN).rename(
-    {'X': 'x', 'Y': 'y'}).isel(x=slice(5, -5), y=slice(5, -5))
+    {'X': 'x', 'Y': 'y'}).isel(x=slice(10, -10), y=slice(10, -10))
+
 
 diff_SWD['LAT'] = ds_grid.LAT
 diff_SWD['LON'] = ds_grid.LON
@@ -118,6 +130,35 @@ diff_LWN['LON'] = ds_grid.LON
 abs_diff_external = (
     diff_SWD.SWD + diff_LWD.LWD)
 abs_diff = (diff_SWN + diff_LWN)
+
+
+# Grounded ice
+LWP_one = diff_SWD.SWD.where(ground == 1).mean()
+# Shelves
+LWP_two = diff_SWD.SWD.where(shelf == 1).mean()
+# Ocean
+LWP_three = diff_SWD.SWD.where((ais == 0) & (shelf == 0)).mean()
+
+print('{}: Grounded={:.2f}, Shelves={:.2f}, Ocean={:.2f}'.format(
+    'SWD', LWP_one.values, LWP_two.values, LWP_three.values))
+# Grounded ice
+IWP_one = diff_LWD.LWD.where(ground == 1).mean()
+# Shelves
+IWP_two = diff_LWD.LWD.where(shelf == 1).mean()
+# Ocean
+IWP_three = diff_LWD.LWD.where((ais == 0) & (shelf == 0)).mean()
+
+print('{}: Grounded={:.2f}, Shelves={:.2f}, Ocean={:.2f}'.format(
+    'LWD', IWP_one.values, IWP_two.values, IWP_three.values))
+# Grounded ice
+COD_one = abs_diff.where(ground == 1).mean()
+# Shelves
+COD_two = abs_diff.where(shelf == 1).mean()
+# Ocean
+COD_three = abs_diff.where((ais == 0) & (shelf == 0)).mean()
+
+print('{}: Grounded={:.2f}, Shelves={:.2f}, Ocean={:.2f}'.format(
+    'Net diff', COD_one.values, COD_two.values, COD_three.values))
 
 
 # Plotting routines
@@ -155,13 +196,13 @@ for i in range(3):
     ax[i].set_boundary(circle, transform=ax[i].transAxes)
 
 cmap = 'YlGnBu_r'
-cont = ax[0].pcolormesh(diff_SWD['x'] * 1000, diff_SWD['y'] * 1000,
+cont = ax[0].pcolormesh(diff_SWD['x'], diff_SWD['y'],
                         diff_SWD.SWD,
                         transform=proj, vmin=-4, vmax=4, cmap='RdBu_r')
-cont2 = ax[1].pcolormesh(diff_LWD['x'] * 1000, diff_LWD['y'] * 1000,
+cont2 = ax[1].pcolormesh(diff_LWD['x'], diff_LWD['y'],
                          diff_LWD.LWD,
                          transform=proj, vmin=-4, vmax=4, cmap='RdBu_r')
-cont3 = ax[2].pcolormesh(abs_diff['x'] * 1000, abs_diff['y'] * 1000,
+cont3 = ax[2].pcolormesh(abs_diff['x'], abs_diff['y'],
                          abs_diff, transform=proj, vmin=-4, vmax=4, cmap='RdBu_r')
 # cont2 = ax[1].pcolormesh(trend_CC['lon'], trend_CC['lat'],
 #                          trend_CC.slope*30, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
@@ -174,7 +215,7 @@ for i in range(3):
                transform=ax[i].transAxes, fontdict={'weight': 'bold'})
 # fig.canvas.draw()
 
-cb = fig.colorbar(cont, ax=ax[2], ticks=list(
+cb = fig.colorbar(cont3, ax=ax[2], ticks=list(
     np.arange(-4, 4.5, 1)), shrink=0.8)
 cb.set_label(r'$\Delta$ Radiative Flux $(Wm^{-2})$', fontsize=16)
 cb.ax.tick_params(labelsize=11)
