@@ -63,8 +63,8 @@ regridder = xe.Regridder(
     ds_in, ds_grid_new, 'bilinear', reuse_weights=True)
 # Regrid the data to the 0.25x0.25 grid
 ds_TT = regridder(ds_in)
-ds_LQS = regridder((diff.CC3D*100).assign_coords({'lat': ds_bs.LAT, 'lon': ds_bs.LON,
-                                                  'x': ds_bs.X, 'y': ds_bs.Y}))
+ds_LQS = regridder((diff.CC3D * 100).assign_coords({'lat': ds_bs.LAT, 'lon': ds_bs.LON,
+                                                    'x': ds_bs.X, 'y': ds_bs.Y}))
 ds_height = regridder(layer_agl.assign_coords({'lat': ds_bs.LAT, 'lon': ds_bs.LON,
                                                'x': ds_bs.X, 'y': ds_bs.Y}))
 # Create the cross section by using xarray interpolation routine

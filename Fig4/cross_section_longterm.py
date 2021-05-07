@@ -252,7 +252,7 @@ height_scaled = scale(
 # Replace only values where height is greater than 4000
 # mean_masl = mean_masl.where(mean_masl < 4000).fillna(height_scaled)
 mean_masl = mean_masl_merged.where(
-    mean_masl_merged < 4000).fillna(height_scaled)ea level
+    mean_masl_merged < 4000).fillna(height_scaled)
 
 # ax.plot(data_scaled)
 # ==================================================================
@@ -289,6 +289,12 @@ for ax in axs.flatten():
     ax.set_ylabel('Height amsl (m)', fontsize=fs)
     ax.set_xlabel('Latitude', fontsize=fs)
     ax.set_title('')
+    ax.set_xlim(-113.9, -77)  # -67 to -77 in real coordinates
+
+letters = ['A', 'B', 'C']
+for i in range(3):
+    axs[i].text(0.05, 1.03, letters[i], fontsize=22, va='center', ha='center',
+                transform=axs[i].transAxes, fontdict={'weight': 'bold'})
 
 fig.tight_layout()
 sns.despine()
@@ -326,11 +332,11 @@ fig, axs = plt.subplots(
 # Set the y-ticks to a custom scale
 for ax in axs.flatten():
     # ax.set_yticks([0, 1000, 2000, 3000, 4000, 4333,
-                  # 4666, 5000, 5333, 5666, 6000, 6333])
+    # 4666, 5000, 5333, 5666, 6000, 6333])
     #ax.set_ylim(0, 5000)
     # Set the labels to the actual values
     # ax.set_yticklabels(["0", "1000", "2000", "3000", "4000",
-                        # "5000", "6000", "7000", "8000", "9000", "10000", "11000"])
+    # "5000", "6000", "7000", "8000", "9000", "10000", "11000"])
     ax.set_xticks([-110, -100, -90, -80, -70])
     ax.set_xticklabels(["-70", "-80", "-90", "-80", "-70"])
 # ax = axs.ravel().tolist()

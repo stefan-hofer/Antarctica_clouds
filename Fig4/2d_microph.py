@@ -12,6 +12,9 @@ import matplotlib.path as mpath
 
 import cartopy.feature as feat
 
+#    xr.plot.contour(ground, levels=1, colors='black', linewidths=0.2)
+#    xr.plot.contour(ds_grid.SOL, levels=1, colors='black', linewidths=0.2)
+
 # file_str = '/uio/lagringshotell/geofag/projects/miphclac/shofer/MAR/case_study_BS_2009/'
 # file_str = '/home/shofer/Dropbox/Academic/Data/Blowing_snow/'
 # file_str = '/home/sh16450/Dropbox/Academic/Data/Blowing_snow/'
@@ -66,6 +69,7 @@ ds_grid = xr.Dataset({'RIGNOT': (['y', 'x'], MAR_grid.RIGNOT.values),
                       'ICE': (['y', 'x'], MAR_grid.ICE.values),
                       'AIS': (['y', 'x'], MAR_grid.AIS.values),
                       'GROUND': (['y', 'x'], MAR_grid.GROUND.values),
+                      'SOL': (['y', 'x'], MAR_grid.SOL.values),
                       'AREA': (['y', 'x'], MAR_grid.AREA.values),
                       'ROCK': (['y', 'x'], MAR_grid.ROCK.values)},
                      coords={'x': (['x'], ds_nobs_CC.X),
@@ -97,13 +101,13 @@ dh = (ds_grid['x'].values[0] - ds_grid['x'].values[1]) / 2.
 
 
 diff_CC = (ds_bs_CC - ds_nobs_CC).rename(
-    {'X': 'x', 'Y': 'y'}).isel(x=slice(10, -10), y=slice(10, -10))
+    {'X': 'x', 'Y': 'y'}).where((ground > 0) | (shelf > 0)).isel(x=slice(10, -10), y=slice(10, -10))
 diff_COD = (ds_bs_COD - ds_nobs_COD).rename(
-    {'X': 'x', 'Y': 'y'}).isel(x=slice(10, -10), y=slice(10, -10))
+    {'X': 'x', 'Y': 'y'}).where((ground > 0) | (shelf > 0)).isel(x=slice(10, -10), y=slice(10, -10))
 diff_IWP = (ds_bs_IWP - ds_nobs_IWP).rename(
-    {'X': 'x', 'Y': 'y'}).isel(x=slice(10, -10), y=slice(10, -10))
+    {'X': 'x', 'Y': 'y'}).where((ground > 0) | (shelf > 0)).isel(x=slice(10, -10), y=slice(10, -10))
 diff_LWP = (ds_bs_LWP - ds_nobs_LWP).rename(
-    {'X': 'x', 'Y': 'y'}).isel(x=slice(10, -10), y=slice(10, -10))
+    {'X': 'x', 'Y': 'y'}).where((ground > 0) | (shelf > 0)).isel(x=slice(10, -10), y=slice(10, -10))
 
 # Weighted by difference in Cloud cover bc values are just monthly means
 diff_weighted_LWP = diff_LWP.CWP - (diff_CC.CC * diff_LWP.CWP)
@@ -155,7 +159,37 @@ CC_three = diff_CC.CC.where((ais == 0) & (shelf == 0)).mean() * 100
 print('{}: Grounded={:.2f}, Shelves={:.2f}, Ocean={:.2f}'.format(
     'CC', CC_one.values, CC_two.values, CC_three.values))
 
-# oh no I think I do .sum of var*grd_msk.values*35*35 and then divide it by the grounded area (in km2)
+
+# Print average and std for mean of absolute values
+mean_COD = ds_bs_COD.COD.rename(
+    {'X': 'x', 'Y': 'y'}).where((ground > 0) | (shelf > 0)).mean()
+mean_IWP = (ds_bs_IWP.IWP.rename(
+    {'X': 'x', 'Y': 'y'}).where((ground > 0) | (shelf > 0)).mean()) * 1000
+mean_LWP = (ds_bs_LWP.CWP.rename(
+    {'X': 'x', 'Y': 'y'}).where((ground > 0) | (shelf > 0)).mean()) * 1000
+
+print('{}: COD={:.2f}, IWP={:.2f}, LWP={:.2f}'.format(
+    'Means over shelf+ground', mean_COD.values, mean_IWP.values, mean_LWP.values))
+# Print average and std for mean of absolute values
+mean_COD_ = ds_bs_COD.COD.rename(
+    {'X': 'x', 'Y': 'y'}).where(ground == 1).mean()
+mean_IWP_ = (ds_bs_IWP.IWP.rename(
+    {'X': 'x', 'Y': 'y'}).where(ground == 1).mean()) * 1000
+mean_LWP_ = (ds_bs_LWP.CWP.rename(
+    {'X': 'x', 'Y': 'y'}).where(ground == 1).mean()) * 1000
+
+print('{}: COD={:.2f}, IWP={:.2f}, LWP={:.2f}'.format(
+    'Means over ground', mean_COD_.values, mean_IWP_.values, mean_LWP_.values))
+
+mean_COD = ds_bs_COD.COD.rename(
+    {'X': 'x', 'Y': 'y'}).where(shelf == 1).mean()
+mean_IWP = (ds_bs_IWP.IWP.rename(
+    {'X': 'x', 'Y': 'y'}).where(shelf == 1).mean()) * 1000
+mean_LWP = (ds_bs_LWP.CWP.rename(
+    {'X': 'x', 'Y': 'y'}).where(shelf == 1).mean()) * 1000
+
+print('{}: COD={:.2f}, IWP={:.2f}, LWP={:.2f}'.format(
+    'Means over shelves', mean_COD.values, mean_IWP.values, mean_LWP.values))
 
 
 def xymean(mvar2d, marea2d):
@@ -215,22 +249,22 @@ for i in range(4):
 
 # PLOT EVERYTHING
 
-(diff_CC.CC * 100).plot.pcolormesh('x', 'y', transform=proj, ax=ax1,
+(diff_CC.CC * 100).plot.pcolormesh('x', 'y', transform=proj, ax=ax1, cmap='RdBu_r',
                                    robust=True, cbar_kwargs={
                                        'label': r'$\Delta$ CC (%)', 'shrink': 1, 'orientation': 'horizontal',
-                                       'ticks': [-20, -10, 0, 10, 20], 'pad': 0.05, 'extend': 'both'})
-diff_weighted_COD.plot.pcolormesh('x', 'y', transform=proj, ax=ax2, robust=True, cbar_kwargs={
-                                  'label': r'$\Delta$ COD', 'shrink': 1, 'orientation': 'horizontal',
-                                  'pad': 0.05, 'fraction': 0.15, 'extend': 'both'})
+                                       'ticks': [-20, -10, 0, 10, 20], 'pad': 0.05, 'extend': 'both'}, vmin=-25, vmax=25)
+diff_weighted_COD.plot.pcolormesh('x', 'y', transform=proj, ax=ax2, robust=True, cmap='RdBu_r', cbar_kwargs={
+    'label': r'$\Delta$ COD', 'shrink': 1, 'orientation': 'horizontal',
+    'pad': 0.05, 'fraction': 0.15, 'extend': 'both'}, vmin=-0.02, vmax=0.02)
 
 (diff_weighted_LWP * 1000).plot.pcolormesh('x', 'y', transform=proj, ax=ax3,
                                            robust=True, cbar_kwargs={
                                                'label': r'$\Delta$ LWP (g/kg)', 'shrink': 1, 'orientation': 'horizontal',
-                                                'pad': 0.05, 'extend': 'both'})
-(diff_weighted_IWP * 1000).plot.pcolormesh('x', 'y', transform=proj, ax=ax4,
+                                               'pad': 0.05, 'extend': 'both'})
+(diff_weighted_IWP * 1000).plot.pcolormesh('x', 'y', transform=proj, ax=ax4, cmap='RdBu_r',
                                            robust=True, cbar_kwargs={
                                                'label': r'$\Delta$ IWP (g/kg)', 'shrink': 1, 'orientation': 'horizontal',
-                                                'pad': 0.05, 'extend': 'both'})
+                                               'pad': 0.05, 'extend': 'both'}, vmin=-25, vmax=25)
 #
 # cont = ax[0].pcolormesh(diff_CC['x'], diff_CC['y'],
 #                         (diff_CC.CC)*100,
@@ -246,8 +280,11 @@ diff_weighted_COD.plot.pcolormesh('x', 'y', transform=proj, ax=ax2, robust=True,
 #                          trend_CC.slope*30, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
 letters = ['A', 'B', 'C', 'D']
 for i in range(4):
-    ax[i].add_feature(feat.COASTLINE.with_scale(
-        '50m'), zorder=1, edgecolor='black')
+    xr.plot.contour(ds_grid.SOL, levels=1, colors='black',
+                    linewidths=0.4, transform=proj, ax=ax[i])
+    xr.plot.contour(ground, levels=1, colors='black', linewidths=0.4, ax=ax[i])
+    # ax[i].add_feature(feat.COASTLINE.with_scale(
+    #    '50m'), zorder=1, edgecolor='black')
     ax[i].set_title(names[i], fontsize=16)
     ax[i].text(0.04, 1.02, letters[i], fontsize=22, va='center', ha='center',
                transform=ax[i].transAxes, fontdict={'weight': 'bold'})

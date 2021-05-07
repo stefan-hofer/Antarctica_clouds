@@ -74,11 +74,12 @@ ds_grid = xr.Dataset({'RIGNOT': (['y', 'x'], MAR_grid.RIGNOT.values),
                       'LON': (['y', 'x'], MAR_grid.LON.values),
                       'ICE': (['y', 'x'], MAR_grid.ICE.values),
                       'AIS': (['y', 'x'], MAR_grid.AIS.values),
+                      'SOL': (['y', 'x'], MAR_grid.SOL.values),
                       'GROUND': (['y', 'x'], MAR_grid.GROUND.values),
                       'AREA': (['y', 'x'], MAR_grid.AREA.values),
                       'ROCK': (['y', 'x'], MAR_grid.ROCK.values)},
-                     coords={'x': (['x'], ds_nobs_CC.X),
-                             'y': (['y'], ds_nobs_CC.Y)})
+                     coords={'x': (['x'], ds_nobs_LWD.X),
+                             'y': (['y'], ds_nobs_LWD.Y)})
 
 ais = ds_grid['AIS'].where(ds_grid)['AIS'] > 0  # Only AIS=1, other islands  =0
 # Ice where ICE mask >= 30% (ICE[0-100%], dividing by 100 in the next ligne)
@@ -106,13 +107,13 @@ dh = (ds_grid['x'].values[0] - ds_grid['x'].values[1]) / 2.
 
 
 diff_SWD = (ds_bs_SWD - ds_nobs_SWD).rename(
-    {'X': 'x', 'Y': 'y'}).isel(x=slice(10, -10), y=slice(10, -10))
+    {'X': 'x', 'Y': 'y'}).where((ground > 0) | (shelf > 0)).isel(x=slice(10, -10), y=slice(10, -10))
 diff_LWD = (ds_bs_LWD - ds_nobs_LWD).rename(
-    {'X': 'x', 'Y': 'y'}).isel(x=slice(10, -10), y=slice(10, -10))
+    {'X': 'x', 'Y': 'y'}).where((ground > 0) | (shelf > 0)).isel(x=slice(10, -10), y=slice(10, -10))
 diff_SWN = (ds_bs_SWN - ds_nobs_SWN).rename(
-    {'X': 'x', 'Y': 'y'}).isel(x=slice(10, -10), y=slice(10, -10))
+    {'X': 'x', 'Y': 'y'}).where((ground > 0) | (shelf > 0)).isel(x=slice(10, -10), y=slice(10, -10))
 diff_LWN = (ds_bs_LWN - ds_nobs_LWN).rename(
-    {'X': 'x', 'Y': 'y'}).isel(x=slice(10, -10), y=slice(10, -10))
+    {'X': 'x', 'Y': 'y'}).where((ground > 0) | (shelf > 0)).isel(x=slice(10, -10), y=slice(10, -10))
 
 
 diff_SWD['LAT'] = ds_grid.LAT
@@ -208,8 +209,11 @@ cont3 = ax[2].pcolormesh(abs_diff['x'], abs_diff['y'],
 #                          trend_CC.slope*30, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
 letters = ['A', 'B', 'C']
 for i in range(3):
-    ax[i].add_feature(feat.COASTLINE.with_scale(
-        '50m'), zorder=1, edgecolor='black')
+    xr.plot.contour(ds_grid.SOL, levels=1, colors='black',
+                    linewidths=0.4, transform=proj, ax=ax[i])
+    xr.plot.contour(ground, levels=1, colors='black', linewidths=0.4, ax=ax[i])
+    # ax[i].add_feature(feat.COASTLINE.with_scale(
+    #     '50m'), zorder=1, edgecolor='black')
     ax[i].set_title(names[i], fontsize=16)
     ax[i].text(0.04, 1.02, letters[i], fontsize=22, va='center', ha='center',
                transform=ax[i].transAxes, fontdict={'weight': 'bold'})
