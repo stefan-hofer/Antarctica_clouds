@@ -259,11 +259,11 @@ diff_weighted_COD.plot.pcolormesh('x', 'y', transform=proj, ax=ax2, robust=True,
 
 (diff_weighted_LWP * 1000).plot.pcolormesh('x', 'y', transform=proj, ax=ax3,
                                            robust=True, cbar_kwargs={
-                                               'label': r'$\Delta$ LWP (g/kg)', 'shrink': 1, 'orientation': 'horizontal',
+                                               'label': r'$\Delta$ LWP ($g/m^{2}$)', 'shrink': 1, 'orientation': 'horizontal',
                                                'pad': 0.05, 'extend': 'both'})
 (diff_weighted_IWP * 1000).plot.pcolormesh('x', 'y', transform=proj, ax=ax4, cmap='RdBu_r',
                                            robust=True, cbar_kwargs={
-                                               'label': r'$\Delta$ IWP (g/kg)', 'shrink': 1, 'orientation': 'horizontal',
+                                               'label': r'$\Delta$ IWP ($g/m^{2}$)', 'shrink': 1, 'orientation': 'horizontal',
                                                'pad': 0.05, 'extend': 'both'}, vmin=-25, vmax=25)
 #
 # cont = ax[0].pcolormesh(diff_CC['x'], diff_CC['y'],
