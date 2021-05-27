@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 # file_str = '/home/shofer/Dropbox/Academic/Data/Blowing_snow/'
 # file_str = '/home/sh16450/Dropbox/Academic/Data/Blowing_snow/'
 
-file_str = '/projects/NS9600K/shofer/blowing_snow/MAR/3D_monthly/'
+file_str = '/projects/NS9600K/shofer/blowing_snow/MAR/new/3D_monthly/'
 file_str_nobs = '/projects/NS9600K/shofer/blowing_snow/MAR/3D_monthly_nDR/'
 file_str_zz = '/projects/NS9600K/shofer/blowing_snow/MAR/case_study_BS_2009/'
 
@@ -29,8 +29,8 @@ ds_bs_SWN = (xr.open_dataset(
     file_str + 'mon-SWN3D-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
 ds_bs_SWN = (xr.open_dataset(
     file_str + 'mon-SWN3D-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
-ds_bs_COD = (xr.open_dataset(
-    file_str + 'mon-COD3D-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
+# ds_bs_COD = (xr.open_dataset(
+#    file_str + 'mon-COD3D-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
 
 
 # Calculate the CRE for the blowing snow simulations
@@ -49,8 +49,8 @@ ds_nobs_SWNC = (xr.open_dataset(
     file_str_nobs + 'mon-SWNC3D-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
 ds_nobs_SWN = (xr.open_dataset(
     file_str_nobs + 'mon-SWN3D-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
-ds_nobs_COD = (xr.open_dataset(
-    file_str_nobs + 'mon-COD3D-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
+# ds_nobs_COD = (xr.open_dataset(
+#    file_str_nobs + 'mon-COD3D-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
 
 # CRE_diff.plot(x='X', y='Y', col='ATMLAY', col_wrap=5)
 
@@ -88,8 +88,8 @@ CRE_nobs = (ds_nobs_SWN.SWN3D + ds_nobs_LWN.LWN3D) - \
 # Difference in CRE between bs and nobs simulation
 CRE_diff = CRE_bs - CRE_nobs
 # DIFF COD3D
-diff_COD = (ds_bs_COD.COD3D -
-            ds_nobs_COD.COD3D).rename({'X': 'x', 'Y': 'y'})
+# diff_COD = (ds_bs_COD.COD3D -
+#            ds_nobs_COD.COD3D).rename({'X': 'x', 'Y': 'y'})
 # Difference between ds and nobs
 diff = (ds_bs_TT - ds_nobs_TT).rename({'X': 'x', 'Y': 'y'})
 diff_CC = (ds_bs_CC - ds_nobs_CC).rename({'X': 'x', 'Y': 'y'})
@@ -105,8 +105,8 @@ diff_CC['LON'] = ds_grid.LON
 diff_CRE['LAT'] = ds_grid.LAT
 diff_CRE['LON'] = ds_grid.LON
 
-diff_COD['LAT'] = ds_grid.LAT
-diff_COD['LON'] = ds_grid.LON
+# diff_COD['LAT'] = ds_grid.LAT
+# diff_COD['LON'] = ds_grid.LON
 # Cross section lat lons
 start = (-90, 140)
 end = (-65, 140)
@@ -130,8 +130,8 @@ ds_height_masl = regridder(masl.assign_coords({'lat': diff.LAT, 'lon': diff.LON,
                                                'x': diff.x, 'y': diff.y}))
 ds_CRE = regridder(diff_CRE.assign_coords({'lat': diff.LAT, 'lon': diff.LON,
                                            'x': diff.x, 'y': diff.y}))
-ds_COD = regridder(diff_COD.assign_coords({'lat': diff.LAT, 'lon': diff.LON,
-                                           'x': diff.x, 'y': diff.y}))
+# ds_COD = regridder(diff_COD.assign_coords({'lat': diff.LAT, 'lon': diff.LON,
+#                                           'x': diff.x, 'y': diff.y}))
 # Create the cross section by using xarray interpolation routine
 # Interpolate along all lats and 0 longitude (could be any lat lon line)
 
@@ -157,8 +157,8 @@ merged_CC = merge_over_south_pole(ds_LQS, 140)
 ds_CRE.name = 'CRE'
 merged_CRE = merge_over_south_pole(ds_CRE, 140)
 
-ds_COD.name = "COD"
-merged_COD = merge_over_south_pole(ds_COD, 140)
+# ds_COD.name="COD"
+# merged_COD=merge_over_south_pole(ds_COD, 140)
 
 ds_height.name = 'height'
 merged_h = merge_over_south_pole(ds_height, 140)
@@ -174,8 +174,8 @@ ds_h_masl = ds_height_masl.interp(lat=np.arange(
     start[0], end[0], 0.25), lon=start[1])
 ds_cre = ds_CRE.interp(lat=np.arange(
     start[0], end[0], 0.25), lon=start[1])
-ds_cod = ds_COD.interp(lat=np.arange(
-    start[0], end[0], 0.25), lon=start[1])
+# ds_cod=ds_COD.interp(lat=np.arange(
+#    start[0], end[0], 0.25), lon=start[1])
 # mean height of sigma layer (m agl)
 # mean_sigma = ds_h.sel(
 #     TIME='2009-10-14').where(ds_h.lat < -70).mean(dim='lat')[0, :]
@@ -233,8 +233,8 @@ ds_LQSm = merged_CC.assign_coords(
     {'height': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
 ds_CREm = merged_CRE.assign_coords(
     {'height': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
-ds_CODm = merged_COD.assign_coords(
-    {'height': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
+# ds_CODm=merged_COD.assign_coords(
+#    {'height': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
 
 
 def scale(val, src, dst):
@@ -313,8 +313,8 @@ ds_LQSmm = merged_CC.assign_coords(
     {'height': ((['ATMLAY', 'lat']), mean_h_merged.values)})
 ds_CREmm = merged_CRE.assign_coords(
     {'height': ((['ATMLAY', 'lat']), mean_h_merged.values)})
-ds_CODmm = merged_COD.assign_coords(
-    {'height': ((['ATMLAY', 'lat']), mean_h_merged.values)})
+# ds_CODmm = merged_COD.assign_coords(
+#    {'height': ((['ATMLAY', 'lat']), mean_h_merged.values)})
 
 ds_TTmmm = merged_TT.assign_coords(
     {'amsl': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
@@ -322,8 +322,8 @@ ds_LQSmmm = merged_CC.assign_coords(
     {'amsl': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
 ds_CREmmm = merged_CRE.assign_coords(
     {'amsl': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
-ds_CODmmm = merged_COD.assign_coords(
-    {'amsl': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
+# ds_CODmmm = merged_COD.assign_coords(
+#    {'amsl': ((['ATMLAY', 'lat']), mean_masl_merged.values)})
 
 
 # ==================================================================
@@ -333,7 +333,7 @@ fig, axs = plt.subplots(
 for ax in axs.flatten():
     # ax.set_yticks([0, 1000, 2000, 3000, 4000, 4333,
     # 4666, 5000, 5333, 5666, 6000, 6333])
-    #ax.set_ylim(0, 5000)
+    # ax.set_ylim(0, 5000)
     # Set the labels to the actual values
     # ax.set_yticklabels(["0", "1000", "2000", "3000", "4000",
     # "5000", "6000", "7000", "8000", "9000", "10000", "11000"])

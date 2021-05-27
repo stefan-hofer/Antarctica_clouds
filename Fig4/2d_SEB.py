@@ -16,7 +16,7 @@ import cartopy.feature as feat
 # file_str = '/home/shofer/Dropbox/Academic/Data/Blowing_snow/'
 # file_str = '/home/sh16450/Dropbox/Academic/Data/Blowing_snow/'
 
-file_str = '/projects/NS9600K/shofer/blowing_snow/MAR/3D_monthly/'
+file_str = '/projects/NS9600K/shofer/blowing_snow/MAR/new/3D_monthly/'
 file_str_nobs = '/projects/NS9600K/shofer/blowing_snow/MAR/3D_monthly_nDR/'
 file_str_zz = '/projects/NS9600K/shofer/blowing_snow/MAR/case_study_BS_2009/'
 
