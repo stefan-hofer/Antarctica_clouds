@@ -4,26 +4,26 @@ import matplotlib.pyplot as plt
 import itertools
 
 
-folder = '/projects/NS9600K/shofer/blowing_snow/observations/'
+folder = '/projects/NS9600K/shofer/blowing_snow/observations/new/'
 
 # Open up all the data
-LWD_Y_no = pd.read_csv(folder + 'Out_YYR_LD_o.dat', sep='\s+', engine='python',
+LWD_Y_no = pd.read_csv(folder + 'Out_YYR_LD_MARv3.11-ERA5.dat', sep='\s+', engine='python',
                        skipfooter=1, names=['Period', 'Station', 'Var',
                                             'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
-LWD_Y_bs = pd.read_csv(folder + 'Out_YYR_LD_a.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
-                                                                                                     'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
-SWD_Y_no = pd.read_csv(folder + 'Out_YYR_SD_o.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
-                                                                                                     'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
-SWD_Y_bs = pd.read_csv(folder + 'Out_YYR_SD_a.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
-                                                                                                     'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
-LWU_Y_no = pd.read_csv(folder + 'Out_YYR_LU_o.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
-                                                                                                     'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
-LWU_Y_bs = pd.read_csv(folder + 'Out_YYR_LU_a.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
-                                                                                                     'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
-SWU_Y_no = pd.read_csv(folder + 'Out_YYR_SU_o.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
-                                                                                                     'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
-SWU_Y_bs = pd.read_csv(folder + 'Out_YYR_SU_a.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
-                                                                                                     'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
+LWD_Y_bs = pd.read_csv(folder + 'Out_YYR_LD_MARv3.11-BS.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
+                                                                                                               'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
+SWD_Y_no = pd.read_csv(folder + 'Out_YYR_SD_MARv3.11-ERA5.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
+                                                                                                                 'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
+SWD_Y_bs = pd.read_csv(folder + 'Out_YYR_SD_MARv3.11-BS.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
+                                                                                                               'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
+LWU_Y_no = pd.read_csv(folder + 'Out_YYR_LU_MARv3.11-ERA5.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
+                                                                                                                 'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
+LWU_Y_bs = pd.read_csv(folder + 'Out_YYR_LU_MARv3.11-BS.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
+                                                                                                               'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
+SWU_Y_no = pd.read_csv(folder + 'Out_YYR_SU_MARv3.11-ERA5.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
+                                                                                                                 'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
+SWU_Y_bs = pd.read_csv(folder + 'Out_YYR_SU_MARv3.11-BS.dat', sep='\s+', engine='python', skipfooter=1, names=['Period', 'Station', 'Var',
+                                                                                                               'Mean bias', 'Mean obs', 'RMSE', 'Centered RMSE', 'correlation',  'obs std', 'mar std'])
 # Create a list with the data files for looping
 list_data = [LWD_Y_no, LWD_Y_bs, SWD_Y_no, SWD_Y_bs,
              LWU_Y_no, LWU_Y_bs, SWU_Y_no, SWU_Y_bs]

@@ -31,14 +31,14 @@ ds_bs_LWD = (xr.open_dataset(
     file_str + 'mon-LWD-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
 ds_bs_LWU = (xr.open_dataset(
     file_str + 'mon-LWU-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
-ds_bs_AL = (xr.open_dataset(
-    file_str + 'mon-AL-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
+# ds_bs_AL = (xr.open_dataset(
+#    file_str + 'mon-AL-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
 ds_bs_SWN = (ds_bs_SWD.SWD - ds_bs_SWU.SWU)
 ds_bs_SWN.name = 'SWN'
 ds_bs_LWN = (ds_bs_LWD.LWD - ds_bs_LWU.LWU)
 ds_bs_LWN.name = 'LWN'
 
-for ds in [ds_bs_SWD, ds_bs_SWU, ds_bs_LWD, ds_bs_LWU, ds_bs_AL, ds_bs_SWN, ds_bs_LWN]:
+for ds in [ds_bs_SWD, ds_bs_SWU, ds_bs_LWD, ds_bs_LWU, ds_bs_SWN, ds_bs_LWN]:
     ds['X'] = ds['X'] * 1000
     ds['Y'] = ds['Y'] * 1000
 
@@ -51,14 +51,14 @@ ds_nobs_LWD = (xr.open_dataset(
     file_str_nobs + 'mon-LWD-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
 ds_nobs_LWU = (xr.open_dataset(
     file_str_nobs + 'mon-LWU-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
-ds_nobs_AL = (xr.open_dataset(
-    file_str_nobs + 'mon-AL-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
+# ds_nobs_AL = (xr.open_dataset(
+#    file_str_nobs + 'mon-AL-MAR_ERA5-1979-2019.nc')).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
 ds_nobs_SWN = (ds_nobs_SWD.SWD - ds_nobs_SWU.SWU)
 ds_nobs_SWN.name = 'SWN'
 ds_nobs_LWN = (ds_nobs_LWD.LWD - ds_nobs_LWU.LWU)
 ds_nobs_LWN.name = 'LWN'
 
-for ds in [ds_nobs_SWD, ds_nobs_SWU, ds_nobs_LWD, ds_nobs_LWU, ds_nobs_AL, ds_nobs_SWN, ds_nobs_LWN]:
+for ds in [ds_nobs_SWD, ds_nobs_SWU, ds_nobs_LWD, ds_nobs_LWU, ds_nobs_SWN, ds_nobs_LWN]:
     ds['X'] = ds['X'] * 1000
     ds['Y'] = ds['Y'] * 1000
 # ============================================
