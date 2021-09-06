@@ -26,7 +26,7 @@ for i in range(1):
     # Limit the map to -60 degrees latitude and below.
     ax[i].set_extent([-180, 180, -90, -60], ccrs.PlateCarree())
 
-    ax[i].add_feature(feat.LAND)
+    ax[i].add_feature(feat.LAND, facecolor='#363737')
     # ax[i].add_feature(feat.OCEAN)
 
     ax[i].gridlines()
@@ -43,7 +43,8 @@ for i in range(1):
 
 
 # Geodetic always draws shortes distance between two points
-plt.plot([140, -40], [-60, -60], transform=ccrs.Geodetic(), lw=8)
+plt.plot([140, -40], [-60, -60],
+         transform=ccrs.Geodetic(), lw=8, color='#03719c')
 
 fig.tight_layout()
 

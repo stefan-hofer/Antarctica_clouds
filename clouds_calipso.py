@@ -19,7 +19,7 @@ def preprocess(ds):
     return data
 
 
-file_str = '/projects/NS9600K/shofer/blowing_snow/MAR/3D_monthly/'
+file_str = '/projects/NS9600K/shofer/blowing_snow/MAR/new/3D_monthly/'
 file_str_nobs = '/projects/NS9600K/shofer/blowing_snow/MAR/3D_monthly_nDR/'
 
 file_str_ERA = '/projects/NS9600K/shofer/blowing_snow/MAR/ERA5/SINGLELEVS/'
@@ -92,6 +92,9 @@ dh = (ds_grid['x'].values[0] - ds_grid['x'].values[1]) / 2.
 msk = ds_grid['SOL'].where(ds_grid['SOL'] == 4)
 # =========== COMPUTE THE MEAN OVER THE SAME TIME PERIOD ==================
 BS = ds_bs_CC.mean(dim='TIME')
+BS['x'] = BS.x * 1000
+BS['y'] = BS.y * 1000
+
 # Add LAT LON to MAR data
 BS['lat'] = ds_grid.LAT
 BS['lon'] = ds_grid.LON
@@ -103,6 +106,8 @@ BS['SOL'] = ds_grid.SOL
 
 
 NOBS = ds_nobs_CC.mean(dim='TIME')
+NOBS['x'] = BS.x * 1000
+NOBS['y'] = BS.y * 1000
 NOBS['lat'] = ds_grid.LAT
 NOBS['lon'] = ds_grid.LON
 NOBS['RIGNOT'] = ds_grid.RIGNOT.where(ds_grid.RIGNOT > 0)
@@ -150,6 +155,13 @@ diff_test_nobs = (regrid_NOBS.CC - regrid_cloudsat).where((regrid_BS.shelf > 0)
 diff_test_ERA = (regrid_ERA - regrid_cloudsat).where((regrid_BS.shelf > 0)
                                                      | (regrid_BS.ground > 0))
 
+
+print('NoBS mean: {:.2f}, NOBS STD: {:.2f}'.format(
+    diff_test_nobs.mean().values * 100, diff_test_nobs.std().values * 100))
+print('BS mean: {:.2f}, BS STD: {:.2f}'.format(
+    diff_test.mean().values * 100, diff_test.std().values * 100))
+print('ERA mean: {:.2f}, ERA STD: {:.2f}'.format(
+    diff_test_ERA.mean().values * 100, diff_test_ERA.std().values * 100))
 # ============ PLOTTING ROUTINE ========================
 # Plotting routines
 plt.close('all')
@@ -187,13 +199,13 @@ for i in range(3):
 
 cmap = 'YlGnBu_r'
 cont = ax[0].pcolormesh(diff_test_nobs['lon'], diff_test_nobs['lat'],
-                        diff_test_nobs,
-                        transform=ccrs.PlateCarree(), vmin=-1, vmax=1, cmap='RdBu_r')
+                        diff_test_nobs * 100,
+                        transform=ccrs.PlateCarree(), vmin=-100, vmax=100, cmap='RdBu_r')
 cont2 = ax[1].pcolormesh(diff_test['lon'], diff_test['lat'],
-                         diff_test,
-                         transform=ccrs.PlateCarree(), vmin=-1, vmax=1, cmap='RdBu_r')
+                         diff_test * 100,
+                         transform=ccrs.PlateCarree(), vmin=-100, vmax=100, cmap='RdBu_r')
 cont3 = ax[2].pcolormesh(diff_test_ERA['lon'], diff_test_ERA['lat'],
-                         diff_test_ERA, transform=ccrs.PlateCarree(), vmin=-1, vmax=1, cmap='RdBu_r')
+                         diff_test_ERA * 100, transform=ccrs.PlateCarree(), vmin=-100, vmax=100, cmap='RdBu_r')
 # cont2 = ax[1].pcolormesh(trend_CC['lon'], trend_CC['lat'],
 #                          trend_CC.slope*30, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
 
@@ -215,7 +227,7 @@ for i in range(3):
 fig.tight_layout()
 
 cb = fig.colorbar(cont3, ax=ax, ticks=list(
-    np.arange(-1, 1.5, 0.2)), shrink=0.85, orientation='horizontal')
+    np.arange(-100, 120, 20)), shrink=0.85, orientation='horizontal')
 cb.set_label('Cloud Cover Difference (%)', fontsize=16)
 cb.ax.tick_params(labelsize=11)
 
@@ -227,5 +239,5 @@ plt.subplots_adjust(left=0.02, right=0.98, top=0.99, bottom=0.24)
 # cbar.set_label(
 #    'Average DJF cloud cover 2002-2015 (%)', fontsize=18)
 
-fig.savefig('/projects/NS9600K/shofer/blowing_snow/Calipso_difference.png',
+fig.savefig('/projects/NS9600K/shofer/blowing_snow/Calipso_difference_new.png',
             format='PNG', dpi=300)
