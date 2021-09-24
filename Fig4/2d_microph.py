@@ -303,3 +303,96 @@ fig.savefig('/uio/kant/geo-metos-u1/shofer/data/microphysics.png',
             format='PNG', dpi=300)
 fig.savefig('/projects/NS9600K/shofer/blowing_snow/microphysics.png',
             format='PNG', dpi=300)
+
+
+# PLOT IN PERCENTAGE CHANGE
+
+# Plotting routines
+plt.close('all')
+proj = ccrs.SouthPolarStereo()
+fig = plt.figure(figsize=(7, 10))
+spec2 = gridspec.GridSpec(ncols=2, nrows=2, figure=fig)
+ax1 = fig.add_subplot(spec2[0, 0], projection=proj)
+ax2 = fig.add_subplot(spec2[0, 1], projection=proj)
+# plt.setp(ax2.get_yticklabels(), visible=False)
+ax3 = fig.add_subplot(spec2[1, 0], projection=proj)
+ax4 = fig.add_subplot(spec2[1, 1], projection=proj)
+
+
+ax = [ax1, ax2, ax3, ax4]
+names = ['CC', 'COD', 'LWP', 'IWP']
+for i in range(4):
+    # Limit the map to -60 degrees latitude and below.
+    ax[i].set_extent([-180, 180, -90, -60], ccrs.PlateCarree())
+
+    ax[i].add_feature(feat.LAND)
+    # ax[i].add_feature(feat.OCEAN)
+
+    ax[i].gridlines()
+
+    # Compute a circle in axes coordinates, which we can use as a boundary
+    # for the map. We can pan/zoom as much as we like - the boundary will be
+    # permanently circular.
+    theta = np.linspace(0, 2 * np.pi, 100)
+    center, radius = [0.5, 0.5], 0.5
+    verts = np.vstack([np.sin(theta), np.cos(theta)]).T
+    circle = mpath.Path(verts * radius + center)
+
+    ax[i].set_boundary(circle, transform=ax[i].transAxes)
+
+# PLOT EVERYTHING
+
+(diff_CC.CC * 100).plot.pcolormesh('x', 'y', transform=proj, ax=ax1, cmap='RdBu_r',
+                                   robust=True, cbar_kwargs={
+                                       'label': r'$\Delta$ CC (%)', 'shrink': 1, 'orientation': 'horizontal',
+                                       'ticks': [-20, -10, 0, 10, 20], 'pad': 0.05, 'extend': 'both'}, vmin=-25, vmax=25)
+diff_weighted_COD.plot.pcolormesh('x', 'y', transform=proj, ax=ax2, robust=True, cmap='RdBu_r', cbar_kwargs={
+    'label': r'$\Delta$ COD', 'shrink': 1, 'orientation': 'horizontal',
+    'pad': 0.05, 'fraction': 0.15, 'extend': 'both'}, vmin=-0.02, vmax=0.02)
+
+(diff_weighted_LWP * 1000).plot.pcolormesh('x', 'y', transform=proj, ax=ax3,
+                                           robust=True, cbar_kwargs={
+                                               'label': r'$\Delta$ LWP ($g/m^{2}$)', 'shrink': 1, 'orientation': 'horizontal',
+                                               'pad': 0.05, 'extend': 'both'})
+(diff_weighted_IWP * 1000).plot.pcolormesh('x', 'y', transform=proj, ax=ax4, cmap='RdBu_r',
+                                           robust=True, cbar_kwargs={
+                                               'label': r'$\Delta$ IWP ($g/m^{2}$)', 'shrink': 1, 'orientation': 'horizontal',
+                                               'pad': 0.05, 'extend': 'both'}, vmin=-25, vmax=25)
+#
+# cont = ax[0].pcolormesh(diff_CC['x'], diff_CC['y'],
+#                         (diff_CC.CC)*100,
+#                         transform=proj, cmap='Reds')
+# cont2 = ax[1].pcolormesh(diff_COD['x'], diff_COD['y'],
+#                          diff_COD.COD,
+#                          transform=proj, cmap='RdBu_r')
+# cont3 = ax[2].pcolormesh(diff_LWP['x'], diff_LWP['y'],
+#                          diff_LWP.CWP, transform=proj, cmap='RdBu_r')
+# cont4 = ax[3].pcolormesh(diff_IWP['x'], diff_IWP['y'],
+#                          diff_IWP.IWP, transform=proj, cmap='RdBu_r')
+# cont2 = ax[1].pcolormesh(trend_CC['lon'], trend_CC['lat'],
+#                          trend_CC.slope*30, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
+letters = ['A', 'B', 'C', 'D']
+for i in range(4):
+    xr.plot.contour(ds_grid.SOL, levels=1, colors='black',
+                    linewidths=0.4, transform=proj, ax=ax[i])
+    xr.plot.contour(ground, levels=1, colors='black', linewidths=0.4, ax=ax[i])
+    # ax[i].add_feature(feat.COASTLINE.with_scale(
+    #    '50m'), zorder=1, edgecolor='black')
+    ax[i].set_title(names[i], fontsize=16)
+    ax[i].text(0.04, 1.02, letters[i], fontsize=22, va='center', ha='center',
+               transform=ax[i].transAxes, fontdict={'weight': 'bold'})
+
+
+# fig.canvas.draw()
+
+fig.tight_layout()
+# fig.colorbar(cont2, ax=ax[1], ticks=list(
+#     np.arange(-15, 15.5, 3)), shrink=0.8)
+# cbar = fig.colorbar(cont, ax=ax, ticks=[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+#                    orientation = 'horizontal', fraction = 0.13, pad = 0.01, shrink = 0.8)
+# cbar.set_label(
+#    'Average DJF cloud cover 2002-2015 (%)', fontsize=18)
+fig.savefig('/uio/kant/geo-metos-u1/shofer/data/microphysics.png',
+            format='PNG', dpi=300)
+fig.savefig('/projects/NS9600K/shofer/blowing_snow/microphysics.png',
+            format='PNG', dpi=300)
