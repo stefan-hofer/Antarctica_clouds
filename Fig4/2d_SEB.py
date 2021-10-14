@@ -19,6 +19,9 @@ import cartopy.feature as feat
 file_str = '/projects/NS9600K/shofer/blowing_snow/MAR/new/3D_monthly/'
 file_str_nobs = '/projects/NS9600K/shofer/blowing_snow/MAR/3D_monthly_nDR/'
 file_str_zz = '/projects/NS9600K/shofer/blowing_snow/MAR/case_study_BS_2009/'
+station_dir = '/projects/NS9600K/shofer/blowing_snow/observations/new/LAT_LON_stations.csv'
+station_dir_xy = '/projects/NS9600K/shofer/blowing_snow/observations/new/x_y_stations.csv'
+# ================================================================================================
 
 year_s = '2000-01-01'
 year_e = '2019-12-31'
@@ -62,6 +65,20 @@ for ds in [ds_nobs_SWD, ds_nobs_SWU, ds_nobs_LWD, ds_nobs_LWU, ds_nobs_SWN, ds_n
     ds['X'] = ds['X'] * 1000
     ds['Y'] = ds['Y'] * 1000
 # ============================================
+ds = (xr.open_dataset(file_str + 'year-QS-MAR_ERA5-1980-2019.nc')
+      ).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
+
+ds_nobs = (xr.open_dataset(file_str_nobs + 'year-QS-MAR_ERA5-1979-2020.nc')
+           ).sel(TIME=slice(year_s, year_e)).mean(dim='TIME')
+stations = pd.read_csv(station_dir, delimiter=',',
+                       names=['Name', 'Lat', 'Lon'])
+station_xy = pd.read_csv(station_dir_xy, delimiter=';')
+
+for ds in [ds_nobs, ds]:
+    ds['X'] = ds['X'] * 1000
+    ds['Y'] = ds['Y'] * 1000
+
+diff = ((ds.QS * 1000) - (ds_nobs.QS * 1000)).rename({'X': 'x', 'Y': 'y'})
 # ==========================================================================
 # CREATE the ICE MASK
 # =========================================================
@@ -161,6 +178,10 @@ COD_three = abs_diff.where((ais == 0) & (shelf == 0)).mean()
 print('{}: Grounded={:.2f}, Shelves={:.2f}, Ocean={:.2f}'.format(
     'Net diff', COD_one.values, COD_two.values, COD_three.values))
 
+# diff in QS
+diff_new = diff.where((ground > 0) | (shelf > 0)).isel(
+    x=slice(10, -10), y=slice(10, -10))
+
 
 # Plotting routines
 plt.close('all')
@@ -246,7 +267,7 @@ ax3 = fig.add_subplot(spec2[1, 0], projection=proj)
 ax4 = fig.add_subplot(spec2[1, 1], projection=proj)
 
 ax = [ax1, ax2, ax3, ax4]
-names = ['SWD', 'LWD', 'SWN', 'LWN']
+names = ['SWD', 'LWD', 'Net Radiation', 'QS']
 for i in range(4):
     # Limit the map to -60 degrees latitude and below.
     ax[i].set_extent([-180, 180, -90, -60], ccrs.PlateCarree())
@@ -274,24 +295,41 @@ cont2 = ax[1].pcolormesh(diff_LWD['x'], diff_LWD['y'],
                          diff_LWD.LWD,
                          transform=proj, vmin=-4, vmax=4, cmap='RdBu_r')
 cont3 = ax[2].pcolormesh(abs_diff['x'], abs_diff['y'],
-                         diff_SWN, transform=proj, vmin=-4, vmax=4, cmap='RdBu_r')
-cont4 = ax[3].pcolormesh(abs_diff['x'], abs_diff['y'],
-                         diff_LWN, transform=proj, vmin=-4, vmax=4, cmap='RdBu_r')
-# cont2 = ax[1].pcolormesh(trend_CC['lon'], trend_CC['lat'],
-#                          trend_CC.slope*30, transform=ccrs.PlateCarree(), vmin=-15, vmax=15, cmap='RdBu_r')
+                         abs_diff, transform=proj, vmin=-4, vmax=4, cmap='RdBu_r')
+cont4 = ax[3].pcolormesh(diff_new['x'], diff_new['y'],
+                         diff_new, transform=proj, vmin=-25, vmax=25, cmap='RdBu_r')
+
+ax[3].plot(station_xy.x * 1000, station_xy.y * 1000,
+           'o', color='#014d4e', transform=proj)
+
+#          robust = True, cbar_kwargs = {
+# 'label': r'$\Delta$ Snow Particle Ratio (g/kg)', 'shrink': 1, 'orientation': 'horizontal',
+# 'ticks': [-30, -20, -10, 0, 10, 20, 30], 'pad': 0.05, 'extend': 'both'}, vmin = -35, vmax = 35)
+
+
 letters = ['A', 'B', 'C', 'D']
 for i in range(4):
     xr.plot.contour(ds_grid.SOL, levels=1, colors='black',
                     linewidths=0.4, transform=proj, ax=ax[i])
-    xr.plot.contour(ground, levels=1, colors='black', linewidths=0.4, ax=ax[i])
+    xr.plot.contour(ground, levels=1, colors='black',
+                    linewidths=0.4, ax=ax[i])
     # ax[i].add_feature(feat.COASTLINE.with_scale(
     #     '50m'), zorder=1, edgecolor='black')
     ax[i].set_title(names[i], fontsize=16)
     ax[i].text(0.04, 1.02, letters[i], fontsize=22, va='center', ha='center',
                transform=ax[i].transAxes, fontdict={'weight': 'bold'})
 # fig.canvas.draw()
+for i in range(0, 3):
+    cb = fig.colorbar(cont3, ax=ax[i], ticks=list(
+        np.arange(-4, 4.5, 1)), shrink=0.8, orientation='horizontal')
+    cb.set_label(r'$\Delta$ Radiative Flux $(Wm^{-2})$', fontsize=13)
+    cb.ax.tick_params(labelsize=11)
 
-cb = fig.colorbar(cont4, ax=ax[3], ticks=list(
-    np.arange(-4, 4.5, 1)), shrink=0.8)
-cb.set_label(r'$\Delta$ Radiative Flux $(Wm^{-2})$', fontsize=16)
+cb = fig.colorbar(cont4, ax=ax[3], ticks=[-20, -10,
+                                          0, 10, 20], shrink=0.8, orientation='horizontal')
+cb.set_label(r'$\Delta$ Snow Particle Ratio (g/kg)', fontsize=13)
 cb.ax.tick_params(labelsize=11)
+fig.tight_layout()
+
+fig.savefig('/projects/NS9600K/shofer/blowing_snow/SEB_with_stations.png',
+            format='PNG', dpi=300)

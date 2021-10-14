@@ -139,7 +139,7 @@ plt.plot(station_xy.x * 1000, station_xy.y * 1000,
 
 fig.tight_layout()
 
-fig.savefig('/projects/NS9600K/shofer/blowing_snow/station_map_erosion.png',
+fig.savefig('/projects/NS9600K/shofer/blowing_snow/station_map.png',
             format='PNG', dpi=300)
-fig.savefig('/projects/NS9600K/shofer/blowing_snow/station_map_erosion.pdf',
+fig.savefig('/projects/NS9600K/shofer/blowing_snow/station_map.pdf',
             format='PDF')
