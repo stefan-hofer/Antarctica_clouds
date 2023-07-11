@@ -5,10 +5,16 @@ from cmcrameri import cm
 import pandas as pd
 import cartopy.crs as ccrs
 import cartopy.feature as feat
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
 import matplotlib.path as mpath
 import glob
+import os
 
-directory = '/projects/NS9600K/shofer/blowing_snow/sat_data/CALIOP_blowing_snow/'
+# directory = '/projects/NS9600K/shofer/blowing_snow/sat_data/CALIOP_blowing_snow/'
+directory = '/home/sh16450/caliop_blowing_snow/'
 files = sorted(glob.glob(
     directory + 'CAL_LID_L2_BlowingSnow_Antarctica-Standard-V1-00*.hdf5'))
 
@@ -30,8 +36,11 @@ for file in files:
                             'time': pd.date_range(time, periods=1)})
 
     save_str = file.split(".")[0] + "." + time + ".nc"
-
-    ds.to_netcdf(save_str)
+    if os.path.exists(save_str):
+        print('The file {} already exists!'.format(save_str))
+    else:
+        print('Saving the file in {}!'.format(save_str))
+        ds.to_netcdf(save_str)
 
 
 list(f.keys())
